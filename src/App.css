@@ -1,0 +1,35 @@
+.app{
+
+}
+
+.content{
+    /* border: 2px solid blue; */
+}
+
+
+
+.MainContainer{
+    display: flex;
+    /* border: 5px solid black; */
+    flex-direction: column;
+
+   
+}
+
+.container1{
+    justify-content: space-around;
+    /* border: 3px solid pink; */
+    display: flex;
+   
+}
+
+.container2{
+    justify-content: space-around;
+    display: flex;
+    /* border: 1px solid green; */
+
+}
+
+.charts{
+    
+}
