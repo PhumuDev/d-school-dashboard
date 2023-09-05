@@ -112,62 +112,73 @@ const SideBar = () => {
                         </Box>
                     )}
 
+                    
                     {/* Menu Items */}
                     <Box paddingLeft={!isCollapsed ? undefined : 0}>
-                        <Item
+                        
+                        
+                        
+
+                        {!isCollapsed &&(
+                            // Hide items when Sidebar is collapsed 
+                        <>
+                            <Item
                             title = "Overview"
                             to= "/"
                             icon = {<HomeOutlinedIcon/>}
                             selected = {selected}
                             setSelected = {setSelected}
-                        />
+                            />
 
-                        <Typography
+                            <Typography
                             variant = "h6"
                             color= {colors.grey[300]}
                             sx ={{m: "15px 0 5px 20px"}}
-                        >
-                            Electricity
-                        </Typography>
+                            >
+                                Electricity
+                            </Typography>
 
-                        <Item
-                            title = "Solar Generation"
-                            to= "/electricity"
-                            icon = {<LightModeOutlined/>}
-                            selected = {selected}
-                            setSelected = {setSelected}
-                        />
+                            <Item
+                                title = "Solar Generation"
+                                to= "/electricity"
+                                icon = {<LightModeOutlined/>}
+                                selected = {selected}
+                                setSelected = {setSelected}
+                            />
+                            <Item
+                                title = "Energy Consumption"
+                                to= "/electricity"
+                                icon = {<WbIncandescentOutlinedIcon/>}
+                                selected = {selected}
+                                setSelected = {setSelected}
+                            />
 
-                        <Item
-                            title = "Energy Consumption"
-                            to= "/electricity"
-                            icon = {<WbIncandescentOutlinedIcon/>}
-                            selected = {selected}
-                            setSelected = {setSelected}
-                        />
+                            <Item
+                                title = "Cost Savings"
+                                to= "/electricity"
+                                icon = {<SavingsOutlinedIcon/>}
+                                selected = {selected}
+                                setSelected = {setSelected}
+                            />
+                            <Typography
+                                variant = "h6"
+                                color= {colors.grey[300]}
+                                sx ={{m: "15px 0 5px 20px"}}
+                            >
+                                Water
+                            </Typography>
 
-                        <Item
-                            title = "Cost Savings"
-                            to= "/electricity"
-                            icon = {<SavingsOutlinedIcon/>}
-                            selected = {selected}
-                            setSelected = {setSelected}
-                        />
-                        <Typography
-                            variant = "h6"
-                            color= {colors.grey[300]}
-                            sx ={{m: "15px 0 5px 20px"}}
-                        >
-                            Water
-                        </Typography>
+                            <Item
+                                title = "Total Water Usage"
+                                to= "/water"
+                                icon = {<WaterDropOutlinedIcon/>}
+                                selected = {selected}
+                                setSelected = {setSelected}
+                            /> 
+                        </>         
+                        )}
+                        
 
-                        <Item
-                            title = "Total Water Usage"
-                            to= "/water"
-                            icon = {<WaterDropOutlinedIcon/>}
-                            selected = {selected}
-                            setSelected = {setSelected}
-                        /> 
 
                     </Box>
                 </Menu>
