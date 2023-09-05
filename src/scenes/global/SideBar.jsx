@@ -6,8 +6,6 @@ import {Link} from "react-router-dom"; //allows adding links when you click on m
 import {tokens} from "../../theme";
 import  HomeOutlinedIcon  from "@mui/icons-material/HomeOutlined";
 import WaterDropOutlinedIcon from '@mui/icons-material/WaterDropOutlined';
-// import  CalenderTodayOutlinedIcon  from "@mui/icons-material/CalenderTodayOutlined";
-import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
 import  BarChartOutlinedIcon  from "@mui/icons-material/BarChartOutlined";
 import WbIncandescentOutlinedIcon from '@mui/icons-material/WbIncandescentOutlined';
 import  TimelineOutlinedIcon  from "@mui/icons-material/TimelineOutlined";

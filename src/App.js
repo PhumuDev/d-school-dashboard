@@ -24,30 +24,6 @@ function App() {
   const [theme, colorMode] = useMode();
   
   
-  // const [state, setState] = useState(
-  //   {
-      
-  //     options: {
-  //       chart: {
-  //         id: "basic-bar"
-  //       },
-  //       xaxis: {
-  //         categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-  //       }
-  //     },
-  //     series: [
-  //       {
-  //         name: "series-1",
-  //         data: [30, 40, 45, 50, 49, 60, 70, 91]
-  //       },
-  //       {
-  //         name: "series-2",
-  //         data: [20, 5, 4, 70, 99, 20, 10, 11]
-  //       }
-  //     ]
-  //   }
-  // );
-  
   return (
     <ColorModeContext.Provider value = {colorMode}>
       <ThemeProvider theme = {theme}>
@@ -61,56 +37,6 @@ function App() {
             <Route path="/electricity" element={<Electricity/>}/> 
             <Route path="/water" element={<Water/>}/>
             </Routes>
-
-            {/* <div className='MainContainer'>
-              
-              <div className='container1'>
-                <div id='chart1'>
-                  <Chart class='charts'
-                    options={state.options}
-                    series={state.series}
-                    type="line"
-                    width="300"
-                    height="auto"
-                   
-                  /> 
-                </div>
-                <div id='chart2'>
-                  <Chart class='charts'
-                    options={state.options}
-                    series={state.series}
-                    type="bar"
-                    width="300"
-                    height="auto"
-                  /> 
-                </div>
-              </div>
-
-              <div className='container2'>
-                  <div id='chart3'>
-                    <Chart class='charts'
-                      options={state.options}
-                      series={state.series}
-                      type="bar"
-                      width="300"
-                      height="auto"
-                    /> 
-                  </div>
-                  <div id='chart4'>
-                    <Chart class='charts'
-                      options={state.options}
-                      series={state.series}
-                      type="bar"
-                      width="300"
-                      height="auto"
-                      
-                    /> 
-                  </div>
-              </div>
-              
-              
-           
-            </div> */}
             
           </main>
         </div>
