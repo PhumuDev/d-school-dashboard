@@ -5,17 +5,15 @@ import {Box, IconButton, Typography, useTheme} from '@mui/material';
 import {Link} from "react-router-dom"; //allows adding links when you click on menu items
 import {tokens} from "../../theme";
 import  HomeOutlinedIcon  from "@mui/icons-material/HomeOutlined";
-import  PeopleOutlinedIcon  from "@mui/icons-material/PeopleOutlined";
-import  ContactsOutlinedIcon  from "@mui/icons-material/ContactsOutlined";
-import  ReceiptOutlinedIcon  from "@mui/icons-material/ReceiptOutlined";
-import  PersonOutlinedIcon  from "@mui/icons-material/PersonOutlined";
+import WaterDropOutlinedIcon from '@mui/icons-material/WaterDropOutlined';
 // import  CalenderTodayOutlinedIcon  from "@mui/icons-material/CalenderTodayOutlined";
-import  HelpOutlinedIcon  from "@mui/icons-material/HelpOutlined";
+import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
 import  BarChartOutlinedIcon  from "@mui/icons-material/BarChartOutlined";
-import  PieChartOutlinedIcon  from "@mui/icons-material/PieChartOutlined";
+import WbIncandescentOutlinedIcon from '@mui/icons-material/WbIncandescentOutlined';
 import  TimelineOutlinedIcon  from "@mui/icons-material/TimelineOutlined";
 import  MenuOutlinedIcon  from "@mui/icons-material/MenuOutlined";
-import  MapOutlinedIcon  from "@mui/icons-material/LightModeOutlined";
+import SavingsOutlinedIcon from '@mui/icons-material/SavingsOutlined';
+import { LightModeOutlined } from "@mui/icons-material";
 
 // Menu Item
 const Item = ({title, to,icon, selected, setSelected}) => { 
@@ -124,21 +122,53 @@ const SideBar = () => {
                             setSelected = {setSelected}
                         />
 
+                        <Typography
+                            variant = "h6"
+                            color= {colors.grey[300]}
+                            sx ={{m: "15px 0 5px 20px"}}
+                        >
+                            Electricity
+                        </Typography>
+
                         <Item
-                            title = "Electricity"
+                            title = "Solar Generation"
                             to= "/electricity"
-                            icon = {<BarChartOutlinedIcon/>}
+                            icon = {<LightModeOutlined/>}
                             selected = {selected}
                             setSelected = {setSelected}
                         />
 
                         <Item
-                            title = "Water"
+                            title = "Energy Consumption"
+                            to= "/electricity"
+                            icon = {<WbIncandescentOutlinedIcon/>}
+                            selected = {selected}
+                            setSelected = {setSelected}
+                        />
+
+                        <Item
+                            title = "Cost Savings"
+                            to= "/electricity"
+                            icon = {<SavingsOutlinedIcon/>}
+                            selected = {selected}
+                            setSelected = {setSelected}
+                        />
+                        <Typography
+                            variant = "h6"
+                            color= {colors.grey[300]}
+                            sx ={{m: "15px 0 5px 20px"}}
+                        >
+                            Water
+                        </Typography>
+
+                        <Item
+                            title = "Total Water Usage"
                             to= "/water"
-                            icon = {<PieChartOutlinedIcon/>}
+                            icon = {<WaterDropOutlinedIcon/>}
                             selected = {selected}
                             setSelected = {setSelected}
                         /> 
+
                     </Box>
                 </Menu>
             </ProSidebar>

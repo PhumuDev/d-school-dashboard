@@ -36,7 +36,7 @@ const Water = () => {
       );
     return <Box m="20px">
         <Box display= "flex" justifyContent = "space-between" alignItems = "center">
-        <Header title="WATER" subtitle="D-School Water Data"/> {/*}Create an instance of the header class*/}
+        <Header title="Water" subtitle=""/>
         </Box>
 
         <div className='MainContainer'>

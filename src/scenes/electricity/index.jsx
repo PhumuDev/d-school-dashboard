@@ -40,7 +40,7 @@ const Electricity = () => {
       );
     return <Box m="20px">
         <Box display= "flex" justifyContent = "space-between" alignItems = "center">
-        <Header title="ELECTRICITY" subtitle="D-School Electricity Data"/> {/*}Create an instance of the header class*/}
+        <Header title="Electricity" subtitle=""/>
         </Box>
 
         <div className='MainContainer'>
