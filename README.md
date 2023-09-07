@@ -73,3 +73,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 - Create File for each graph
 - Fetch & integrate data easily for that specific graph in a specific file from api
+- Try NIVO charts
