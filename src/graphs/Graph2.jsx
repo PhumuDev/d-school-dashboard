@@ -1,6 +1,7 @@
 import { useState } from "react";
-import Chart from "react-apexcharts";
+import ReactApexChart from "react-apexcharts";
 import "../App.css";
+
 
 
 
@@ -9,63 +10,82 @@ import "../App.css";
 
 const Graph2 = () => {
 
-const [state, setState] = useState(
-    {
-      // Energy generation by solar
+const [state, setState] = useState({
+    series: [{
+        name: 'Net Profit',
+        data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+      }, {
+        name: 'Revenue',
+        data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+      }, {
+        name: 'Free Cash Flow',
+        data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
+      }],
       options: {
-        colors:["#37eb34","#ebdc34"],
-        theme:{
-            mode:""
+        chart: {
+          type: 'bar',
+          height: 350
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: '55%',
+            endingShape: 'rounded'
+          },
+        },
+        title: {
+            text: 'Building Energy Consumption',
+            fontSize: 30
         },
         dataLabels: {
-            style: {
-              colors: ['#6b03fc'],
-              fontSize: 12,
-            }
-          },
-        chart: {
-          id: "basic-bar"
+          enabled: false
         },
-        yaxis:{
-            labels:{
-                formatter:(val)=>{
-                    return ((val))
-                },
-            }
+        stroke: {
+          show: true,
+          width: 2,
+          colors: ['transparent']
         },
         xaxis: {
-            categories: [5, 8, 12, 15, 18]
+          categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+        },
+        yaxis: {
+          title: {
+            text: '$ (thousands)'
+          }
+        },
+        fill: {
+          opacity: 1
+        },
+        tooltip: {
+          y: {
+            formatter: function (val) {
+              return "$ " + val + " thousands"
+            }
+          }
         }
       },
+})
+    
+                  
+       
+      
+      
+      
+    
 
-      series: [
-        {
-          name: "Power",
-          type:"bar",
-          data: [0, 0.85, 35.95, 28.06, 0.05]
-        },
-        {
-            name: "Irradiance",
-            type:"line",
-            data: [0, 93.56, 741.61, 635.05, 12.20]
-          },
-        
-      ]
-    }
-  );
 
-  return(     
-            <div class='diagramContainer'>
-              <Chart class='charts'
-              options={state.options}
-              series={state.series}
-              //type="line"
-              width="90%"
-              height="100%"
-            /> 
-            </div> 
-            
-        )
+  return( 
+    <div class='diagramContainer'>
+        <ReactApexChart options={state.options} series={state.series} type="bar" height={"100%"} width={"100%"}/>
+
+
+
+    </div>
+   )
 
   };
 export default Graph2;
+
+ 
+
+           

@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { useState } from "react";
 import Graph2 from "../../../graphs/Graph2";
+import Graph3 from "../../../graphs/Graph3";
 
 const EnergyConsumption = () => {
 
@@ -10,6 +11,7 @@ const EnergyConsumption = () => {
         <div className='MainContainer'>
             <div className="container1">
               <Graph2/>
+              <Graph3/>
               
             </div>
           
