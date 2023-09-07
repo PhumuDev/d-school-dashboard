@@ -10,6 +10,7 @@ import Header from "../../components/Header";
 import Dropdown from "../../components/Dropdown";
 import NotificationList from "../../components/NotificationList";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const TopBar = () => {
   const theme = useTheme();
@@ -27,6 +28,10 @@ const TopBar = () => {
     second: "2-digit",
     hour12: false,
   }
+  const [time, setTime] = useState(new Date());
+  useEffect(()=>{
+    setInterval(()=>setTime(new Date()),1000)
+  },[])
   const currentDateT = today.toLocaleString(undefined, options);
   const timeAndDate = currentDateT.split(" at ");
 
@@ -35,7 +40,7 @@ const TopBar = () => {
   return (
     <Box display="flex" justifyContent="space-between" p={2}>
       <IconButton></IconButton>
-      <Header title={timeAndDate[0]} subtitle={timeAndDate[1].substring(0,5)}/> {/*}Create an instance of the header class*/}
+      <Header title={timeAndDate[0]} subtitle={time.toLocaleTimeString().substring(0,5)}/> {/*}Create an instance of the header class*/}
         {/*Icons*/}
       <Box display = "flex">
 
