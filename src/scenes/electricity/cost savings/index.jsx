@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { useState } from "react";
-import Graph1 from "../../../graphs/Graph1";
+import Graph2 from "../../../graphs/Graph2";
 
 const CostSavings = () => {
 
@@ -10,7 +10,7 @@ const CostSavings = () => {
 
         <div className='MainContainer'>
             <div className="container1">
-              <Graph1/>
+              <Graph2/>
               
             </div>
           

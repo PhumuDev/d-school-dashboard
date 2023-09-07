@@ -1,6 +1,7 @@
 import { useState } from "react";
-import Chart from "react-apexcharts";
+import ReactApexChart from "react-apexcharts";
 import "../App.css";
+
 
 
 
@@ -9,63 +10,69 @@ import "../App.css";
 
 const Graph1 = () => {
 
-const [state, setState] = useState(
-    {
-      // Energy generation by solar
+const [state, setState] = useState({
+    series: [{
+        name: 'Website Blog',
+        type: 'column',
+        data: [440, 505, 414, 671, 227, 413, 201, 352, 752, 320, 257, 160]
+      }, {
+        name: 'Social Media',
+        type: 'line',
+        data: [23, 42, 35, 27, 43, 22, 17, 31, 22, 22, 12, 16]
+      }],
       options: {
-        colors:["#37eb34","#ebdc34"],
-        theme:{
-            mode:""
+        chart: {
+          height: 350,
+          type: 'line',
+        },
+        stroke: {
+          width: [0, 4]
+        },
+        title: {
+          text: 'Traffic Sources'
         },
         dataLabels: {
-            style: {
-              colors: ['#6b03fc'],
-              fontSize: 12,
-            }
-          },
-        chart: {
-          id: "basic-bar"
+          enabled: true,
+          enabledOnSeries: [1]
         },
-        yaxis:{
-            labels:{
-                formatter:(val)=>{
-                    return ((val))
-                },
-            }
-        },
+        labels: ['01 Jan 2001', '02 Jan 2001', '03 Jan 2001', '04 Jan 2001', '05 Jan 2001', '06 Jan 2001', '07 Jan 2001', '08 Jan 2001', '09 Jan 2001', '10 Jan 2001', '11 Jan 2001', '12 Jan 2001'],
         xaxis: {
-            categories: [5, 8, 12, 15, 18]
-        }
-      },
-
-      series: [
-        {
-          name: "Power",
-          type:"bar",
-          data: [0, 0.85, 35.95, 28.06, 0.05]
+          type: 'datetime'
         },
-        {
-            name: "Irradiance",
-            type:"line",
-            data: [0, 93.56, 741.61, 635.05, 12.20]
+        yaxis: [{
+          title: {
+            text: 'Website Blog',
           },
         
-      ]
-    }
-  );
+        }, {
+          opposite: true,
+          title: {
+            text: 'Social Media'
+          }
+        }]
+      },
+})
+    
+                  
+       
+      
+      
+      
+    
 
-  return(     
-            <div class='diagramContainer'>
-              <Chart class='charts'
-              options={state.options}
-              series={state.series}
-              //type="line"
-              width="90%"
-              height="100%"
-            /> 
-            </div> 
-            
-        )
+
+  return( 
+    <div class='diagramContainer'>
+        <ReactApexChart options={state.options} series={state.series} type="line" height={350} />
+
+
+
+    </div>
+   )
 
   };
 export default Graph1;
+
+ 
+
+           
