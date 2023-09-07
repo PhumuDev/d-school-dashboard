@@ -138,14 +138,14 @@ const SideBar = () => {
 
                             <Item
                                 title = "Solar Generation"
-                                to= "/electricity"
+                                to= "/solar generation"
                                 icon = {<LightModeOutlined/>}
                                 selected = {selected}
                                 setSelected = {setSelected}
                             />
                             <Item
                                 title = "Energy Consumption"
-                                to= "/electricity"
+                                to= "/energy consumption"
                                 icon = {<WbIncandescentOutlinedIcon/>}
                                 selected = {selected}
                                 setSelected = {setSelected}
@@ -153,7 +153,7 @@ const SideBar = () => {
 
                             <Item
                                 title = "Cost Savings"
-                                to= "/electricity"
+                                to= "/cost savings"
                                 icon = {<SavingsOutlinedIcon/>}
                                 selected = {selected}
                                 setSelected = {setSelected}
@@ -168,7 +168,7 @@ const SideBar = () => {
 
                             <Item
                                 title = "Total Water Usage"
-                                to= "/water"
+                                to= "/total water usage"
                                 icon = {<WaterDropOutlinedIcon/>}
                                 selected = {selected}
                                 setSelected = {setSelected}

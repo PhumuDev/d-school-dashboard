@@ -1,10 +1,9 @@
 import { Box } from "@mui/material";
-import Header from "../../components/Header";
 import Chart from "react-apexcharts";
 import { useState } from "react";
 
 
-const Water = () => {
+const TotalWaterUsage = () => {
     const [state, setState] = useState(
         {
           // Chart 1
@@ -68,4 +67,4 @@ const Water = () => {
     
 };
 
-export default Water;
+export default TotalWaterUsage;
