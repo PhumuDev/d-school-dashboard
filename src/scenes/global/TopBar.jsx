@@ -11,6 +11,7 @@ import Dropdown from "../../components/Dropdown";
 import NotificationList from "../../components/NotificationList";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useRef } from "react";
 
 const TopBar = () => {
   const theme = useTheme();
@@ -34,7 +35,17 @@ const TopBar = () => {
   },[])
   const currentDate = today.toLocaleString(undefined, options);
   const timeAndDate = currentDate.split(" at ");
+  let dropdownRef = useRef();
 
+  useEffect(()=>{
+    let handler = (e)=>{
+      if(!dropdownRef.current.contains(e.target)){
+        setOpen(false);
+        setOpenN(false);
+      }
+    };
+    document.addEventListener("mousedown",handler);
+  });
   const colorMode = useContext(ColorModeContext);
 
   return (
@@ -43,7 +54,7 @@ const TopBar = () => {
       
       <Header title={timeAndDate[0]} subtitle={time.toLocaleTimeString().substring(0,5)}/> {/*}Create an instance of the header class*/}
         {/*Icons*/}
-      <Box display = "flex">
+      <Box display = "flex" ref={dropdownRef}>
 
         <IconButton onClick= {colorMode.toggleColorMode}>
             {theme.palette.mode ==='dark' ? (
@@ -51,11 +62,17 @@ const TopBar = () => {
             ) : (<LightModeOutlinedIcon/>)
         }
         </IconButton>
-        <IconButton onClick={() => setOpenN(!openN)}>
+        <IconButton onClick={() => {
+          setOpenN(!openN);
+          setOpen(false);
+        }}>
             <NotificationsOutlinedIcon/>
         </IconButton>
         {openN && <NotificationList/>}
-        <IconButton onClick={() => setOpen(!open)}>
+        <IconButton onClick={() => {
+          setOpen(!open);
+          setOpenN(false);
+          }}>
             <SettingslinedIcon/>
         </IconButton>
         {open && <Dropdown/>}
