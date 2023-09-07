@@ -32,14 +32,15 @@ const TopBar = () => {
   useEffect(()=>{
     setInterval(()=>setTime(new Date()),1000)
   },[])
-  const currentDateT = today.toLocaleString(undefined, options);
-  const timeAndDate = currentDateT.split(" at ");
+  const currentDate = today.toLocaleString(undefined, options);
+  const timeAndDate = currentDate.split(" at ");
 
   const colorMode = useContext(ColorModeContext);
 
   return (
     <Box display="flex" justifyContent="space-between" p={2}>
-      <IconButton></IconButton>
+      <Header title='HPI DESIGN' subtitle="SCHOOL" />
+      
       <Header title={timeAndDate[0]} subtitle={time.toLocaleTimeString().substring(0,5)}/> {/*}Create an instance of the header class*/}
         {/*Icons*/}
       <Box display = "flex">
