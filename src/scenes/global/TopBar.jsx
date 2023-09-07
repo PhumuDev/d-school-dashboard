@@ -13,6 +13,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
 
+
 const TopBar = () => {
   const theme = useTheme();
   const[open, setOpen] = useState(false);
@@ -49,7 +50,7 @@ const TopBar = () => {
   const colorMode = useContext(ColorModeContext);
 
   return (
-    <Box display="flex" justifyContent="space-between" p={2}>
+    <Box className="TopbarBox" display="flex" justifyContent="space-between" p={2}>
       <Header title='HPI DESIGN' subtitle="SCHOOL" />
       
       <Header title={timeAndDate[0]} subtitle={time.toLocaleTimeString().substring(0,5)}/> {/*}Create an instance of the header class*/}

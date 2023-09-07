@@ -63,7 +63,8 @@ const [state, setState] = useState({
 
   return( 
     <div class='diagramContainer'>
-        <ReactApexChart options={state.options} series={state.series} type="line" height={350} />
+        <ReactApexChart options={state.options} series={state.series} type="line" height={"140%"} width={"100%"}
+             />
 
 
 
