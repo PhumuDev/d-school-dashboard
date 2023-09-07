@@ -10,6 +10,72 @@ body,
   font-family: 'Roboto', sans-serrif;
 }
 
+.notificationList {
+  position: absolute;
+  top: 80px;
+  right: -40px;
+  width: 210px;
+  height:auto;
+  transform: translate(-45%);
+  background: solid #242526;
+  border: 1px solid #474a4d;
+  border-radius:8px;
+  padding: 1rem;
+  z-index:20;
+}
+
+.notificationList Notification {
+  border-top: 4px solid black;
+}
+
+.notification-item {
+  height:33px;
+  display: flex;
+  align-items: centre;
+  border-radius: 8px;
+  transition: background 500ms;
+  padding: 0.5rem;
+  font:bold;
+  z-index: 20;
+  border-top: 8px #555;
+}
+
+.notification-item:hover {
+  background-color:lightgrey
+}
+
+.dropdown {
+  position: absolute;
+  top: 80px;
+  right: -40px;
+  width: 180px;
+  height:200px;
+  transform: translate(-45%);
+  background: solid #242526;
+  border: 1px solid #474a4d;
+  border-radius:8px;
+  padding: 1rem;
+  z-index:20;
+}
+
+.menu-item {
+  height:33px;
+  display: flex;
+  align-items: centre;
+  border-radius: 8px;
+  transition: background 500ms;
+  padding: 0.5rem;
+  font:bold;
+  z-index: 20;
+  border-top: 8px #555;
+}
+
+.menu-item:hover {
+  background-color:lightgrey
+}
+.h5 {
+font-size: xx-large;
+}
 .app{
   display: flex;
   position: relative;

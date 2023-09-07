@@ -1,34 +1,41 @@
 import { Box, IconButton, useTheme } from "@mui/material";
 import { useContext } from "react";
 import { ColorModeContext, tokens } from "../../theme";
-import InputBase from "@mui/material/InputBase";
 import  LightModeOutlinedIcon  from "@mui/icons-material/LightModeOutlined";
 import  DarkModeOutlinedIcon  from "@mui/icons-material/DarkModeOutlined";
 import  NotificationsOutlinedIcon  from "@mui/icons-material/NotificationsOutlined";
 import  SettingslinedIcon  from "@mui/icons-material/SettingsOutlined";
 import  PersonOutlinedIcon  from "@mui/icons-material/PersonOutlined";
-import  SearchIcon  from "@mui/icons-material/Search";
+import Header from "../../components/Header";
+import Dropdown from "../../components/Dropdown";
+import NotificationList from "../../components/NotificationList";
+import { useState } from "react";
 
 const TopBar = () => {
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+  const[open, setOpen] = useState(false);
+  const [openN, setOpenN] = useState(false);
+
+  {/*}Create and format date*/}
+  const today = new Date();
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  }
+  const currentDateT = today.toLocaleString(undefined, options);
+  const timeAndDate = currentDateT.split(" at ");
+
   const colorMode = useContext(ColorModeContext);
 
   return (
     <Box display="flex" justifyContent="space-between" p={2}>
       <IconButton></IconButton>
-      {/*Search Bar*/}
-      <Box
-        display="flex"
-        backgroundColor={colors.primary[400]}
-        borderRadius="3px"
-      >
-        <InputBase sx ={{ml: 2, flex: 1}} placholder = "Search" />
-        <IconButton type= "button" sx={{p: 1}}>
-            <SearchIcon/>
-        </IconButton>
-      </Box>
-
+      <Header title={timeAndDate[0]} subtitle={timeAndDate[1].substring(0,5)}/> {/*}Create an instance of the header class*/}
         {/*Icons*/}
       <Box display = "flex">
 
@@ -38,19 +45,24 @@ const TopBar = () => {
             ) : (<LightModeOutlinedIcon/>)
         }
         </IconButton>
-        <IconButton>
+        <IconButton onClick={() => setOpenN(!openN)}>
             <NotificationsOutlinedIcon/>
         </IconButton>
-        <IconButton>
+        {openN && <NotificationList/>}
+        <IconButton onClick={() => setOpen(!open)}>
             <SettingslinedIcon/>
         </IconButton>
+        {open && <Dropdown/>}
         <IconButton>
             <PersonOutlinedIcon/>
         </IconButton>
         
+        
       </Box>
+      
     </Box>
   );
 };
+
 
 export default TopBar;
