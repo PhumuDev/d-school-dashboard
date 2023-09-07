@@ -5,7 +5,7 @@ import Graph2 from "../../../graphs/Graph2";
 const EnergyConsumption = () => {
 
     return <Box m="20px">
-        <Typography>Kevin</Typography>
+       {/* <Typography>Kevin</Typography>  */}
 
         <div className='MainContainer'>
             <div className="container1">

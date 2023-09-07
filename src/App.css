@@ -4,7 +4,9 @@
 }
 
 .content{
-    /* border: 2px solid blue; */
+     /* border: 2px solid blue;  */
+     padding: 0px;
+     margin: 0px;
 }
 .TopbarBox{
       border: 2px solid blue; 
@@ -14,19 +16,21 @@
 
 .MainContainer{
     display: flex;
-   /* border: 5px solid dodgerblue;   */
+    /* border: 5px solid dodgerblue;    */
     flex-direction: row;
     height: 82vh;
+    margin: 0px;
+    padding: 0px;
 
    
 }
 
 .container1{
     justify-content: space-around;
-  /*  border: 3px solid pink;  */
+    /* border: 3px solid pink;   */
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 70%;
     height: 100%;
    
 }
@@ -34,7 +38,7 @@
 .container2{
     justify-content: space-around;
     display: flex;
-/* border: 1px solid green; */
+ /* border: 1px solid green;  */
 
 }
 
@@ -45,7 +49,7 @@
 
 /* Statistics */
 .statsContainer{
-  /*  border: 3px solid rgb(255, 251, 0); */
+    /* border: 3px solid rgb(255, 251, 0);  */
     width: 40%;
     height: 100%;
     display: flex;

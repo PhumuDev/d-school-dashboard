@@ -5,7 +5,7 @@ import Graph2 from "../../../graphs/Graph2";
 const CostSavings = () => {
 
     return <Box m="20px">
-        <Typography>Kevin(2)</Typography>
+        {/* <Typography>Kevin(2)</Typography> */}
 
 
         <div className='MainContainer'>

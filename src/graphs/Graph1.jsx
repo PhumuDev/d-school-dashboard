@@ -12,12 +12,14 @@ const Graph1 = () => {
 
 const [state, setState] = useState({
     series: [{
-        name: 'Website Blog',
+        name: 'Power',
         type: 'column',
-        data: [440, 505, 414, 671, 227, 413, 201, 352, 752, 320, 257, 160]
+        color: "#39de2c",
+        data: [30, 31, 32, 40, 41, 43, 56, 50, 44, 39, 32, 20]
       }, {
-        name: 'Social Media',
+        name: 'Irradiance',
         type: 'line',
+        color: "#f5c542",
         data: [23, 42, 35, 27, 43, 22, 17, 31, 22, 22, 12, 16]
       }],
       options: {
@@ -26,10 +28,12 @@ const [state, setState] = useState({
           type: 'line',
         },
         stroke: {
-          width: [0, 4]
+          width: [0, 4],
+          curve: "smooth"
         },
         title: {
-          text: 'Traffic Sources'
+          text: 'Solar Panels Energy Generation',
+          fontSize: 30
         },
         dataLabels: {
           enabled: true,
@@ -41,13 +45,13 @@ const [state, setState] = useState({
         },
         yaxis: [{
           title: {
-            text: 'Website Blog',
+            text: 'KW (The BAR Graph)',  // For power
           },
         
         }, {
           opposite: true,
           title: {
-            text: 'Social Media'
+            text: 'W/m2(The LINE Graph)'  // For Irradiance
           }
         }]
       },
@@ -63,8 +67,7 @@ const [state, setState] = useState({
 
   return( 
     <div class='diagramContainer'>
-        <ReactApexChart options={state.options} series={state.series} type="line" height={"140%"} width={"100%"}
-             />
+        <ReactApexChart options={state.options} series={state.series} type="line" height={"140%"} width={"100%"}/>
 
 
 
