@@ -17,15 +17,6 @@ const Water = () => {
             }
           },
 
-          optionss: {
-            chart: {
-              id: "basic-bar"
-            },
-            xaxis: {
-              categories: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-            }
-          },
-
           series: [
             {
               name: "series-1",
@@ -36,13 +27,13 @@ const Water = () => {
       );
     return <Box m="20px">
         <Box display= "flex" justifyContent = "space-between" alignItems = "center">
-        <Header title="Water" subtitle=""/>
+        {/* <Header title="Water" subtitle=""/> */}
         </Box>
 
         <div className='MainContainer'>
               
-        <div className='container2'>
-                  <div id='chart3'>
+        <div className='container1'>
+                  <div class='diagramContainer'>
                     <Chart class='charts'
                       options={state.options}
                       series={state.series}
@@ -51,7 +42,7 @@ const Water = () => {
                       height="auto"
                     /> 
                   </div>
-                  <div id='chart4'>
+                  <div class='diagramContainer'>
                     <Chart class='charts'
                       options={state.options}
                       series={state.series}
