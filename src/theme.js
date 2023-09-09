@@ -167,6 +167,10 @@ export const themeSettings = (mode) => {
             fontFamily: ["Roboto", "sans-serif"].join(","),
             fontSize: 12,
 
+            h0: {
+                fontFamily: ["Roboto", "sans-serif"].join(","),
+                fontSize: 65,
+            },
             h1: {
                 fontFamily: ["Roboto", "sans-serif"].join(","),
                 fontSize: 40,

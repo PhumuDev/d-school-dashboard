@@ -9,7 +9,6 @@
      margin: 0px;
 }
 .TopbarBox{
-      border: 2px solid blue; 
       height: 10vh;
 }
 
@@ -66,4 +65,63 @@
     border-radius: 30%;
     /* opacity: 40%; */
     /* border: 1px solid green;  */
+}
+
+/* Overview */
+.ImageContainer, .InfoContainer{
+    height: 41vh;
+    border-radius: 0.8%;
+    margin-bottom: 20px;
+}
+.ImageContainer{
+    background-image: url('../src/images/d-school thin.jpg');
+    background-size: cover;
+    background-position: center center;
+    text-align: center;
+    display: flex; 
+    flex-direction:column; 
+    justify-content:center;
+    align-items: center;
+}
+
+.Heading, .Subheading{
+    font-family:'Roboto',sans-serif;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0;
+    padding:0;
+}
+
+.Heading{
+    font-size: 75px;
+    
+    
+}
+.Subheading{
+    font-size: 20px;
+    
+
+}
+
+.InfoContainer{
+   display:flex;
+   flex-direction: row;
+   justify-content:space-between;
+}
+
+.InfoContainer2{
+    width:32%; 
+    height: 100%;
+    border-radius: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.InfoImage{
+    height:30%;
+    width: auto;
+    display: cover;
 }
