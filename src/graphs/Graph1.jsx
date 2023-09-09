@@ -1,6 +1,10 @@
 import { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import "../App.css";
+import { tokens } from "../theme";
+import { useTheme, Typography } from "@mui/material";
+
+
 
 
 
@@ -10,11 +14,17 @@ import "../App.css";
 
 const Graph1 = () => {
 
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
+  
+
 const [state, setState] = useState({
     series: [{
         name: 'Power',
         type: 'column',
         color: "#39de2c",
+      // color: colors.primary[400],
         data: [30, 31, 32, 40, 41, 43, 56, 50, 44, 39, 32, 20]
       }, {
         name: 'Irradiance',
@@ -27,13 +37,23 @@ const [state, setState] = useState({
           height: 350,
           type: 'line',
         },
+        tooltip: {
+          //Hover Box
+          enabled: true,
+          theme: "dark",
+        },
         stroke: {
           width: [0, 4],
           curve: "smooth"
         },
         title: {
           text: 'Solar Panels Energy Generation',
-          fontSize: 30
+         // color:colors.redAccent[100],
+         style:{
+          color: colors.grey[200],
+          fontSize: 18,
+          
+         }
         },
         dataLabels: {
           enabled: true,
@@ -66,9 +86,9 @@ const [state, setState] = useState({
 
 
   return( 
-    <div class='diagramContainer'>
-        <ReactApexChart options={state.options} series={state.series} type="line" height={"140%"} width={"100%"}/>
-
+    <div class='diagramContainer2'>
+        <ReactApexChart options={state.options} series={state.series} type="line" height={"100%"} width={"100%"}/>
+        {/* <Typography color={colors.primary[100]}>Hello World</Typography> */}
 
 
     </div>
