@@ -17,20 +17,25 @@
     display: flex;
     /* border: 5px solid dodgerblue;    */
     flex-direction: row;
-    height: 82vh;
+    height: 85vh;
     margin: 0px;
     padding: 0px;
+    justify-content: space-between;
 
    
 }
 
+.container1, .statsContainer{
+    border-radius: 15px;
+}
 .container1{
     justify-content: space-around;
     /* border: 3px solid pink;   */
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 60%;
     height: 100%;
+    
    
 }
 
@@ -44,17 +49,18 @@
 .diagramContainer{
     /* border: 3px solid black;   */
     height: 50%;
+    margin: '20px 10px';
 }
 
 /* Statistics */
 .statsContainer{
-    /* border: 3px solid rgb(255, 251, 0);  */
-    width: 40%;
+    width: 38%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border: 2px slid rgb(255, 221, 30);
 }
 
 .imagePlaceholder{
