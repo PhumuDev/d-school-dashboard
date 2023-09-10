@@ -35,42 +35,40 @@
     flex-direction: column;
     width: 60%;
     height: 100%;
-    
-   
 }
 
 .container2{
     justify-content: space-around;
     display: flex;
- /* border: 1px solid green;  */
 
 }
 
 .diagramContainer{
-    /* border: 3px solid black;   */
     height: 50%;
     margin: '20px 10px';
 }
 
+.diagramContainer2{
+    height: 90%;
+    padding: 20px 20px 20px 20px;
+}
+
 /* Statistics */
-.statsContainer{
+.MainStatsContainer{
     width: 38%;
     height: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.statsContainer{
+    width: 100%;
+    height: 31%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border: 2px slid rgb(255, 221, 30);
-}
-
-.imagePlaceholder{
-    height: 50%;
-    width: 50%;
-    background-color: rgb(0, 0, 0);
-    opacity: 8%;
-    border-radius: 30%;
-    /* opacity: 40%; */
-    /* border: 1px solid green;  */
 }
 
 /* Overview */
