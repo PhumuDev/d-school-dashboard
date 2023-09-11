@@ -9,7 +9,7 @@ const Logo = ({title, subtitle}) => {
 console.log(LogoPNG)
     return (
         <div className="logo">
-            <img src={LogoPNG} alt="Logo" height={40} width={150}/>
+            <img src={LogoPNG} alt="Logo" height={33} width={150}/>
         </div>
     );
 };

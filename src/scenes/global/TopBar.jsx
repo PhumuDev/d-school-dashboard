@@ -52,25 +52,30 @@ const TopBar = () => {
 
   return (
     <Box className="TopbarBox" display="flex" justifyContent="space-between" p={2}>
-      <Logo/>
-      {/*<h3 color={colors.grey[100]}>{timeAndDate[0]}<br/>{time.toLocaleTimeString().substring(0,5)}</h3>*/}
-      <Box mb = "10px"> 
+      <Box display="flex">
+      <Logo />
+      </Box>
+      
+      {/*<h3 color={colors.grey[100]} >{timeAndDate[0]}<br/>{time.toLocaleTimeString().substring(0,5)}</h3>*/}
+      <Box display="flex"> 
+        <Box className="date-time" mb = "0px" >
             <Typography 
-                variant ="h3"
+                variant ="h5"
                 color={colors.grey[100]}
                 fontWeight ="bold" 
-                sx={{mb: "5px"}}
+                sx={{mb: "1px"}}
             >
                 {timeAndDate[0]}
             </Typography>
 
-            <Typography
-                variant ="h5"
+            <Typography 
+                variant ="h6"
                 textAlign={"center"}
                 color={colors.greenAccent[400]}
             >
                 {time.toLocaleTimeString().substring(0,5)}
             </Typography>
+            </Box>
         </Box>
        {/*}Create an instance of the header class*/}
         {/*Icons*/}
