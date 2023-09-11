@@ -92,7 +92,7 @@ const SideBar = () => {
                     </MenuItem>
 
                     {/*DSchool Label*/}
-                    {!isCollapsed && (
+                    {/* {!isCollapsed && (
                         <Box mb = "25px">
                             <Box textAlign="center">
                                 <Typography
@@ -108,7 +108,7 @@ const SideBar = () => {
                                 </Typography>
                             </Box>
                         </Box>
-                    )}
+                    )} */}
 
                     
                     {/* Menu Items */}

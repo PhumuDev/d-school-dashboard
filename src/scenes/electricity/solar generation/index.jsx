@@ -16,7 +16,7 @@ const SolarGeneration = () => {
         </Box>
 
         <div className='MainContainer'>
-          <div className="container1" style={{backgroundColor: colors.primary[400]}}>
+          <div className="container1">
             <Graph1/>
               
           </div>

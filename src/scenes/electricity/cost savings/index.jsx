@@ -6,7 +6,7 @@ import Graph5 from "../../../graphs/Graph5";
 
 const CostSavings = () => {
 
-    return <Box m="20px">
+    return <Box m="15px">
         {/* <Typography>Kevin(2)</Typography> */}
 
 
@@ -20,16 +20,8 @@ const CostSavings = () => {
           
           
           
-          <div class = "statsContainer">
-            <div 
-              class= "imagePlaceholder"
-            >
-            </div>
-            <Typography 
-            class = "statsHeading" 
-            variant = "h2" 
-            >3000KWs Generated Today!</Typography>
-            <Typography class = "statsContent">We've generated enough electricity to power 6 houses!</Typography>
+          <div class = "MainStatsContainer">
+            
           </div>       
            
         </div>
