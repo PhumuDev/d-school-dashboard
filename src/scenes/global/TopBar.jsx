@@ -6,7 +6,7 @@ import  DarkModeOutlinedIcon  from "@mui/icons-material/DarkModeOutlined";
 import  NotificationsOutlinedIcon  from "@mui/icons-material/NotificationsOutlined";
 import  SettingslinedIcon  from "@mui/icons-material/SettingsOutlined";
 import  PersonOutlinedIcon  from "@mui/icons-material/PersonOutlined";
-import Header from "../../components/Header";
+import OndemandVideoOutlinedIcon from '@mui/icons-material/OndemandVideoOutlined';
 import Dropdown from "../../components/Dropdown";
 import NotificationList from "../../components/NotificationList";
 import { useState } from "react";
@@ -78,6 +78,10 @@ const TopBar = () => {
 
         {/*Icons*/}
       <Box display = "flex" ref={dropdownRef}>
+
+        <IconButton>
+            <OndemandVideoOutlinedIcon/>
+        </IconButton>
 
         <IconButton onClick= {colorMode.toggleColorMode}>
             {theme.palette.mode ==='dark' ? (
