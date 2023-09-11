@@ -10,7 +10,7 @@ const SolarGeneration = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-    return <Box m="20px">
+    return <Box m="15px">
         <Box display= "flex" justifyContent = "space-between" alignItems = "center">
         {/* <Header title="Electricity" subtitle=""/> */}
         </Box>

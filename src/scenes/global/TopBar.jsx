@@ -51,16 +51,14 @@ const TopBar = () => {
   const colorMode = useContext(ColorModeContext);
 
   return (
-    <Box className="TopbarBox" display="flex" justifyContent="space-between" p={2}>
-      <Box display="flex">
+    <Box className="TopbarBox" p={2}>
       <Logo />
-      </Box>
       
       {/*<h3 color={colors.grey[100]} >{timeAndDate[0]}<br/>{time.toLocaleTimeString().substring(0,5)}</h3>*/}
-      <Box display="flex"> 
+      <Box> 
         <Box className="date-time" mb = "0px" >
             <Typography 
-                variant ="h5"
+                variant ="h4"
                 color={colors.grey[100]}
                 fontWeight ="bold" 
                 sx={{mb: "1px"}}
@@ -68,16 +66,16 @@ const TopBar = () => {
                 {timeAndDate[0]}
             </Typography>
 
-            <Typography 
+            {/* <Typography 
                 variant ="h6"
                 textAlign={"center"}
                 color={colors.greenAccent[400]}
             >
                 {time.toLocaleTimeString().substring(0,5)}
-            </Typography>
+            </Typography> */}
             </Box>
         </Box>
-       {/*}Create an instance of the header class*/}
+
         {/*Icons*/}
       <Box display = "flex" ref={dropdownRef}>
 

@@ -13,7 +13,7 @@ const Overview = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  return <Box m="20px">
+  return <Box m="15px">
 
     {/* Image Banner */}
     <div class = "ImageContainer"> 

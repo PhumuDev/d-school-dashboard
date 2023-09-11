@@ -10,12 +10,16 @@
 }
 .TopbarBox{
       height: 10vh;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      /* border: 2px solid dodgerblue; */
 }
 
 
 .MainContainer{
     display: flex;
-    /* border: 5px solid dodgerblue;    */
+    /* border: 2px solid rgb(255, 30, 30);    */
     flex-direction: row;
     height: 85vh;
     margin: 0px;
