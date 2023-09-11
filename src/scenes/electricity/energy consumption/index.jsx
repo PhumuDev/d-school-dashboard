@@ -4,6 +4,7 @@ import { useState } from "react";
 import Graph2 from "../../../graphs/Graph2";
 import Graph3 from "../../../graphs/Graph3";
 import Bulb from '../../../images/bulb.png';
+import InfoBox from "../../../components/InfoBox";
 
 const EnergyConsumption = () => {
   const theme = useTheme();
@@ -20,60 +21,18 @@ const EnergyConsumption = () => {
             </div>
           
           <div class = "MainStatsContainer">
-            <div class = "statsContainer" style={{backgroundColor: colors.primary[400]}} >
-              <img src = {Bulb} alt = "Image of bulb" class = "InfoImage"/>
-              <Typography 
-                variant='h3'
-                fontWeight= 'bold'
-                margin='10px 20px 0px 20px'
-                color = {colors.grey[100]}
-              >
-                3000KWs Generated Today!
-              </Typography>
-              <Typography 
-                variant = 'h6'
-                margin='10px 30px'
-                color = {colors.grey[200]}
-              >
-                We've generated enough electricity to power 6 houses!
-              </Typography>
-            </div>      
-            <div class = "statsContainer" style={{backgroundColor: colors.primary[400]}} >
-              <img src = {Bulb} alt = "Image of bulb" class = "InfoImage"/>
-              <Typography 
-                variant='h3'
-                fontWeight= 'bold'
-                margin='10px 20px 0px 20px'
-                color = {colors.grey[100]}
-              >
-                3000KWs Generated Today!
-              </Typography>
-              <Typography 
-                variant = 'h6'
-                margin='10px 30px'
-                color = {colors.grey[200]}
-              >
-                We've generated enough electricity to power 6 houses!
-              </Typography>
-            </div> 
-            <div class = "statsContainer" style={{backgroundColor: colors.primary[400]}} >
-              <img src = {Bulb} alt = "Image of bulb" class = "InfoImage"/>
-              <Typography 
-                variant='h3'
-                fontWeight= 'bold'
-                margin='10px 20px 0px 20px'
-                color = {colors.grey[100]}
-              >
-                3000KWs Generated Today!
-              </Typography>
-              <Typography 
-                variant = 'h6'
-                margin='10px 30px'
-                color = {colors.grey[200]}
-              >
-                We've generated enough electricity to power 6 houses!
-              </Typography>
-            </div> 
+            <InfoBox
+              title = "3000KWs Generated Today!"
+              subtitle = "We've generated enough electricity to power 6 houses!"
+              icon = {Bulb}
+              className="statsContainer2"
+            />
+            <InfoBox
+              title = "3000KWs Generated Today!"
+              subtitle = "We've generated enough electricity to power 6 houses!"
+              icon = {Bulb}
+              className="statsContainer2"
+            />
           </div>       
            
         </div>

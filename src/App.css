@@ -29,7 +29,7 @@
    
 }
 
-.container1, .statsContainer{
+.container1, .statsContainer, .statsContainer2{
     border-radius: 15px;
 }
 .container1{
@@ -64,16 +64,27 @@
     height: 100%;
     display:flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
 }
-.statsContainer{
+
+
+.statsContainer{ /* Styling when 3 containers are displayed */
     width: 100%;
     height: 31%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 2px slid rgb(255, 221, 30);
+}
+
+
+.statsContainer2{ /* Styling when 2 containers are displayed */
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Overview */
