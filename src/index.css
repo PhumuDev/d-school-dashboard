@@ -35,7 +35,7 @@ body,
   border-radius: 8px;
   transition: background 500ms;
   padding: 0.5rem;
-  font:bold;
+  font-weight:bold;
   z-index: 20;
   border-top: 8px #555;
 }
@@ -49,7 +49,7 @@ body,
   top: 80px;
   right: -40px;
   width: 180px;
-  height:200px;
+  height:auto;
   transform: translate(-45%);
   background: solid #242526;
   border: 1px solid #474a4d;
@@ -66,8 +66,12 @@ body,
   transition: background 500ms;
   padding: 0.5rem;
   font:bold;
-  z-index: 20;
   border-top: 8px #555;
+  z-index: 20;
+}
+
+.h10 {
+  text-size-adjust: auto;
 }
 
 .menu-item:hover {

@@ -1,4 +1,4 @@
-import { Box, IconButton, useTheme } from "@mui/material";
+import { Typography, Box, IconButton, useTheme } from "@mui/material";
 import { useContext } from "react";
 import { ColorModeContext, tokens } from "../../theme";
 import  LightModeOutlinedIcon  from "@mui/icons-material/LightModeOutlined";
@@ -12,10 +12,11 @@ import NotificationList from "../../components/NotificationList";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
-
+import Logo from "../../components/Logo";
 
 const TopBar = () => {
   const theme = useTheme();
+  const colors=tokens(theme.palette.mode);
   const[open, setOpen] = useState(false);
   const [openN, setOpenN] = useState(false);
 
@@ -51,9 +52,27 @@ const TopBar = () => {
 
   return (
     <Box className="TopbarBox" display="flex" justifyContent="space-between" p={2}>
-      <Header title='HPI DESIGN' subtitle="SCHOOL" />
-      
-      <Header title={timeAndDate[0]} subtitle={time.toLocaleTimeString().substring(0,5)}/> {/*}Create an instance of the header class*/}
+      <Logo/>
+      {/*<h3 color={colors.grey[100]}>{timeAndDate[0]}<br/>{time.toLocaleTimeString().substring(0,5)}</h3>*/}
+      <Box mb = "10px"> 
+            <Typography 
+                variant ="h3"
+                color={colors.grey[100]}
+                fontWeight ="bold" 
+                sx={{mb: "5px"}}
+            >
+                {timeAndDate[0]}
+            </Typography>
+
+            <Typography
+                variant ="h5"
+                textAlign={"center"}
+                color={colors.greenAccent[400]}
+            >
+                {time.toLocaleTimeString().substring(0,5)}
+            </Typography>
+        </Box>
+       {/*}Create an instance of the header class*/}
         {/*Icons*/}
       <Box display = "flex" ref={dropdownRef}>
 
