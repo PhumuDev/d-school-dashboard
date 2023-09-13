@@ -1,14 +1,14 @@
 import { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import "../App.css";
+import { tokens } from "../theme";
+import { useTheme, Typography } from "@mui/material";
 
-
-
-
-
-// For sub heading 1 (Energy generation)
 
 const Graph3 = () => {
+
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
 
 const [state, setState] = useState({
     series: [{
@@ -35,7 +35,11 @@ const [state, setState] = useState({
         },
         title: {
             text: 'Standard Other Building Consumption',
-            fontSize: 30
+            style:{
+              color: colors.grey[200],
+              fontSize: 18,
+              
+             }
         },
         dataLabels: {
           enabled: false
@@ -50,7 +54,12 @@ const [state, setState] = useState({
         },
         yaxis: {
           title: {
-            text: '$ (thousands)'
+            text: '$ (thousands)',
+            style:{
+              color: colors.grey[200],
+              fontSize: 12,
+              
+             }
           }
         },
         fill: {

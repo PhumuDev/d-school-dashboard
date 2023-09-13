@@ -1,7 +1,8 @@
 import { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import "../App.css";
-
+import { tokens } from "../theme";
+import { useTheme, Typography } from "@mui/material";
 
 
 
@@ -9,6 +10,9 @@ import "../App.css";
 // WATER USAGE PER FLOOR
 
 const Graph7 = () => {
+
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
 
 const [state, setState] = useState({
     series: [44, 55, 13, 43, 22],
@@ -19,7 +23,11 @@ const [state, setState] = useState({
       },
       title: {
         text: 'Water Usage Per Floor',
-        fontSize: 30
+        style:{
+          color: colors.grey[200],
+          fontSize: 18,
+          
+         }
     },
       labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
       responsive: [{

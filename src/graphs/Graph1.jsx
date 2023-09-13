@@ -66,12 +66,22 @@ const [state, setState] = useState({
         yaxis: [{
           title: {
             text: 'KW (The BAR Graph)',  // For power
+            style:{
+              color: colors.grey[200],
+              fontSize: 12,
+              
+             }
           },
         
         }, {
           opposite: true,
           title: {
-            text: 'W/m2(The LINE Graph)'  // For Irradiance
+            text: 'W/m2(The LINE Graph)',  // For Irradiance
+            style:{
+              color: colors.grey[200],
+              fontSize: 12,
+              
+             }
           }
         }]
       },
