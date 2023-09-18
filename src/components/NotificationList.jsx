@@ -1,30 +1,66 @@
 import React from 'react';
 import { Typography, Box, useTheme } from "@mui/material";
 import {tokens} from "../theme";
+
+import { useState } from "react";
 const NotificationList = () => {
-    function Notification(props) {
+    
+    function Notification({title,subtext,nc}) {
+        const [open, setOpen] = useState(false);
         return (
-            <a href="#" className="notification-item" style={{color: colors.grey[100]}}>
-                {props.children}
-            </a>
-        );
-        }
-    const theme = useTheme();
-    const colors = tokens(theme.palette.mode);
-    return(
-        <div className = "notificationList" style={{backgroundColor: colors.primary[400]}}>
+            <a href="#" className="notification-item" onClick={()=>setOpen(!open)}> 
+            <Box>
             <Typography 
-                variant ="h3"
+                variant ="h6"
                 color={colors.grey[100]}
                 fontWeight ="bold" 
                 sx={{mb: "5px"}}
             >
-                NOTIFICATIONS
+                {title}
             </Typography>
-            <Notification>Solar generation optimal</Notification>
-            <Notification>Electricity usage high</Notification>
-            <Notification>Water usage high</Notification>
-        </div>
+
+            <Typography 
+                variant ="h7"
+                color={nc}
+            >
+                {open&&subtext}
+            </Typography>
+            </Box>
+        </a>
+        
+        );
+        }
+    
+    const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
+    return(
+        <div className = "notificationList" style={{backgroundColor: colors.primary[400]}}>
+            
+                <Typography 
+                    variant ="h5"
+                    color={colors.grey[100]}
+                    fontWeight ="bold" 
+                    sx={{mb: "5px"}}
+                >
+                    NOTIFICATIONS
+                </Typography>
+                <Notification 
+                title="SOLAR GENERATION OPTIMAL" 
+                subtext="The solar panels are generating the optimal amount of energy."
+                nc={colors.greenAccent[300]}
+                />
+                <Notification 
+                title="HIGH ENERGY USAGE" 
+                subtext="Energy usage is currently 2x above the above the expected usage."
+                nc={colors.redAccent[300]}
+                />
+                <Notification 
+                title="LOW WATER CONSUMPTION" 
+                subtext="The building is consuming 2x less than the expected consumption."
+                nc={colors.greenAccent[300]}
+                />
+
+    </div>
     )
 }
 

@@ -24,12 +24,11 @@ body,
   z-index:20;
 }
 
-.notificationList Notification {
-  border-top: 4px solid black;
-}
+
 
 .notification-item {
-  height:33px;
+  border-top: 4px #474a4d;
+  height:auto;
   display: flex;
   align-items: centre;
   border-radius: 8px;
@@ -37,12 +36,15 @@ body,
   padding: 0.5rem;
   font-weight:bold;
   z-index: 20;
-  border-top: 8px #555;
 }
 
 .notification-item:hover {
-  background-color:lightgrey
+  box-shadow: 1px 1px 3px 3px#888;
 }
+
+
+
+
 
 .dropdown {
   position: absolute;
@@ -58,8 +60,12 @@ body,
   z-index:20;
 }
 
+a {
+  text-decoration: none;
+}
+
 .menu-item {
-  height:33px;
+  height:auto;
   display: flex;
   align-items: centre;
   border-radius: 8px;
@@ -75,7 +81,7 @@ body,
 }
 
 .menu-item:hover {
-  background-color:lightgrey
+  box-shadow: 1px 1px 3px 3px #888;
 }
 .h5 {
 font-size: xx-large;

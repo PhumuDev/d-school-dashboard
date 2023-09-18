@@ -31,10 +31,7 @@ const TopBar = () => {
     second: "2-digit",
     hour12: false,
   }
-  const [time, setTime] = useState(new Date());
-  useEffect(()=>{
-    setInterval(()=>setTime(new Date()),1000)
-  },[])
+  
   const currentDate = today.toLocaleString(undefined, options);
   const timeAndDate = currentDate.split(" at ");
   let dropdownRef = useRef();

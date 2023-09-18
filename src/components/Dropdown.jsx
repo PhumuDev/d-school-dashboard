@@ -5,7 +5,14 @@ const Dropdown = () => {
     function DropdownItem(props) {
         return (
             <a href="#" className="menu-item" style={{color: colors.grey[100]}}>
+                <Typography 
+                variant ="h6"
+                color={colors.grey[100]}
+                fontWeight ="bold" 
+                sx={{mb: "5px"}}
+            >
                 {props.children}
+            </Typography>
             </a>
         );
         }
@@ -14,10 +21,11 @@ const Dropdown = () => {
     return(
         <div className = "dropdown" style={{backgroundColor: colors.primary[400]}}>
             <Typography 
-                variant ="h3"
+                variant ="h5"
                 color={colors.grey[100]}
                 fontWeight ="bold" 
                 sx={{mb: "5px"}}
+
             >
                 SETTINGS
             </Typography>
