@@ -69,8 +69,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-# Kevin Notes:
+New Entries:
 
-- Create File for each graph
-- Fetch & integrate data easily for that specific graph in a specific file from api
-- Try NIVO charts
+### `npm python Server.py`
+
+This command allows you to run the python acting as a dummy API where the graphs
+are fetching information from.
