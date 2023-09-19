@@ -3,6 +3,9 @@ import { useState } from "react";
 import Graph2 from "../../../graphs/Graph2";
 import Graph4 from "../../../graphs/Graph4";
 import Graph5 from "../../../graphs/Graph5";
+import Bulb from '../../../images/bulb.png';
+import InfoBox from "../../../components/InfoBox";
+import Money from "../../../images/money.png"
 
 const CostSavings = () => {
 
@@ -20,9 +23,20 @@ const CostSavings = () => {
           
           
           
-          <div class = "MainStatsContainer">
-            
-          </div>       
+            <div class = "MainStatsContainer">
+            <InfoBox
+              title = "R2951 Saved This Month!"
+              subtitle = "Electricity generated from our solar panels saved R2951 in utilities!"
+              icon = {Money}
+              className="statsContainer2"
+            />
+            <InfoBox
+              title = "Our Building Design Saves Electricity!"
+              subtitle = "Or building is designed to reduce electricity consumption. For example the stairs are placed more conveniently than the lifts to help promote their usage."
+              icon = {Bulb}
+              className="statsContainer2"
+            />
+          </div>        
            
         </div>
 

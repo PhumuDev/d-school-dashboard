@@ -4,7 +4,9 @@ import Chart from "react-apexcharts";
 import { useState } from "react";
 import {tokens} from "../../../theme";
 import Graph1 from "../../../graphs/Graph1";
-import Bulb from '../../../images/bulb.png';
+import House from '../../../images/house.png';
+import Solar from '../../../images/solar-panels.png';
+import Sun from '../../../images/sun.png';
 import InfoBox from "../../../components/InfoBox";
 
 const SolarGeneration = () => {
@@ -24,22 +26,22 @@ const SolarGeneration = () => {
           <div class = "MainStatsContainer" >
 
             <InfoBox
-              title = "3000KWs Generated Today!"
-              subtitle = "We've generated enough electricity to power 6 houses!"
-              icon = {Bulb}
+              title = "40kWh Generated At Peak Today!"
+              subtitle = "40kWh is enough to run many electrical appliances in a 5 bedroom house for a day!"
+              icon = {Solar}
               className="statsContainer"
             />      
             <InfoBox
-              title = "3000KWs Generated Today!"
-              subtitle = "We've generated enough electricity to power 6 houses!"
-              icon = {Bulb}
+              title = "2740kWh Was Generated This Month!"
+              subtitle = "That's enouh energy to supply 3 average households for a month!"
+              icon = {House}
               className="statsContainer"
             />
             
             <InfoBox
-              title = "3000KWs Generated Today!"
-              subtitle = "We've generated enough electricity to power 6 houses!"
-              icon = {Bulb}
+              title = "What Is Irradiance?"
+              subtitle = "Irradiance is the amount of light energy hitting the solar panels per meter square."
+              icon = {Sun}
               className="statsContainer"
             />
             
