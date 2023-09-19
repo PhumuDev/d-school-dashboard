@@ -32,7 +32,7 @@ const SolarGeneration = () => {
               className="statsContainer"
             />      
             <InfoBox
-              title = "2740kWh Was Generated This Month!"
+              title = "2740kWh Generated This Month!"
               subtitle = "That's enouh energy to supply 3 average households for a month!"
               icon = {House}
               className="statsContainer"

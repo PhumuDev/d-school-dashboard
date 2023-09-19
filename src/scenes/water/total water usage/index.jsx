@@ -33,7 +33,7 @@ const TotalWaterUsage = () => {
               className="statsContainer"
             />      
             <InfoBox
-              title = "28kl Of Water Was Used This Month!"
+              title = "28kl Of Water Used This Month!"
               subtitle = "Most water consumption comes from the building's 2nd floor!"
               icon = {WaterF}
               className="statsContainer"
