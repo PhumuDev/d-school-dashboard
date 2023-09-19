@@ -14,7 +14,7 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import Logo from "../../components/Logo";
 
-const TopBar = () => {
+const TopBar = ({onToggleSlideshow}) => {
   const theme = useTheme();
   const colors=tokens(theme.palette.mode);
   const[open, setOpen] = useState(false);
@@ -45,6 +45,7 @@ const TopBar = () => {
     };
     document.addEventListener("mousedown",handler);
   });
+
   const colorMode = useContext(ColorModeContext);
 
   return (
@@ -73,10 +74,11 @@ const TopBar = () => {
             </Box>
         </Box>
 
+  
         {/*Icons*/}
       <Box display = "flex" ref={dropdownRef}>
-
-        <IconButton>
+      
+        <IconButton onClick={() => onToggleSlideshow()}>
             <OndemandVideoOutlinedIcon/>
         </IconButton>
 
@@ -99,6 +101,7 @@ const TopBar = () => {
           }}>
             <SettingslinedIcon/>
         </IconButton>
+        
         {open && <Dropdown/>}
         <IconButton>
             <PersonOutlinedIcon/>

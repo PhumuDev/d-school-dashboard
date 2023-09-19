@@ -12,27 +12,21 @@ import EnergyConsumption from './scenes/electricity/energy consumption';
 import CostSavings from './scenes/electricity/cost savings';
 
 
-//import Water from './scenes/water';
-//import Electricity from './scenes/overview';
-//import Settings from './scenes/overview';
-//import Login from './scenes/login';
-
-
-
 
 function App() {
   
   const [theme, colorMode] = useMode();
-  
+  const [isSlideshowMode, setIsSlideshowMode] = useState(false);
   
   return (
     <ColorModeContext.Provider value = {colorMode}>
       <ThemeProvider theme = {theme}>
         <CssBaseline/>
         <div className="app">
-          <SideBar/>
+           {!isSlideshowMode &&<SideBar/>} {/*Show sidebar only if slideshow mode is off */}
+
           <main className = "content">
-          <TopBar />
+          <TopBar  onToggleSlideshow = {() => setIsSlideshowMode(!isSlideshowMode)}/>
            <Routes>
             <Route path="/" element={<Overview/>}/>
             <Route path="/solar generation" element={<SolarGeneration/>}/> 
