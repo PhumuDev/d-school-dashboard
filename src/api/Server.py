@@ -1,20 +1,24 @@
 from flask import Flask, jsonify
+import random
 import requests
 
 
-baseURL = "http://localhost:3000/"
-endpoint = "yearly"
+# baseURL = "http://localhost:3000/"
+
 
 app = Flask(__name__)
 
 #API routes
 @app.route("/electricity")
 def electricalEnergyData():
+
+    num = 90
+    num2 = random.randint(1, 100)
     data = {
     "energy_consumption": [
       {
         "time": "00:00",
-        "load_power": 52.88
+        "load_power": num
         
       },
       {
@@ -47,7 +51,7 @@ def electricalEnergyData():
       },
       {
         "time": "23:55",
-        "load_power": 0
+        "load_power": num2
       },
     ],
 

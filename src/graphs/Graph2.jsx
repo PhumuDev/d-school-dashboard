@@ -17,7 +17,9 @@ const Graph2 = () => {
   const [options, setObject] = useState({
       chart: {
         type: 'bar',
-        height: 350
+        height: 350,
+        foreColor: "#939695",
+       // background: "#e8ebea"
       },
       noData: {
           text: 'Loading...',
@@ -30,7 +32,8 @@ const Graph2 = () => {
         categories: [],
       },
       fill: {
-        opacity: 1
+        opacity: 1,
+        colors: "#db352c"
       },
       tooltip: {
         //Hover Box
@@ -60,14 +63,14 @@ const Graph2 = () => {
       },
       title: {
           text: 'Building Energy Consumption',
+          align: "center",
           style:{
             color: "#abaaa7",
             fontSize: 18,
-            
            }
       },
       dataLabels: {
-        enabled: true
+        enabled: false
       },
       stroke: {
         show: true,
