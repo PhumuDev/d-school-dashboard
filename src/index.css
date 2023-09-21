@@ -1,3 +1,5 @@
+/* Styling for the dropdown menus */
+
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Roboto:wght@400;500;700&display=swap');
 
 html,
@@ -12,13 +14,27 @@ body,
 
 .notificationList {
   position: absolute;
-  top: 80px;
+  top: 55px;
   right: -40px;
   width: 210px;
   height:auto;
   transform: translate(-45%);
   background: solid #242526;
-  border: 1px solid #474a4d;
+  /* border: 1px solid #474a4d; */
+  border-radius:8px;
+  padding: 1rem;
+  z-index:20;
+}
+
+.login {
+  position: absolute;
+  top: 55px;
+  right: -75px;
+  width: 210px;
+  height:auto;
+  transform: translate(-45%);
+  background: solid #242526;
+  /* border: 1px solid #474a4d; */
   border-radius:8px;
   padding: 1rem;
   z-index:20;
@@ -48,13 +64,13 @@ body,
 
 .dropdown {
   position: absolute;
-  top: 80px;
+  top: 55px;
   right: -40px;
   width: 180px;
   height:auto;
   transform: translate(-45%);
   background: solid #242526;
-  border: 1px solid #474a4d;
+  /* border: 1px solid #474a4d; */
   border-radius:8px;
   padding: 1rem;
   z-index:20;

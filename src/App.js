@@ -54,7 +54,7 @@ function App() {
            {!isSlideshowMode &&<SideBar/>} {/*Show sidebar only if slideshow mode is off */}
 
           <main className = "content">
-          <TopBar  onToggleSlideshow = {() => setIsSlideshowMode(!isSlideshowMode)}/>
+          <TopBar  onToggleSlideshow = {() => setIsSlideshowMode(!isSlideshowMode)} isSlideshowMode ={isSlideshowMode}/>
            <Routes>
 
               {!isSlideshowMode &&
@@ -74,9 +74,9 @@ function App() {
                       case 2:
                           return <EnergyConsumption />;
                       case 3:
-                          return <CostSavings />;
-                      case 4:
                           return <TotalWaterUsage />;
+                      case 4:
+                          return <CostSavings />;
                       default:
                           return null;
                   }
