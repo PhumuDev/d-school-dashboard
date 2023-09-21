@@ -33,9 +33,24 @@ const Overview = () => {
         icon = {Green}
         className="InfoContainer2"
       />
-      <div className="InfoContainer2">
+      <InfoBox
+        title = "Electricity Usage"
+        subtitle = "Our building's solar panel system, combined with its eco-friendly design, enables us to harness electricity sustainably and use it with optimal efficiency."
+        icon = {Bulb}
+        className="InfoContainer2"
+      />
+      <div className="InfoContainer2" style={{backgroundColor: colors.primary[400]}}>
+      <Typography 
+                variant='h4'
+                fontWeight= 'bold'
+                margin='10px 20px 0px 20px'
+                color = {colors.grey[100]}
+            >
+                Drone Footage HPI Design School
+
+            </Typography>
         <iFrame 
-        width="auto"
+        width="90%"
         height="auto"
         src={'https://www.youtube.com/embed/maoRIcOf1jk'}
         frameBoarder="0"
@@ -53,12 +68,7 @@ const Overview = () => {
         className="InfoContainer2"
 />*/}
 
-      <InfoBox
-        title = "Electricity Usage"
-        subtitle = "Our building's solar panel system, combined with its eco-friendly design, enables us to harness electricity sustainably and use it with optimal efficiency."
-        icon = {Bulb}
-        className="InfoContainer2"
-      />
+      
   
     </div>
 

@@ -29,7 +29,7 @@ const EnergyConsumption = () => {
               className="statsContainer2"
             />
             <InfoBox
-              title = "Around 10% of energy consumption was produced by the building!"
+              title = "Around 10% Of Energy Consumption Was Produced By The Building!"
               subtitle = ""
               icon = {Chart}
               className="statsContainer2"
