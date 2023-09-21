@@ -3,6 +3,7 @@ import { Typography, Box, useTheme } from "@mui/material";
 import {tokens} from "../theme";
 
 import { useState } from "react";
+import { border } from '@mui/system';
 const NotificationList = () => {
     
     function Notification({title,subtext,nc}) {
@@ -34,7 +35,7 @@ const NotificationList = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     return(
-        <div className = "notificationList" style={{backgroundColor: colors.primary[400]}}>
+        <div className = "notificationList" style={{backgroundColor: colors.primary[400], border:"3px solid"+ colors.primary[500]}}>
             
                 <Typography 
                     variant ="h5"

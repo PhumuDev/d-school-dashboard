@@ -19,7 +19,7 @@ const Dropdown = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     return(
-        <div className = "dropdown" style={{backgroundColor: colors.primary[400]}}>
+        <div className = "dropdown" style={{backgroundColor: colors.primary[400], border:"3px solid"+ colors.primary[500]}}>
             <Typography 
                 variant ="h5"
                 color={colors.grey[100]}

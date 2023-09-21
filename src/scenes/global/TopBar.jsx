@@ -7,18 +7,22 @@ import  NotificationsOutlinedIcon  from "@mui/icons-material/NotificationsOutlin
 import  SettingslinedIcon  from "@mui/icons-material/SettingsOutlined";
 import  PersonOutlinedIcon  from "@mui/icons-material/PersonOutlined";
 import OndemandVideoOutlinedIcon from '@mui/icons-material/OndemandVideoOutlined';
+import ToggleOffOutlinedIcon from '@mui/icons-material/ToggleOffOutlined';
+import ToggleOnOutlinedIcon from '@mui/icons-material/ToggleOnOutlined';
 import Dropdown from "../../components/Dropdown";
 import NotificationList from "../../components/NotificationList";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
 import Logo from "../../components/Logo";
+import Login from "../../components/Login";
 
-const TopBar = ({onToggleSlideshow}) => {
+const TopBar = ({onToggleSlideshow,isSlideshowMode}) => {
   const theme = useTheme();
   const colors=tokens(theme.palette.mode);
   const[open, setOpen] = useState(false);
   const [openN, setOpenN] = useState(false);
+  const [openL, setOpenL] = useState(false);
 
   {/*}Create and format date*/}
   const today = new Date();
@@ -41,6 +45,7 @@ const TopBar = ({onToggleSlideshow}) => {
       if(!dropdownRef.current.contains(e.target)){
         setOpen(false);
         setOpenN(false);
+        setOpenL(false);
       }
     };
     document.addEventListener("mousedown",handler);
@@ -64,13 +69,6 @@ const TopBar = ({onToggleSlideshow}) => {
                 {timeAndDate[0]}
             </Typography>
 
-            {/* <Typography 
-                variant ="h6"
-                textAlign={"center"}
-                color={colors.greenAccent[400]}
-            >
-                {time.toLocaleTimeString().substring(0,5)}
-            </Typography> */}
             </Box>
         </Box>
 
@@ -79,7 +77,11 @@ const TopBar = ({onToggleSlideshow}) => {
       <Box display = "flex" ref={dropdownRef}>
       
         <IconButton onClick={() => onToggleSlideshow()}>
-            <OndemandVideoOutlinedIcon/>
+            
+            {isSlideshowMode ? (
+                <ToggleOnOutlinedIcon style={{color: "#11ce17"}}/>
+            ) : (<ToggleOffOutlinedIcon/>)
+            }
         </IconButton>
 
         <IconButton onClick= {colorMode.toggleColorMode}>
@@ -91,6 +93,7 @@ const TopBar = ({onToggleSlideshow}) => {
         <IconButton onClick={() => {
           setOpenN(!openN);
           setOpen(false);
+          setOpenL(false);
         }}>
             <NotificationsOutlinedIcon/>
         </IconButton>
@@ -98,15 +101,20 @@ const TopBar = ({onToggleSlideshow}) => {
         <IconButton onClick={() => {
           setOpen(!open);
           setOpenN(false);
+          setOpenL(false);
           }}>
             <SettingslinedIcon/>
         </IconButton>
         
         {open && <Dropdown/>}
-        <IconButton>
+        <IconButton onClick={() => {
+          setOpenL(!openL);
+          setOpenN(false);
+          setOpen(false);
+          }}>
             <PersonOutlinedIcon/>
         </IconButton>
-        
+        {openL && <Login/>} 
         
       </Box>
       
