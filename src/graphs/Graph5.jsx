@@ -17,6 +17,7 @@ const Graph5 = () => {
   const [options, setObject] = useState({
       chart: {
         type: 'bar',
+        foreColor: "#939695",
         
       },
       noData: {
@@ -32,6 +33,9 @@ const Graph5 = () => {
       fill: {
         opacity: 1
       },
+      dataLabels: {
+        enabled: false
+      },
       tooltip: {
         //Hover Box
         enabled: true,
@@ -45,6 +49,7 @@ const Graph5 = () => {
       yaxis: {
         title: {
           text: 'Rands (R)',
+          align: "center",
           style:{
             color: "#abaaa7",
             fontSize: 14,
@@ -55,15 +60,14 @@ const Graph5 = () => {
       },
       title: {
           text: 'Cost of Water Usage',
+          align: "center",
           style:{
             color: "#abaaa7",
             fontSize: 18,
             
            }
       },
-      dataLabels: {
-        enabled: true
-      },
+     
      
       legend: {
         show: true

@@ -17,7 +17,11 @@ const Graph4 = () => {
   const [options, setObject] = useState({
       chart: {
         type: 'bar',
-        height: 350
+        height: 350,
+        foreColor: "#939695",
+      },
+      dataLabels: {
+        enabled: false
       },
       noData: {
         text: 'Loading...',
@@ -45,6 +49,7 @@ const Graph4 = () => {
       yaxis: {
         title: {
           text: 'Rands (R)',
+          align: "center",
           style:{
             color: "#abaaa7",
             fontSize: 14,
@@ -55,19 +60,15 @@ const Graph4 = () => {
       },
       title: {
           text: 'Cost Of Generated Energy',
+          align: "center",
           style:{
             color: "#abaaa7",
             fontSize: 18,
             
            }
       },
-      dataLabels: {
-        enabled: true
-      },
+      
      
-      legend: {
-        show: true
-      }
     
   })
 

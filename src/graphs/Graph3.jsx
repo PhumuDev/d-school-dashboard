@@ -34,6 +34,7 @@ const Graph3 = () => {
       id: 'line-datetime',
       type: 'line',
       height: 350,
+      foreColor: "#939695",
       zoom: {
         autoScaleYaxis: true
       }
@@ -41,7 +42,7 @@ const Graph3 = () => {
     xaxis: {
       type: 'datetime',
       min: new Date('2023-09-01').getTime(),
-      tickAmount: 6,
+      tickAmount: 2,
     },
     yaxis: {
       title: {

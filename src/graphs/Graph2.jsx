@@ -4,6 +4,7 @@ import "../App.css";
 import { tokens } from "../theme";
 import { useTheme, Typography } from "@mui/material";
 import axios from 'axios';
+import { BorderAll } from "@mui/icons-material";
 
 
 
@@ -20,6 +21,9 @@ const Graph2 = () => {
         height: 350,
         foreColor: "#939695",
        // background: "#e8ebea"
+       toolbar:{
+        show: false
+       }
       },
       noData: {
           text: 'Loading...',
@@ -41,7 +45,7 @@ const Graph2 = () => {
         theme: "dark",
         y: {
           formatter: function (val) {
-            return  (val + " Kw\\h")
+            return  (val + " Kw/h")
           }
         }
       },
@@ -91,7 +95,7 @@ const Graph2 = () => {
     
 
   ])
-
+const definiteX = []
   // const [dataa, setData] = useState({})
   
   useEffect(() =>{
@@ -99,7 +103,9 @@ const Graph2 = () => {
     const xAxis = []
     const yAxis = []
 
-     axios.get('/electricity')
+
+
+    axios.get('/electricity')
     // .then(res => res.json())
     // .then(
     //   dataa => {
@@ -139,7 +145,10 @@ const Graph2 = () => {
   
   }, [])
    
-      
+  const divStyle = {
+    border: '1px solid #e0e0e0', // Border width, style, and color
+   
+  };
       
       
     

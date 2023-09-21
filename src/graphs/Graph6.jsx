@@ -17,6 +17,7 @@ const Graph6 = () => {
   const [options, setObject] = useState({
       chart: {
         type: 'bar',
+        foreColor: "#939695",
         
       },
       noData: {
@@ -27,10 +28,16 @@ const Graph6 = () => {
       }
     },
       xaxis: {
+        // title: {
+        //   text: ""
+        // },
         categories: [],
       },
       fill: {
         opacity: 1
+      },
+      dataLabels: {
+        enabled: false
       },
       tooltip: {
         //Hover Box
@@ -55,14 +62,12 @@ const Graph6 = () => {
       },
       title: {
           text: 'Water Usage Per Category',
+          align: "center",
           style:{
             color: "#abaaa7",
             fontSize: 18,
             
            }
-      },
-      dataLabels: {
-        enabled: true
       },
      
       legend: {

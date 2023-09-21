@@ -11,16 +11,16 @@ import axios from 'axios';
 
 const Graph7 = () => {
 
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
 
 const [state, setState] = useState({
-    series: [44, 55, 13, 43],
+    series: [509, 835, 248, 0],
     options: {
       chart: {
         width: 380,
         type: 'pie',
+        foreColor: "#939695",
       },
+      
       title: {
         text: 'Water Usage Per Floor',
         style:{
