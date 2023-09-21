@@ -10,7 +10,6 @@ import SolarGeneration from './scenes/electricity/solar generation';
 import TotalWaterUsage from './scenes/water/total water usage';
 import EnergyConsumption from './scenes/electricity/energy consumption';
 import CostSavings from './scenes/electricity/cost savings';
-import InfoBox from './components/InfoBox';
 
 
 
@@ -40,7 +39,7 @@ function App() {
         setCurrentSlideIndex((prevIndex) =>
           prevIndex === routes.length - 1 ? 0 : prevIndex + 1
         );
-      }, 1000); // Change slide every 1 second
+      }, 5000); // Change slide every 5 second
     }
   
     return () => clearInterval(interval);
@@ -51,11 +50,7 @@ function App() {
       <ThemeProvider theme = {theme}>
         <CssBaseline/>
         <div className="app">
-            <div>
-              Current Slide Index: {currentSlideIndex}
-              <br />
-              Current Path: {currentRoute.path}
-            </div>
+
            {!isSlideshowMode &&<SideBar/>} {/*Show sidebar only if slideshow mode is off */}
 
           <main className = "content">
@@ -66,19 +61,26 @@ function App() {
                   routes.map((route, index) => (
                     <Route key={index} path={route.path} element={route.element} />
                   ))}
-
-              {isSlideshowMode && currentRoute &&(  
-                  <Route path={currentRoute.path} element={currentRoute.element}/>
-
-              )}
-
-              {/* {isSlideshowMode && currentRoute &&(  
-                currentSlideIndex===3 &&(
-                  // <Route path={currentRoute.path} element={currentRoute.element}/>
-                  <Route path="/solar generation" element={<SolarGeneration/>}/> 
-              ))} */}
  
               </Routes>
+              
+              {/* Return the relevant page in slideshow mode */}
+              {isSlideshowMode && currentRoute && (() => {
+                  switch (currentSlideIndex) {
+                      case 0:
+                          return <Overview />;
+                      case 1:
+                          return <SolarGeneration />;
+                      case 2:
+                          return <EnergyConsumption />;
+                      case 3:
+                          return <CostSavings />;
+                      case 4:
+                          return <TotalWaterUsage />;
+                      default:
+                          return null;
+                  }
+              })()}
 
             
             

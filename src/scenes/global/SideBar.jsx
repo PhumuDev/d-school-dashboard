@@ -91,25 +91,6 @@ const SideBar = () => {
                         )}
                     </MenuItem>
 
-                    {/*DSchool Label*/}
-                    {/* {!isCollapsed && (
-                        <Box mb = "25px">
-                            <Box textAlign="center">
-                                <Typography
-                                    variant = "h2"
-                                    color = {colors.grey[100]}
-                                    fontWeight = "Bold"
-                                    sx = {{m: "10px 0 0 0"}}
-                                >
-                                    D-School
-                                </Typography>
-                                <Typography variant = "h5" color = {colors.greenAccent[500]}>
-                                    6-Star Rated Building
-                                </Typography>
-                            </Box>
-                        </Box>
-                    )} */}
-
                     
                     {/* Menu Items */}
                     <Box paddingLeft={!isCollapsed ? undefined : 0}>
@@ -120,6 +101,14 @@ const SideBar = () => {
                         {!isCollapsed &&(
                             // Hide items when Sidebar is collapsed 
                         <>
+                            <Typography
+                            variant = "h6"
+                            color= {colors.grey[300]}
+                            sx ={{m: "15px 0 5px 20px"}}
+                            >
+                                Home
+                            </Typography>
+                            
                             <Item
                             title = "Overview"
                             to= "/"
