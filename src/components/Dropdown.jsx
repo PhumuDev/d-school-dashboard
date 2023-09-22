@@ -20,18 +20,20 @@ const Dropdown = () => {
     const colors = tokens(theme.palette.mode);
     return(
         <div className = "dropdown" style={{backgroundColor: colors.primary[400], border:"3px solid"+ colors.primary[500]}}>
-            <Typography 
-                variant ="h5"
-                color={colors.grey[100]}
-                fontWeight ="bold" 
-                sx={{mb: "5px"}}
+            <div className = "middle-container">
+                <Typography 
+                    variant ="h5"
+                    color={colors.grey[100]}
+                    fontWeight ="bold" 
+                    sx={{mb: "5px"}}
 
-            >
-                SETTINGS
-            </Typography>
-            <DropdownItem>CUSTOMISE</DropdownItem>
-            <DropdownItem>GENERATE REPORT</DropdownItem>
-            <DropdownItem>THEMES</DropdownItem>
+                >
+                    Settings
+                </Typography>
+            </div>
+            <DropdownItem>Customise</DropdownItem>
+            <DropdownItem>Generate Report</DropdownItem>
+            <DropdownItem>Themes</DropdownItem>
         </div>
     )
 }

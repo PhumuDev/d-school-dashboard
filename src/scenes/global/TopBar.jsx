@@ -23,6 +23,7 @@ const TopBar = ({onToggleSlideshow,isSlideshowMode}) => {
   const[open, setOpen] = useState(false);
   const [openN, setOpenN] = useState(false);
   const [openL, setOpenL] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   {/*}Create and format date*/}
   const today = new Date();
@@ -79,7 +80,7 @@ const TopBar = ({onToggleSlideshow,isSlideshowMode}) => {
         <IconButton onClick={() => onToggleSlideshow()}>
             
             {isSlideshowMode ? (
-                <ToggleOnOutlinedIcon style={{color: "#11ce17"}}/>
+                <ToggleOnOutlinedIcon style={{color: "#3da58a"}}/>
             ) : (<ToggleOffOutlinedIcon/>)
             }
         </IconButton>
@@ -98,13 +99,17 @@ const TopBar = ({onToggleSlideshow,isSlideshowMode}) => {
             <NotificationsOutlinedIcon/>
         </IconButton>
         {openN && <NotificationList/>}
-        <IconButton onClick={() => {
-          setOpen(!open);
-          setOpenN(false);
-          setOpenL(false);
-          }}>
-            <SettingslinedIcon/>
-        </IconButton>
+
+        {/* Display settings icon only if admin */}
+        {isAdmin &&(
+          <IconButton onClick={() => {
+            setOpen(!open);
+            setOpenN(false);
+            setOpenL(false);
+            }}>
+              <SettingslinedIcon style={{color: "#3da58a"}}/>
+          </IconButton>
+        )}
         
         {open && <Dropdown/>}
         <IconButton onClick={() => {
@@ -112,9 +117,13 @@ const TopBar = ({onToggleSlideshow,isSlideshowMode}) => {
           setOpenN(false);
           setOpen(false);
           }}>
-            <PersonOutlinedIcon/>
+            {isAdmin ? (
+                <PersonOutlinedIcon style={{color: "#3da58a"}}/>
+            ) : (<PersonOutlinedIcon/>)
+            }
+            
         </IconButton>
-        {openL && <Login/>} 
+        {openL && <Login onToggleAdmin = {() => setIsAdmin(!isAdmin)} isAdmin = {isAdmin} />}
         
       </Box>
       

@@ -36,27 +36,28 @@ const NotificationList = () => {
     const colors = tokens(theme.palette.mode);
     return(
         <div className = "notificationList" style={{backgroundColor: colors.primary[400], border:"3px solid"+ colors.primary[500]}}>
-            
-                <Typography 
-                    variant ="h5"
-                    color={colors.grey[100]}
-                    fontWeight ="bold" 
-                    sx={{mb: "5px"}}
-                >
-                    NOTIFICATIONS
-                </Typography>
+                <div className = "middle-container">
+                    <Typography 
+                        variant ="h5"
+                        color={colors.grey[100]}
+                        fontWeight ="bold" 
+                        sx={{mb: "5px"}}
+                    >
+                        Notifications
+                    </Typography>
+                </div>
                 <Notification 
-                title="SOLAR GENERATION OPTIMAL" 
+                title="Solar Generation Optimal" 
                 subtext="The solar panels are generating the optimal amount of energy."
                 nc={colors.greenAccent[300]}
                 />
                 <Notification 
-                title="HIGH ENERGY USAGE" 
+                title="High Energy Usage" 
                 subtext="Energy usage is currently 2x above the above the expected usage."
                 nc={colors.redAccent[300]}
                 />
                 <Notification 
-                title="LOW WATER CONSUMPTION" 
+                title="Low Water Consumption" 
                 subtext="The building is consuming 2x less than the expected consumption."
                 nc={colors.greenAccent[300]}
                 />

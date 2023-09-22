@@ -26,20 +26,6 @@ body,
   z-index:20;
 }
 
-.login {
-  position: absolute;
-  top: 55px;
-  right: -75px;
-  width: 210px;
-  height:auto;
-  transform: translate(-45%);
-  background: solid #242526;
-  /* border: 1px solid #474a4d; */
-  border-radius:8px;
-  padding: 1rem;
-  z-index:20;
-}
-
 
 
 .notification-item {
@@ -57,10 +43,6 @@ body,
 .notification-item:hover {
   box-shadow: 1px 1px 3px 3px#888;
 }
-
-
-
-
 
 .dropdown {
   position: absolute;
@@ -124,4 +106,58 @@ font-size: xx-large;
 /*Handle on Hover*/
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+/* Styling for Login dropdown */
+.login-button{
+  border-style: none;
+  border-radius: 8px;
+  padding: 5px;
+
+}
+.logout-button{
+  border-style: none;
+  border-radius: 8px;
+  padding: 5px;
+  margin-top:10px;
+
+}
+.middle-container{
+  text-align: center;
+}
+
+.middle-container .login-heading{
+  margin-bottom:15px; 
+}
+
+.field{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.login {
+  position: absolute;
+  top: 55px;
+  right: -75px;
+  width: 210px;
+  height:auto;
+  transform: translate(-45%);
+  background: solid #242526;
+  /* border: 1px solid #474a4d; */
+  border-radius:8px;
+  padding: 1rem;
+  z-index:20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.error-message, .successful-login{
+  color: #3da58a;
+}
+
+.successful-login{
+  margin-bottom: 15px;
+  text-align: center;
 }

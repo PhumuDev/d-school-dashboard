@@ -18,6 +18,7 @@ function App() {
   
   const [theme, colorMode] = useMode();
   const [isSlideshowMode, setIsSlideshowMode] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   
   
   const routes = [

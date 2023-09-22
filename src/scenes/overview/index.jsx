@@ -5,7 +5,7 @@ import { useState } from "react";
 import { tokens } from "../../theme";
 import Green from '../../images/green.png';
 import Water from '../../images/water.png';
-import Bulb from '../../images/bulb.png';
+import WaterElectricity from '../../images/Water & Electricity.png';
 import InfoBox from "../../components/InfoBox";
 
 
@@ -34,29 +34,21 @@ const Overview = () => {
         className="InfoContainer2"
       />
       <InfoBox
-        title = "Electricity Usage"
-        subtitle = "Our building's solar panel system, combined with its eco-friendly design, enables us to harness electricity sustainably and use it with optimal efficiency."
-        icon = {Bulb}
+        title = "Water & Electricity"
+        subtitle = "Our solar panels allow us to harness clean electricity and our building's eco-friendly design promotes sustainable use of both electricity and water."
+        icon = {WaterElectricity}
         className="InfoContainer2"
       />
-      <div className="InfoContainer2" style={{backgroundColor: colors.primary[400]}}>
-      <Typography 
-                variant='h4'
-                fontWeight= 'bold'
-                margin='10px 20px 0px 20px'
-                color = {colors.grey[100]}
-            >
-                Drone Footage HPI Design School
-
-            </Typography>
+      <div className="InfoContainer2">
         <iFrame 
-        width="90%"
+        width="100%"
         height="auto"
         src={'https://www.youtube.com/embed/maoRIcOf1jk'}
         frameBoarder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
         title="youtube"
+        muted
         />
 
       </div>
