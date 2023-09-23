@@ -60,6 +60,19 @@
     height: 90%;
     padding: 20px 20px 20px 20px;
 }
+/*Fun Facts**/
+.funFact{
+    position: absolute;
+    right: 42.5%;
+    bottom: 50px;
+    height: auto;
+    width: 15%;
+    display: flex;
+    flex-direction: row;
+    z-index: 20;
+    border-radius: 8px;
+    padding: 5px 5px 5px 5px;
+}
 
 /* Statistics */
 .MainStatsContainer{
