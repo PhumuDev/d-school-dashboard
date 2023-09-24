@@ -25,7 +25,7 @@ with open("solarDaily.csv",'r') as file:
     for row in csvreader:
         if count>2:
             date=row[0].split(' ')
-            line1=['','{"x": "'+date[0]+'T'+date[1]+'","solarGeneration": '+row[1]+',"solarConsumption": '+str(solarconsumption[index])+'}']
+            line1=['','{"x": "'+date[0]+'T'+date[1]+'","generationValue": '+row[1]+',"consumptionValue": '+str(solarconsumption[index])+'}']
             index+=1
             
             with open('electricity.txt','a') as f:
