@@ -10,6 +10,7 @@ import SolarGeneration from './scenes/electricity/solar generation';
 import TotalWaterUsage from './scenes/water/total water usage';
 import EnergyConsumption from './scenes/electricity/energy consumption';
 import CostSavings from './scenes/electricity/cost savings';
+import FunFact from './components/FunFact';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
   const [isSlideshowMode, setIsSlideshowMode] = useState(false);
   const [videoLink, setVideoLink] = useState('https://www.youtube.com/embed/maoRIcOf1jk');
   const [slideshowTimer, setSlideshowTimer] = useState(5000);
+  const [count, setCount] = useState(0);
   
   const updateVideoLink = (newLink) => {
     setVideoLink(newLink);
@@ -47,6 +49,22 @@ function App() {
   
     return () => clearInterval(interval);
   }, [isSlideshowMode, routes.length]);
+
+  useEffect(() => {// Handle timing of the fun facts
+    let interval;
+  
+    if (isSlideshowMode) {
+      interval = setInterval(() => {
+        if (count>4){
+          setCount(0);
+        } else {
+          setCount(count+1)
+        }
+      }, 3500); // set count ever 3.5 seconds
+    }
+  
+    return () => clearInterval(interval);
+  }, [isSlideshowMode,count]);
 
   return (
     <ColorModeContext.Provider value = {colorMode}>
@@ -89,6 +107,17 @@ function App() {
                   }
               })()}
 
+            {/* Display fun facts */}
+            {isSlideshowMode && (() => {
+                  switch (count) {
+                      case 1:
+                          return <FunFact subtext="Arsenal are winning the champions league"/>;
+                      case 3:
+                          return <FunFact subtext="Arsenal are winning the league" />;
+                      default:
+                          return null;
+                  }
+              })()}
             
             
           </main>
