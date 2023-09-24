@@ -1,4 +1,4 @@
-import { Typography, Box, IconButton, useTheme } from "@mui/material";
+import { Typography, Box, IconButton, useTheme, Tooltip } from "@mui/material";
 import { useContext } from "react";
 import { ColorModeContext, tokens } from "../../theme";
 import  LightModeOutlinedIcon  from "@mui/icons-material/LightModeOutlined";
@@ -17,7 +17,7 @@ import { useRef } from "react";
 import Logo from "../../components/Logo";
 import Login from "../../components/Login";
 
-const TopBar = ({onToggleSlideshow,isSlideshowMode}) => {
+const TopBar = ({onToggleSlideshow,isSlideshowMode, setVideoLink, setSlideshowTimer}) => {
   const theme = useTheme();
   const colors=tokens(theme.palette.mode);
   const[open, setOpen] = useState(false);
@@ -58,7 +58,7 @@ const TopBar = ({onToggleSlideshow,isSlideshowMode}) => {
     <Box className="TopbarBox" p={2}>
       <Logo />
       
-      {/*<h3 color={colors.grey[100]} >{timeAndDate[0]}<br/>{time.toLocaleTimeString().substring(0,5)}</h3>*/}
+      
       <Box> 
         <Box className="date-time" mb = "0px" >
             <Typography 
@@ -76,54 +76,94 @@ const TopBar = ({onToggleSlideshow,isSlideshowMode}) => {
   
         {/*Icons*/}
       <Box display = "flex" ref={dropdownRef}>
-      
-        <IconButton onClick={() => onToggleSlideshow()}>
-            
-            {isSlideshowMode ? (
-                <ToggleOnOutlinedIcon style={{color: "#3da58a"}}/>
-            ) : (<ToggleOffOutlinedIcon/>)
-            }
-        </IconButton>
 
-        <IconButton onClick= {colorMode.toggleColorMode}>
-            {theme.palette.mode ==='dark' ? (
-                <DarkModeOutlinedIcon/>
-            ) : (<LightModeOutlinedIcon/>)
-        }
-        </IconButton>
-        <IconButton onClick={() => {
-          setOpenN(!openN);
-          setOpen(false);
-          setOpenL(false);
-        }}>
-            <NotificationsOutlinedIcon/>
-        </IconButton>
-        {openN && <NotificationList/>}
-
-        {/* Display settings icon only if admin */}
-        {isAdmin &&(
-          <IconButton onClick={() => {
-            setOpen(!open);
-            setOpenN(false);
-            setOpenL(false);
-            }}>
-              <SettingslinedIcon style={{color: "#3da58a"}}/>
+        <Tooltip 
+          title = "Toggle slideshow" 
+          arrow
+          enterDelay={900}
+          leaveDelay={20}
+        >
+          <IconButton onClick={() => onToggleSlideshow()}>
+              
+              {isSlideshowMode ? (
+                  <ToggleOnOutlinedIcon style={{color: "#3da58a"}}/>
+              ) : (<ToggleOffOutlinedIcon/>)
+              }
           </IconButton>
-        )}
+        </Tooltip>
         
-        {open && <Dropdown/>}
-        <IconButton onClick={() => {
-          setOpenL(!openL);
-          setOpenN(false);
-          setOpen(false);
+        <Tooltip 
+          title = "Change Theme" 
+          arrow
+          enterDelay={900}
+          leaveDelay={20}
+        >
+          <IconButton onClick= {colorMode.toggleColorMode}>
+              {theme.palette.mode ==='dark' ? (
+                  <DarkModeOutlinedIcon/>
+              ) : (<LightModeOutlinedIcon/>)
+          }
+          </IconButton>
+
+        </Tooltip>
+
+        <Tooltip 
+          title = "Notifications" 
+          arrow
+          enterDelay={900}
+          leaveDelay={20}
+        >
+          <IconButton onClick={() => {
+            setOpenN(!openN);
+            setOpen(false);
+            setOpenL(false);
           }}>
-            {isAdmin ? (
-                <PersonOutlinedIcon style={{color: "#3da58a"}}/>
-            ) : (<PersonOutlinedIcon/>)
-            }
+              <NotificationsOutlinedIcon/>
+          </IconButton>
+        </Tooltip>
+        {openN && <NotificationList/>}
+        
+        <Tooltip 
+          title = "Settings" 
+          arrow
+          enterDelay={900}
+          leaveDelay={20}
+        >
+          {/* Display settings icon only if admin */}
+          {isAdmin &&(
             
-        </IconButton>
-        {openL && <Login onToggleAdmin = {() => setIsAdmin(!isAdmin)} isAdmin = {isAdmin} />}
+            <IconButton onClick={() => {
+              setOpen(!open);
+              setOpenN(false);
+              setOpenL(false);
+              }}>
+                <SettingslinedIcon style={{color: "#3da58a"}}/>
+            </IconButton>
+          )}
+
+        </Tooltip>
+        
+        {open && <Dropdown setVideoLink={setVideoLink} setSlideshowTimer = {setSlideshowTimer}/>}
+
+        <Tooltip 
+          title = "Account" 
+          arrow
+          enterDelay={900}
+          leaveDelay={20}
+        >
+          <IconButton onClick={() => {
+            setOpenL(!openL);
+            setOpenN(false);
+            setOpen(false);
+            }}>
+              {isAdmin ? (
+                  <PersonOutlinedIcon style={{color: "#3da58a"}}/>
+              ) : (<PersonOutlinedIcon/>)
+              }
+              
+          </IconButton>
+        </Tooltip>
+        {openL && <Login onToggleAdmin = {() => setIsAdmin(!isAdmin)} isAdmin = {isAdmin}/>}
         
       </Box>
       

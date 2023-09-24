@@ -9,7 +9,7 @@ import WaterElectricity from '../../images/Water & Electricity.png';
 import InfoBox from "../../components/InfoBox";
 
 
-const Overview = () => {
+const Overview = ({videoLink}) => {
     
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -18,11 +18,8 @@ const Overview = () => {
 
     {/* Image Banner */}
     <div class = "ImageContainer"> 
-      
       <h1 class = "Heading">Welcome</h1>
       <p1 class = "Subheading">To The Hasso Plattner d-School Afrika.</p1>
-      
-
     </div>
       
     <div class = "InfoContainer">
@@ -43,7 +40,7 @@ const Overview = () => {
         <iFrame 
         width="100%"
         height="auto"
-        src={'https://www.youtube.com/embed/maoRIcOf1jk'}
+        src={videoLink}
         frameBoarder="0"
         allow=" autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
@@ -52,13 +49,6 @@ const Overview = () => {
         />
 
       </div>
-      
-      {/*<InfoBox
-        title = "Water Usage"
-        subtitle = "With systems such as water metering and rainwater storage and reuse, we are committed to efficient and sustainable water usage."
-        icon = {Water}
-        className="InfoContainer2"
-/>*/}
 
       
   

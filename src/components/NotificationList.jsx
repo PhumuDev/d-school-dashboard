@@ -13,9 +13,9 @@ const NotificationList = () => {
             <Box>
             <Typography 
                 variant ="h6"
-                color={colors.grey[100]}
-                fontWeight ="bold" 
+                color={colors.grey[100]} 
                 sx={{mb: "5px"}}
+                className="dropdown-label"
             >
                 {title}
             </Typography>
@@ -23,6 +23,7 @@ const NotificationList = () => {
             <Typography 
                 variant ="h7"
                 color={nc}
+                fontWeight={100}
             >
                 {open&&subtext}
             </Typography>
@@ -48,7 +49,7 @@ const NotificationList = () => {
         <div className = "notificationList" style={{backgroundColor: colors.primary[400], border:"3px solid"+ colors.primary[500]}}>
                 <div className = "middle-container">
                     <Typography 
-                        variant ="h5"
+                        variant ="h4"
                         color={colors.grey[100]}
                         fontWeight ="bold" 
                         sx={{mb: "5px"}}

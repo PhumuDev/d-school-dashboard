@@ -24,8 +24,8 @@ const Login = ({onToggleAdmin, isAdmin}) => {
         setIsSubmit(true);
     };
 
+    // Switch admin mode on when login details are correct
     useEffect(() => {
-        console.log(formErrors);
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             onToggleAdmin();
             console.log(formValues);
@@ -58,7 +58,7 @@ const Login = ({onToggleAdmin, isAdmin}) => {
                     <div className='middle-container'>
                         <Typography
                             className = "login-heading" 
-                            variant ="h5"
+                            variant ="h4"
                             color={colors.grey[100]}
                             fontWeight ="bold" 
                             sx={{mb: "5px"}}
@@ -107,15 +107,10 @@ const Login = ({onToggleAdmin, isAdmin}) => {
                         </div>
                         <p className = "error-message">{formErrors.password}</p>
 
-                        {/* Signed in successfully */}
-                        {Object.keys(formErrors).length === 0 && isSubmit && (
-                            <div className="successful-login">Signed in as admin!</div>
-                        )}
-
                         <div className = "middle-container">
                             <button 
                             style={{backgroundColor: colors.primary[400], border:"1px solid"+colors.grey[100], color:colors.grey[100]}} 
-                            className = "login-button"
+                            className = "basic-button"
                             >
                                 Login
                             </button>
@@ -129,14 +124,14 @@ const Login = ({onToggleAdmin, isAdmin}) => {
                     <div className = "middle-container">
                         <Typography
                         className = "login-heading" 
-                        variant ="h5"
+                        variant ="h4"
                         color={colors.grey[100]}
                         fontWeight ="bold" 
                         sx={{mb: "5px"}}
                         >
                             Hi, Admin!
                         </Typography>
-                        <div className="successful-login">You are logged in as admin.</div>
+                        <div className="feedback-message">You are logged in.</div>
                         <button 
                         style={{backgroundColor: colors.primary[400], border:"1px solid"+colors.grey[100], color:colors.grey[100]}} 
                         className = "logout-button"

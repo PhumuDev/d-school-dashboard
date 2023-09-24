@@ -40,15 +40,16 @@ body,
   z-index: 20;
 }
 
-.notification-item:hover {
-  box-shadow: 1px 1px 3px 3px#888;
+
+.dropdown-label:hover {
+  color: #3da58a
 }
 
 .dropdown {
   position: absolute;
   top: 55px;
   right: -40px;
-  width: 180px;
+  width: 218px;
   height:auto;
   transform: translate(-45%);
   background: solid #242526;
@@ -78,9 +79,6 @@ a {
   text-size-adjust: auto;
 }
 
-.menu-item:hover {
-  box-shadow: 1px 1px 3px 3px #888;
-}
 .h5 {
 font-size: xx-large;
 }
@@ -109,10 +107,17 @@ font-size: xx-large;
 }
 
 /* Styling for Login dropdown */
-.login-button{
+.basic-button{
   border-style: none;
   border-radius: 8px;
   padding: 5px;
+  margin: 5px;
+
+}
+
+.basic-button:hover{
+  border-color: #3da58a;
+  color: #3da58a;
 
 }
 .logout-button{
@@ -153,11 +158,14 @@ font-size: xx-large;
 
 }
 
-.error-message, .successful-login{
+.error-message, .feedback-message{
   color: #3da58a;
 }
 
-.successful-login{
+.feedback-message{
   margin-bottom: 15px;
+  margin-top:15px;
   text-align: center;
 }
+
+/*Styling for Settings dropdown*/
