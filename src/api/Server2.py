@@ -75,131 +75,166 @@ static_data = [
 ]
 
 
-water_cost = [
-    
-{
-"x": "2023-08-01T00:00:00","value": 134
+# electricity and water cost usage
+elec_cost = [
+    {
+"x": "2023-08-01T00:00:00",
+"value": 2774,
+"wValue": 134
 },
 {
-"x": "2023-08-02T00:00:00","value": 118
+"x": "2023-08-02T00:00:00",
+"value": 1068,
+"wValue": 118
 },
 {
 "x": "2023-08-03T00:00:00",
-"value": 139
+"value": 1083,
+"wValue": 139
 },
 {
 "x": "2023-08-04T00:00:00",
-"value": 67
+"value": 2804,
+"wValue": 67
 },
 {
 "x": "2023-08-05T00:00:00",
-"value": 2
+"value": 3115,
+"wValue": 2
+
 },
 {
 "x": "2023-08-06T00:00:00",
-"value": 10
+"value": 2389,
+"wValue": 10
 },
 {
 "x": "2023-08-07T00:00:00",
-"value": 69
+"value": 2768,
+"wValue": 69
 },
 {
 "x": "2023-08-08T00:00:00",
-"value": 115
+"value": 1454,
+"wValue": 115
 },
 {
 "x": "2023-08-09T00:00:00",
-"value": 101
+"value": 836,
+"wValue": 101
 },
 {
 "x": "2023-08-10T00:00:00",
-"value": 24
+"value": 803,
+"wValue": 24
 },
 {
 "x": "2023-08-11T00:00:00",
-"value": 120
+"value": 1460,
+"wValue": 120
 },
 {
 "x": "2023-08-12T00:00:00",
-"value": 101
+"value": 1554,
+"wValue": 101
 },
 {
 "x": "2023-08-13T00:00:00",
-"value": 78
+"value": 1693,
+"wValue": 78
 },
 {
 "x": "2023-08-14T00:00:00",
-"value": 57
+"value": 1786,
+"wValue": 57
 },
 {
 "x": "2023-08-15T00:00:00",
-"value": 172
+"value": 1445,
+"wValue": 172
 },
 {
 "x": "2023-08-16T00:00:00",
-"value": 156
+"value": 820,
+"wValue": 156
 },
 {
 "x": "2023-08-17T00:00:00",
-"value": 145
+"value": 801,
+"wValue": 145
 },
 {
 "x": "2023-08-18T00:00:00",
-"value": 93
+"value": 1599,
+"wValue": 93
 },
 {
 "x": "2023-08-19T00:00:00",
-"value": 27
+"value": 1640,
+"wValue": 27
 },
 {
 "x": "2023-08-20T00:00:00",
-"value": 26
+"value": 1497,
+"wValue": 26
 },
 {
 "x": "2023-08-21T00:00:00",
-"value": 76
+"value": 1792,
+"wValue": 76
 },
 {
 "x": "2023-08-22T00:00:00",
-"value": 137
+"value": 1626,
+"wValue": 137
 },
 {
 "x": "2023-08-23T00:00:00",
-"value": 49
+"value": 928,
+"wValue": 49
 },
 {
 "x": "2023-08-24T00:00:00",
-"value": 133
+"value": 891,
+"wValue": 133
 },
 {
 "x": "2023-08-25T00:00:00",
-"value": 140
+"value": 1729,
+"wValue": 140
 },
 {
 "x": "2023-08-26T00:00:00",
-"value": 99
+"value": 1944,
+"wValue": 99
 },
 {
 "x": "2023-08-27T00:00:00",
-"value": 10
+"value": 1715,
+"wValue": 10
 },
 {
 "x": "2023-08-28T00:00:00",
-"value": 69
+"value": 1818,
+"wValue": 69
 },
 {
 "x": "2023-08-29T00:00:00",
-"value": 148
+"value": 1498,
+"wValue": 148
 },
 {
 "x": "2023-08-30T00:00:00",
-"value": 77
+"value": 809,
+"wValue": 77
 },
 {
 "x": "2023-08-31T00:00:00",
-"value": 86
+"value": 759,
+"wValue": 86
 },
 ]
+
 
 energy_data_live = [
       {"x": "2023-08-01T00:00:00","generationValue": 0,"consumptionValue": 654},
@@ -212,6 +247,49 @@ energy_data_live = [
       {"x": "2023-08-08T00:00:00","generationValue": 180,"consumptionValue": 1109.1},
 ]
 
+all_cost_live=[
+  {
+"x": "2023-08-01T00:00:00",
+"value": 2774,
+"wValue": 134
+},
+{
+"x": "2023-08-02T00:00:00",
+"value": 1068,
+"wValue": 118
+},
+{
+"x": "2023-08-03T00:00:00",
+"value": 1083,
+"wValue": 139
+},
+{
+"x": "2023-08-04T00:00:00",
+"value": 2804,
+"wValue": 67
+},
+{
+"x": "2023-08-05T00:00:00",
+"value": 3115,
+"wValue": 2
+
+},
+{
+"x": "2023-08-06T00:00:00",
+"value": 2389,
+"wValue": 10
+},
+{
+"x": "2023-08-07T00:00:00",
+"value": 2768,
+"wValue": 69
+},
+{
+"x": "2023-08-08T00:00:00",
+"value": 1454,
+"wValue": 115
+}
+]
 
 
 
@@ -219,6 +297,10 @@ energy_data_live = [
 def waterUsage():
    
     return jsonify(static_data)
+
+
+
+
 
 
 
@@ -247,10 +329,32 @@ def update_live_data():
 def energyGenerationLive():
     return jsonify(energy_data_live)
 
-@app.route("/waterUsageCost")
-def waterUsageCost():
-   
-    return jsonify(water_cost)
+
+@app.route("/UsageCost")
+def UsageCost():
+    return jsonify(elec_cost)
+
+
+# Function to update energy_data2 every 5 seconds
+def update_live_cost():
+
+    global all_cost_live
+    index = 8
+
+    while (index<30):
+
+        # Update the data in energy_data_live
+        all_cost_live.pop(0)
+        all_cost_live.append(copy.deepcopy(elec_cost[index]))
+
+        index = index+1
+        # Sleep for 5 seconds
+        time.sleep(5)
+
+@app.route("/UsageCostLive")
+def UsageCostLive():
+    return jsonify(all_cost_live)
+
 
 
 if __name__ == "__main__":
@@ -259,6 +363,11 @@ if __name__ == "__main__":
     update_thread = threading.Thread(target=update_live_data)
     update_thread.daemon = True
     update_thread.start()
+
+     # Start the background thread to update electricity cost
+    update_thread2 = threading.Thread(target=update_live_cost)
+    update_thread2.daemon = True
+    update_thread2.start()
 
     app.run(debug=True)
 
