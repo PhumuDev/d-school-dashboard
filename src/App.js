@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import TopBar from "./scenes/global/TopBar";
 import SideBar from './scenes/global/SideBar';
 import Overview from './scenes/overview';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import './App.css';
 import SolarGeneration from './scenes/electricity/solar generation';
 import TotalWaterUsage from './scenes/water/total water usage';
@@ -33,6 +33,13 @@ function App() {
     { path: "/total water usage", element: <TotalWaterUsage /> },
   ];
 
+  //Store routes to avoid page refreshing 
+  const memoizedRoutes = useMemo(() => {
+    return routes.map((route, index) => (
+      <Route key={index} path={route.path} element={route.element} />
+    ));
+  }, [routes]);
+
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0); //Slideshow logic
   const currentRoute = routes[currentSlideIndex];
 
@@ -60,7 +67,7 @@ function App() {
         } else {
           setCount(count+1)
         }
-      }, 3500); // set count ever 3.5 seconds
+      }, 3500); // set count every 3.5 seconds
     }
   
     return () => clearInterval(interval);
@@ -82,12 +89,9 @@ function App() {
           />
            <Routes>
 
-              {!isSlideshowMode &&
-                  routes.map((route, index) => (
-                    <Route key={index} path={route.path} element={route.element} />
-                  ))}
+           {!isSlideshowMode && memoizedRoutes}
  
-              </Routes>
+            </Routes>
               
               {/* Return the relevant page in slideshow mode */}
               {isSlideshowMode && currentRoute && (() => {

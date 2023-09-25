@@ -7,10 +7,10 @@ const FunFact = ({subtext}) => {
     const colors = tokens(theme.palette.mode);
     return(
         <Box 
-display="flex"
-alignItems="center"
-        className = "funFact" 
-        style={{
+            display="flex"
+            alignItems="center"
+            className = "funFact" 
+            style={{
             backgroundColor: colors.primary[400], 
             border:"3px solid"+ colors.primary[500], 
             display: "flex"}}>
