@@ -75,7 +75,7 @@ static_data = [
     },
 ]
 
-
+# water cost usage
 water_cost = [
     
 {
@@ -202,7 +202,145 @@ water_cost = [
 },
 ]
 
-energy_data2 = []
+# electricity cost usage
+elec_cost = [
+    {
+"x": "2023-08-01T00:00:00",
+"value": 2774
+},
+{
+"x": "2023-08-02T00:00:00",
+"value": 1068
+},
+{
+"x": "2023-08-03T00:00:00",
+"value": 1083
+},
+{
+"x": "2023-08-04T00:00:00",
+"value": 2804
+},
+{
+"x": "2023-08-05T00:00:00",
+"value": 3115
+},
+{
+"x": "2023-08-06T00:00:00",
+"value": 2389
+},
+{
+"x": "2023-08-07T00:00:00",
+"value": 2768
+},
+{
+"x": "2023-08-08T00:00:00",
+"value": 1454
+},
+{
+"x": "2023-08-09T00:00:00",
+"value": 836
+},
+{
+"x": "2023-08-10T00:00:00",
+"value": 803
+},
+{
+"x": "2023-08-11T00:00:00",
+"value": 1460
+},
+{
+"x": "2023-08-12T00:00:00",
+"value": 1554
+},
+{
+"x": "2023-08-13T00:00:00",
+"value": 1693
+},
+{
+"x": "2023-08-14T00:00:00",
+"value": 1786
+},
+{
+"x": "2023-08-15T00:00:00",
+"value": 1445
+},
+{
+"x": "2023-08-16T00:00:00",
+"value": 820
+},
+{
+"x": "2023-08-17T00:00:00",
+"value": 801
+},
+{
+"x": "2023-08-18T00:00:00",
+"value": 1599
+},
+{
+"x": "2023-08-19T00:00:00",
+"value": 1640
+},
+{
+"x": "2023-08-20T00:00:00",
+"value": 1497
+},
+{
+"x": "2023-08-21T00:00:00",
+"value": 1792
+},
+{
+"x": "2023-08-22T00:00:00",
+"value": 1626
+},
+{
+"x": "2023-08-23T00:00:00",
+"value": 928
+},
+{
+"x": "2023-08-24T00:00:00",
+"value": 891
+},
+{
+"x": "2023-08-25T00:00:00",
+"value": 1729
+},
+{
+"x": "2023-08-26T00:00:00",
+"value": 1944
+},
+{
+"x": "2023-08-27T00:00:00",
+"value": 1715
+},
+{
+"x": "2023-08-28T00:00:00",
+"value": 1818
+},
+{
+"x": "2023-08-29T00:00:00",
+"value": 1498
+},
+{
+"x": "2023-08-30T00:00:00",
+"value": 809
+},
+{
+"x": "2023-08-31T00:00:00",
+"value": 759
+},
+]
+
+
+energy_data_live = [
+      {"x": "2023-08-01T00:00:00","generationValue": 0,"consumptionValue": 654},
+      {"x": "2023-08-02T00:00:00","generationValue": 149,"consumptionValue": 884},
+      {"x": "2023-08-03T00:00:00","generationValue": 116,"consumptionValue": 800},
+      {"x": "2023-08-04T00:00:00","generationValue": 192,"consumptionValue": 990},
+      {"x": "2023-08-05T00:00:00","generationValue": 181,"consumptionValue": 784.4},
+      {"x": "2023-08-06T00:00:00","generationValue": 156,"consumptionValue": 795.4},
+      {"x": "2023-08-07T00:00:00","generationValue": 138,"consumptionValue": 1062.1},
+      {"x": "2023-08-08T00:00:00","generationValue": 180,"consumptionValue": 1109.1},
+]
 
 @app.route("/waterUsagePerCate")
 def waterUsage():
@@ -217,22 +355,24 @@ def energyGeneration():
     return jsonify(energy_data)
 
 # Function to update energy_data2 every 5 seconds
-def update_energy_data():
-    global energy_data2
+def update_live_data():
 
-    while True:
-        # Generate a random value 
-        new_value = 10
+    global energy_data_live
+    index = 8
 
-        # Update the data in energy_data2
-        energy_data2.append(new_value)
+    while (index<30):
 
+        # Update the data in energy_data_live
+        energy_data_live.pop(0)
+        energy_data_live.append(copy.deepcopy(energy_data[index]))
+
+        index = index+1
         # Sleep for 5 seconds
         time.sleep(5)
 
 @app.route("/solarGenerationLive")
 def energyGenerationLive():
-    return jsonify(energy_data2)
+    return jsonify(energy_data_live)
 
 @app.route("/waterUsageCost")
 def waterUsageCost():
@@ -243,14 +383,11 @@ def waterUsageCost():
 if __name__ == "__main__":
 
     # Start the background thread to update energy_data2
-    update_thread = threading.Thread(target=update_energy_data)
+    update_thread = threading.Thread(target=update_live_data)
     update_thread.daemon = True
     update_thread.start()
 
     app.run(debug=True)
-
-
-
 
 
 

@@ -213,6 +213,8 @@ energy_data_live = [
 ]
 
 
+
+
 @app.route("/waterUsagePerCate")
 def waterUsage():
    

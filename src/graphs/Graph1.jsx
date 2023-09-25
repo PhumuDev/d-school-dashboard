@@ -8,14 +8,9 @@ import "../App.css";
 // For sub heading 1 (Solar generation)
 
 const Graph1 = () => {
-
+  
   const chartRef = useRef(null);
-  const numDisplayPoints = 8;
-  const [displayedData, setDisplayedData] = useState([]);
-  const [dataIndex, setDataIndex] = useState(0);
   const [dataHistory, setDataHistory] = useState([]);
-  const [isPaused, setIsPaused] = useState(false);
-
 
 
   
@@ -97,20 +92,13 @@ const Graph1 = () => {
           },
         
         },
-        //  {
-        //   opposite: true,
-        //   title: {
-        //     text: 'W/m2 (LINE Graph)',  // For Irradiance
-        //     style:{
-        //       color: "#abaaa7",
-        //       fontSize: 12,
-              
-        //      }
-        //   }
-        // }
+       
       ]
       })
-    
+      const [isLive, setIsLive] = useState(true); //Controls which API data is fetched from
+      const [apiRoute, setApiRoute] = useState("/solarGenerationLive"); //Controls which API data is fetched from
+      const [isPaused, setIsPaused] = useState(false); //Controls the fetching of data
+
       const updateChart = (newData) => {
         // Update series data
         const updatedSeries = [
@@ -118,7 +106,7 @@ const Graph1 = () => {
             ...series[0],
             data: newData.map((item) => item.generationValue),
           },
-          // Other series...
+         
         ];
     
         // Update x-axis categories with formatted date strings
@@ -141,89 +129,95 @@ const Graph1 = () => {
       };
     
       const fetchData = async () => {try {
-        const response = await fetch("/solarGeneration");
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
+    
+        if (!isPaused){
+          const response = await fetch(apiRoute);
+          if (!response.ok) {
+            throw new Error("Failed to fetch data");
+          }
+          const data = await response.json();
+    
+          // Parse the date strings into JavaScript Date objects
+          const parsedData = data.map((item) => ({
+            x: new Date(item.x),
+            generationValue: item.generationValue,
+          }));
+    
+          setDataHistory(parsedData);
+          updateChart(parsedData);
         }
-        const data = await response.json();
+        
     
-        // Parse the date strings into JavaScript Date objects
-        const parsedData = data.map((item) => ({
-          x: new Date(item.x),
-          generationValue: item.generationValue,
-        }));
-    
-        setDataHistory([...dataHistory, ...parsedData]);
-    
-        // Check if all data is fetched
-        if (dataHistory.length === parsedData.length) {// Initial chart update with the first 8 data points
-          updateChart(dataHistory.slice(0, numDisplayPoints));
-        }
+        
       } catch (error) {
         console.error(error);
       }
+      };
+      
+  useEffect(() => {
+
+    // Function to update apiRoute based on isLive
+    const updateApiRoute = () => {
+      setApiRoute(isLive ? "/solarGeneration" : "/solarGenerationLive");
     };
-    
-    useEffect(() => {
-      // Fetch data initially
+
+    // Update apiRoute whenever isLive changes
+    updateApiRoute();
+
+    // Fetch data initially
+    if (!isPaused){
       fetchData();
-    
-      // Fetch data every 10 minutes
-      const fetchInterval = setInterval(fetchData, 10 * 60 * 1000);
-    
-      // Cleanup: clear the interval when the component unmounts
-      return () => clearInterval(fetchInterval);
-    }, []);
-    
-    useEffect(() => {
-      const interval = setInterval(() => {
-        if (dataIndex < dataHistory.length && !isPaused) {
-          const nextDataPoint = dataHistory[dataIndex];
-          const newDisplayedData = [...displayedData, nextDataPoint].slice(-numDisplayPoints);
-    
-          setDisplayedData(newDisplayedData);
-          setDataIndex((prevIndex) => prevIndex + 1);
-    
-          // Update the chart with the new data
-          updateChart(newDisplayedData);
-        }
-      }, 5000);
+    }
+
+    // Fetch data every 3 seconds
+    const fetchInterval = setInterval(fetchData, 3000);
+
     // Cleanup: clear the interval when the component unmounts
-    return () => clearInterval(interval);
-    }, [dataIndex, displayedData, numDisplayPoints, dataHistory, isPaused]);
+    return () => clearInterval(fetchInterval);
+
+  }, [isLive, isPaused]);
+
+
+  const displayFirst7Points = () => {
+    setIsPaused(true);
+    // Display the first 7 data points
+    updateChart(dataHistory.slice(0, 7));
+  };
+
+  const displayWeek2Points = () => {
+    setIsPaused(true);
+    // Display the first 10 data points
+    updateChart(dataHistory.slice(8, 14));
+  };
+
+  const displayWeek3Points = () => {
+    setIsPaused(true);
+    // Display the first 10 data points
+    updateChart(dataHistory.slice(14, 21));
+  };
+
+  const displayMonthPoints = () => {
+    setIsPaused(true);
+    // Display the first 30 data points
+    updateChart(dataHistory.slice(0, 30));
+  };
+
+  const handleLiveButtonClick = () => {
+    setIsPaused(false);
+    setIsLive(!isLive);  // Update isLive when "Live" button is clicked
+  };
     
-    
-    
-    const displayFirst7Points = () => {
-      setIsPaused(true);
-      // Display the first 7 data points
-      updateChart(dataHistory.slice(0, 7));
-    };
-    
-    const displayWeek2Points = () => {
-      setIsPaused(true);
-      // Display the first 10 data points
-      updateChart(dataHistory.slice(7, 14));
-    };
-    
-    const displayMonthPoints = () => {
-      setIsPaused(true);
-      // Display the first 7 data points
-      updateChart(dataHistory.slice(0, 30));
-    };
-    
-    const resumeUpdates = () => {
-      setIsPaused(false);
-    };
     
       return( 
         <div class='diagramContainer2'>
           <div>
-          <button onClick={resumeUpdates}>Live</button>
-            <button onClick={displayFirst7Points}>W1</button>
-            <button onClick={displayWeek2Points}>W2</button>
-            <button onClick={displayMonthPoints}>1M</button>
-          </div>
+        {isLive &&(<button onClick={handleLiveButtonClick}> Show Historic Data</button>)}
+        {!isLive &&(<button onClick={handleLiveButtonClick}>Go Live</button>)}
+        {!isLive &&(<button onClick={displayFirst7Points}>W1</button>)}
+        {!isLive &&(<button onClick={displayWeek2Points}>W2</button>)}
+        {!isLive &&(<button onClick={displayWeek3Points}>W3</button>)}
+        {!isLive &&(<button onClick={displayMonthPoints}>1M</button>)}
+      </div>
     
             <ReactApexChart
               options={options}
