@@ -38,11 +38,7 @@ const Graph3 = () => {
           fontSize: "20"
         }
       },
-      
-      fill: {
-        opacity: 1,
-        colors: "#db352c"
-      },
+    
       tooltip: {
         //Hover Box
         enabled: true,
@@ -74,6 +70,10 @@ const Graph3 = () => {
       },
       dataLabels: {
         enabled: false
+      },
+      fill: {
+       
+        colors: "#db352c"
       },
       
       legend: {

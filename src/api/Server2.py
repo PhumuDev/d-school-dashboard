@@ -44,7 +44,7 @@ energy_data = [
 
 
 # for water usage per category
-static_data = [
+water_category_data = [
     {
         "date": "2023-08-01",
         "data": [
@@ -296,7 +296,7 @@ all_cost_live=[
 @app.route("/waterUsagePerCate")
 def waterUsage():
    
-    return jsonify(static_data)
+    return jsonify(water_category_data)
 
 
 
