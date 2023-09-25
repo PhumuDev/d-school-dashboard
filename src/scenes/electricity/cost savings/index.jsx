@@ -7,7 +7,7 @@ import Bulb from '../../../images/bulb.png';
 import InfoBox from "../../../components/InfoBox";
 import Money from "../../../images/money.png"
 
-const CostSavings = () => {
+const CostSavings = ({isAdmin}) => {
 
     return <Box m="15px">
         {/* <Typography>Kevin(2)</Typography> */}
@@ -15,8 +15,8 @@ const CostSavings = () => {
 
         <div className='MainContainer'>
             <div className="container1">
-              <Graph4/>
-              <Graph5/>
+              <Graph4 isAdmin = {isAdmin}/>
+              <Graph5 isAdmin = {isAdmin}/>
               
             </div>
           

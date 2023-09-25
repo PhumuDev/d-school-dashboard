@@ -17,13 +17,13 @@ import { useRef } from "react";
 import Logo from "../../components/Logo";
 import Login from "../../components/Login";
 
-const TopBar = ({onToggleSlideshow,isSlideshowMode, setVideoLink, setSlideshowTimer}) => {
+const TopBar = ({onToggleSlideshow,isSlideshowMode, setVideoLink, setSlideshowTimer, isAdmin, setIsAdmin}) => {
   const theme = useTheme();
   const colors=tokens(theme.palette.mode);
   const[open, setOpen] = useState(false);
   const [openN, setOpenN] = useState(false);
   const [openL, setOpenL] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+  
 
   {/*}Create and format date*/}
   const today = new Date();

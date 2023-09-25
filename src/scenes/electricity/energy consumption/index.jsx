@@ -7,7 +7,7 @@ import Bolt from '../../../images/thunderbolt.png';
 import Chart from '../../../images/pie-chart.png';
 import InfoBox from "../../../components/InfoBox";
 
-const EnergyConsumption = () => {
+const EnergyConsumption = ({isAdmin}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -16,8 +16,8 @@ const EnergyConsumption = () => {
 
         <div className='MainContainer'>
             <div className="container1">
-              <Graph2/>
-              <Graph3/>
+              <Graph2 isAdmin = {isAdmin}/>
+              <Graph3 isAdmin = {isAdmin}/>
               
             </div>
           

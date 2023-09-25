@@ -294,32 +294,46 @@ const Graph7 = () => {
   const [currentDataIndex, setCurrentDataIndex] = useState(0);
   const [currentChartData, setCurrentChartData] = useState([]);
 
- 
+  const [series, setSeries] = useState([
+    {
+      name: "Floor usage",
+      data: [], // Initialize with an empty array
+    },
+  ]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (currentDataIndex < staticData.length) {
+        const dataForDate = staticData[currentDataIndex].data;
+        setCurrentChartData(dataForDate);
+        setCurrentDataIndex((prevIndex) => prevIndex + 1);
+        // Update chart series data with both "x" and "y"
+        setSeries([
+            {
+              data: dataForDate.map((item) => ({
+                x: item.x,
+                y: item.y,
+              })),
+            },
+          ]);
+        } else {
+          // Clear the timer when all data has been displayed
+          clearInterval(timer);
+        }
+      }, 8000); // Adjust the timer duration as needed (2 seconds in this example)
+  
+      return () => clearInterval(timer);
+    }, [currentDataIndex]);
 
 
 
-useEffect(() => {
-  if (currentDataIndex < staticData.length) {
-    // Set a timer to update the chart data for each date
-    const timer = setTimeout(() => {
-      const dataForDate = staticData[currentDataIndex].data;
-      setCurrentChartData(dataForDate);
-      setCurrentDataIndex((prevIndex) => prevIndex + 1);
-    }, 2000); // Adjust the timer duration as needed (2 seconds in this example)
-
-    return () => clearTimeout(timer);
-  }
-}, [currentDataIndex]);
-
-
-const series = currentChartData.map((item) => item.y);
 
 
 const [options, setOptions] = useState({
     
       chart: {
         width: 380,
-        type: 'pie',
+        type: 'treemap',
         foreColor: "#939695",
       },
       
@@ -331,18 +345,17 @@ const [options, setOptions] = useState({
           
          }
     },
-    labels: currentChartData.map((item) => item.x),
-      responsive: [{
-        breakpoint: 480,
-        options: {
-          chart: {
-            width: 200
-          },
-          legend: {
-            position: 'bottom'
+    tooltip: {
+        //Hover Box
+        enabled: true,
+        theme: "dark",
+        y: {
+          formatter: function (val) {
+            return  (val + " litres")
           }
         }
-      }]
+      },
+   
     })
    
  
@@ -355,7 +368,7 @@ const [options, setOptions] = useState({
         <ReactApexChart 
         options={options} 
         series={series} 
-        type="pie" 
+        type="treemap" 
         height={"100%"} 
         width={"100%"}/>
 
