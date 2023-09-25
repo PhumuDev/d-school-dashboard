@@ -161,7 +161,7 @@ useEffect(() => {
   fetchData();
 
   // Fetch data every 10 minutes
-  const fetchInterval = setInterval(fetchData, 10 * 60 * 1000);
+  const fetchInterval = setInterval(fetchData, 2 * 60 * 1000);
 
   // Cleanup: clear the interval when the component unmounts
   return () => clearInterval(fetchInterval);
