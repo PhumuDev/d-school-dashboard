@@ -39,8 +39,7 @@ energy_data = [
       {"x": "2023-08-29T00:00:00","generationValue": 194,"consumptionValue": 1135.9},
       {"x": "2023-08-30T00:00:00","generationValue": 166,"consumptionValue": 1006.6},
       {"x": "2023-08-31T00:00:00","generationValue": 38,"consumptionValue": 1065.8},
-     
-      
+          
 ]
 
 
@@ -202,7 +201,17 @@ water_cost = [
 },
 ]
 
-energy_data2 = []
+energy_data_live = [
+      {"x": "2023-08-01T00:00:00","generationValue": 0,"consumptionValue": 654},
+      {"x": "2023-08-02T00:00:00","generationValue": 149,"consumptionValue": 884},
+      {"x": "2023-08-03T00:00:00","generationValue": 116,"consumptionValue": 800},
+      {"x": "2023-08-04T00:00:00","generationValue": 192,"consumptionValue": 990},
+      {"x": "2023-08-05T00:00:00","generationValue": 181,"consumptionValue": 784.4},
+      {"x": "2023-08-06T00:00:00","generationValue": 156,"consumptionValue": 795.4},
+      {"x": "2023-08-07T00:00:00","generationValue": 138,"consumptionValue": 1062.1},
+      {"x": "2023-08-08T00:00:00","generationValue": 180,"consumptionValue": 1109.1},
+]
+
 
 @app.route("/waterUsagePerCate")
 def waterUsage():
@@ -217,22 +226,24 @@ def energyGeneration():
     return jsonify(energy_data)
 
 # Function to update energy_data2 every 5 seconds
-def update_energy_data():
-    global energy_data2
+def update_live_data():
 
-    while True:
-        # Generate a random value 
-        new_value = 10
+    global energy_data_live
+    index = 8
 
-        # Update the data in energy_data2
-        energy_data2.append(new_value)
+    while (index<30):
 
+        # Update the data in energy_data_live
+        energy_data_live.pop(0)
+        energy_data_live.append(copy.deepcopy(energy_data[index]))
+
+        index = index+1
         # Sleep for 5 seconds
         time.sleep(5)
 
 @app.route("/solarGenerationLive")
 def energyGenerationLive():
-    return jsonify(energy_data2)
+    return jsonify(energy_data_live)
 
 @app.route("/waterUsageCost")
 def waterUsageCost():
@@ -243,7 +254,7 @@ def waterUsageCost():
 if __name__ == "__main__":
 
     # Start the background thread to update energy_data2
-    update_thread = threading.Thread(target=update_energy_data)
+    update_thread = threading.Thread(target=update_live_data)
     update_thread.daemon = True
     update_thread.start()
 

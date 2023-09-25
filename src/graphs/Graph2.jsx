@@ -154,59 +154,62 @@ const Graph2 = () => {
   } catch (error) {
     console.error(error);
   }
-};
+  };
 
-useEffect(() => {
-  // Fetch data initially
-  fetchData();
 
-  // Fetch data every 10 minutes
-  const fetchInterval = setInterval(fetchData, 2 * 60 * 1000);
+  useEffect(() => {
 
+    // Fetch data initially
+    fetchData();
+    
+
+    // Fetch data every 10 minutes
+    const fetchInterval = setInterval(fetchData, 2 * 60 * 1000);
+
+    // Cleanup: clear the interval when the component unmounts
+    return () => clearInterval(fetchInterval);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (dataIndex < dataHistory.length && !isPaused) {
+        const nextDataPoint = dataHistory[dataIndex];
+        const newDisplayedData = [...displayedData, nextDataPoint].slice(-numDisplayPoints);
+
+        setDisplayedData(newDisplayedData);
+        setDataIndex((prevIndex) => prevIndex + 1);
+
+        // Update the chart with the new data
+        updateChart(newDisplayedData);
+      }
+    }, 5000);
   // Cleanup: clear the interval when the component unmounts
-  return () => clearInterval(fetchInterval);
-}, []);
-
-useEffect(() => {
-  const interval = setInterval(() => {
-    if (dataIndex < dataHistory.length && !isPaused) {
-      const nextDataPoint = dataHistory[dataIndex];
-      const newDisplayedData = [...displayedData, nextDataPoint].slice(-numDisplayPoints);
-
-      setDisplayedData(newDisplayedData);
-      setDataIndex((prevIndex) => prevIndex + 1);
-
-      // Update the chart with the new data
-      updateChart(newDisplayedData);
-    }
-  }, 5000);
-// Cleanup: clear the interval when the component unmounts
-return () => clearInterval(interval);
-}, [dataIndex, displayedData, numDisplayPoints, dataHistory, isPaused]);
+  return () => clearInterval(interval);
+  }, [dataIndex, displayedData, numDisplayPoints, dataHistory, isPaused]);
 
 
 
-const displayFirst7Points = () => {
-  setIsPaused(true);
-  // Display the first 7 data points
-  updateChart(dataHistory.slice(0, 7));
-};
+  const displayFirst7Points = () => {
+    setIsPaused(true);
+    // Display the first 7 data points
+    updateChart(dataHistory.slice(0, 7));
+  };
 
-const displayWeek2Points = () => {
-  setIsPaused(true);
-  // Display the first 10 data points
-  updateChart(dataHistory.slice(8, 14));
-};
+  const displayWeek2Points = () => {
+    setIsPaused(true);
+    // Display the first 10 data points
+    updateChart(dataHistory.slice(8, 14));
+  };
 
-const displayMonthPoints = () => {
-  setIsPaused(true);
-  // Display the first 7 data points
-  updateChart(dataHistory.slice(0, 30));
-};
+  const displayMonthPoints = () => {
+    setIsPaused(true);
+    // Display the first 7 data points
+    updateChart(dataHistory.slice(0, 30));
+  };
 
-const resumeUpdates = () => {
-  setIsPaused(false);
-};
+  const resumeUpdates = () => {
+    setIsPaused(false);
+  };
 
   return( 
     <div class='diagramContainer'>
@@ -234,7 +237,7 @@ const resumeUpdates = () => {
  
 
     </div>
-   )
+  )
 
-  };
+};
 export default Graph2;
