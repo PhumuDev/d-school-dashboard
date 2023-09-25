@@ -14,7 +14,7 @@ import { BorderAll } from "@mui/icons-material";
 
 // For Sub heading 2 Energy Consumptionn
 
-const Graph3 = () => {
+const Graph3 = ({isAdmin}) => {
    
   const chartRef = useRef(null);
   const [dataHistory, setDataHistory] = useState([]);
@@ -207,14 +207,16 @@ const Graph3 = () => {
 
   return( 
     <div class='diagramContainer'>
-      <div>
-        {isLive &&(<button onClick={handleLiveButtonClick}> Show Historic Data</button>)}
-        {!isLive &&(<button onClick={handleLiveButtonClick}>Go Live</button>)}
-        {!isLive &&(<button onClick={displayFirst7Points}>W1</button>)}
-        {!isLive &&(<button onClick={displayWeek2Points}>W2</button>)}
-        {!isLive &&(<button onClick={displayWeek3Points}>W3</button>)}
-        {!isLive &&(<button onClick={displayMonthPoints}>1M</button>)}
-      </div>
+      {isAdmin &&(
+          <div>
+          {isLive &&(<button onClick={handleLiveButtonClick}> Show Historic Data</button>)}
+          {!isLive &&(<button onClick={handleLiveButtonClick}>Go Live</button>)}
+          {!isLive &&(<button onClick={displayFirst7Points}>W1</button>)}
+          {!isLive &&(<button onClick={displayWeek2Points}>W2</button>)}
+          {!isLive &&(<button onClick={displayWeek3Points}>W3</button>)}
+          {!isLive &&(<button onClick={displayMonthPoints}>1M</button>)}
+          </div>
+        )}
 
         <ReactApexChart
           options={options}

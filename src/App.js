@@ -20,16 +20,21 @@ function App() {
   const [videoLink, setVideoLink] = useState('https://www.youtube.com/embed/maoRIcOf1jk');
   const [slideshowTimer, setSlideshowTimer] = useState(5000);
   const [count, setCount] = useState(0);
+  const [isAdmin, setIsAdmin] = useState(false);
   
   const updateVideoLink = (newLink) => {
     setVideoLink(newLink);
   };
+
+  const updateAdminMode = (mode) => {
+    setIsAdmin(mode);
+  };
   
   const routes = [
     { path: "/", element: <Overview videoLink = {videoLink}/> },
-    { path: "/solar generation", element: <SolarGeneration /> },
-    { path: "/energy consumption", element: <EnergyConsumption /> },
-    { path: "/cost savings", element: <CostSavings /> },
+    { path: "/solar generation", element: <SolarGeneration isAdmin = {isAdmin}/> },
+    { path: "/energy consumption", element: <EnergyConsumption isAdmin = {isAdmin}/> },
+    { path: "/cost savings", element: <CostSavings isAdmin = {isAdmin}/> },
     { path: "/total water usage", element: <TotalWaterUsage /> },
   ];
 
@@ -86,6 +91,8 @@ function App() {
             isSlideshowMode ={isSlideshowMode} 
             setVideoLink = {setVideoLink}
             setSlideshowTimer = {setSlideshowTimer}
+            setIsAdmin={updateAdminMode}
+            isAdmin={isAdmin}
           />
            <Routes>
 
@@ -99,13 +106,13 @@ function App() {
                       case 0:
                           return <Overview videoLink = {videoLink}/>;
                       case 1:
-                          return <SolarGeneration />;
+                          return <SolarGeneration isAdmin = {isAdmin}/>;
                       case 2:
-                          return <EnergyConsumption />;
+                          return <EnergyConsumption isAdmin = {isAdmin}/>;
                       case 3:
                           return <TotalWaterUsage />;
                       case 4:
-                          return <CostSavings />;
+                          return <CostSavings isAdmin = {isAdmin}/>;
                       default:
                           return null;
                   }

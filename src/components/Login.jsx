@@ -24,6 +24,10 @@ const Login = ({onToggleAdmin, isAdmin}) => {
         setIsSubmit(true);
     };
 
+    const handleLogout = (e) => {
+        onToggleAdmin();
+    };
+
     // Switch admin mode on when login details are correct
     useEffect(() => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
@@ -120,7 +124,7 @@ const Login = ({onToggleAdmin, isAdmin}) => {
                 </form>
             )}
             {isAdmin &&(
-                <form>
+                <form onSubmit={handleLogout}>
                     <div className = "middle-container">
                         <Typography
                         className = "login-heading" 

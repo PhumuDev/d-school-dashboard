@@ -9,7 +9,7 @@ import Solar from '../../../images/solar-panels.png';
 import Sun from '../../../images/sun.png';
 import InfoBox from "../../../components/InfoBox";
 
-const SolarGeneration = () => {
+const SolarGeneration = ({isAdmin}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -20,7 +20,7 @@ const SolarGeneration = () => {
 
         <div className='MainContainer'>
           <div className="container1">
-            <Graph1/>
+            <Graph1 isAdmin = {isAdmin}/>
               
           </div>
           <div class = "MainStatsContainer" >
