@@ -1,4 +1,5 @@
-import React, { useEffect, useState} from "react";
+
+import React, { useEffect, useState, useRef} from "react";
 import ReactApexChart from "react-apexcharts";
 import "../App.css";
 import { tokens } from "../theme";
@@ -11,11 +12,19 @@ import { BorderAll } from "@mui/icons-material";
 
 
 
-// For Sub heading 2 Energy Consumption
+// For Sub heading 2 Energy Consumptionn
 
 const Graph2 = () => {
+   
+  const chartRef = useRef(null);
+  const numDisplayPoints = 8;
+  const [displayedData, setDisplayedData] = useState([]);
+  const [dataIndex, setDataIndex] = useState(0);
+  const [dataHistory, setDataHistory] = useState([]);
+  const [isPaused, setIsPaused] = useState(false);
 
-  const [options, setObject] = useState({
+
+  const [options, setOptions] = useState({
       chart: {
         type: 'bar',
         height: 350,
@@ -25,6 +34,7 @@ const Graph2 = () => {
         show: false
        }
       },
+      
       noData: {
           text: 'Loading...',
           style:{
@@ -32,9 +42,7 @@ const Graph2 = () => {
           fontSize: "20"
         }
       },
-      xaxis: {
-        categories: [],
-      },
+      
       fill: {
         opacity: 1,
         colors: "#db352c"
@@ -51,7 +59,7 @@ const Graph2 = () => {
       },
       yaxis: {
         title: {
-          text: 'KW/h',
+          text: 'kW/h',
           style:{
             color: "#abaaa7",
             fontSize: 14,
@@ -89,83 +97,135 @@ const Graph2 = () => {
 
   const [series, setSeries] = useState([
     {
-      name: 'Energy',
-      data: []
+      name: "Energy Consumption",
+      data: [], // Initially empty
     },
-    
+    // Other series...
+  ]);
 
-  ])
-const definiteX = []
-  // const [dataa, setData] = useState({})
-  
-  useEffect(() =>{
+  const updateChart = (newData) => {
+    // Update series data
+    const updatedSeries = [
+      {
+        ...series[0],
+        data: newData.map((item) => item.consumptionValue),
+      },
+      // Other series...
+    ];
 
-    const xAxis = []
-    const yAxis = []
+    // Update x-axis categories with formatted date strings
+    const updatedOptions = {
+      ...options,
+      xaxis: {
+        ...options.xaxis,
+        categories: newData.map((item) => {const date = new Date(item.x);
+          // Format the date as "dd MMM" (adjust the format as needed)
+          return `${date.getDate()} ${date.toLocaleString("default", {
+            month: "short",
+          })}`;
+        }),
+      },
+    };
 
-
-
-    axios.get('/electricity')
-    // .then(res => res.json())
-    // .then(
-    //   dataa => {
-    //     setData(dataa)
-    //     console.log("python",dataa)
-    //   }
-    // )
-     .then(response => {
-       console.log("response",response)
-       response.data.energy_consumption.map(item => {
-         console.log("item",item)
-           xAxis.push(item.time)
-           yAxis.push(item.load_power)
-       })
-       setObject({
-         chart: {
-           type: 'bar',
-           height: 350
-         },
-         xaxis: {
-           
-           categories: xAxis
-         },
-       })
-       setSeries([
-       {
-         name: 'Energy',
-         data: yAxis
-       },
-       
-      ])
-       console.log("stats",xAxis,yAxis)
-     }).catch(e => {
-       alert(e);
-     })
-    
-  
-  }, [])
-   
-  const divStyle = {
-    border: '1px solid #e0e0e0', // Border width, style, and color
-   
+    // Set the updated series and options
+    setSeries(updatedSeries);
+    setOptions(updatedOptions);
   };
-      
-      
-    
 
+  const fetchData = async () => {try {
+    const response = await fetch("/solarGeneration");
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    const data = await response.json();
+
+    // Parse the date strings into JavaScript Date objects
+    const parsedData = data.map((item) => ({
+      x: new Date(item.x),
+      consumptionValue: item.consumptionValue,
+    }));
+
+    setDataHistory([...dataHistory, ...parsedData]);
+
+    // Check if all data is fetched
+    if (dataHistory.length === parsedData.length) {// Initial chart update with the first 8 data points
+      updateChart(dataHistory.slice(0, numDisplayPoints));
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+useEffect(() => {
+  // Fetch data initially
+  fetchData();
+
+  // Fetch data every 10 minutes
+  const fetchInterval = setInterval(fetchData, 10 * 60 * 1000);
+
+  // Cleanup: clear the interval when the component unmounts
+  return () => clearInterval(fetchInterval);
+}, []);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    if (dataIndex < dataHistory.length && !isPaused) {
+      const nextDataPoint = dataHistory[dataIndex];
+      const newDisplayedData = [...displayedData, nextDataPoint].slice(-numDisplayPoints);
+
+      setDisplayedData(newDisplayedData);
+      setDataIndex((prevIndex) => prevIndex + 1);
+
+      // Update the chart with the new data
+      updateChart(newDisplayedData);
+    }
+  }, 5000);
+// Cleanup: clear the interval when the component unmounts
+return () => clearInterval(interval);
+}, [dataIndex, displayedData, numDisplayPoints, dataHistory, isPaused]);
+
+
+
+const displayFirst7Points = () => {
+  setIsPaused(true);
+  // Display the first 7 data points
+  updateChart(dataHistory.slice(0, 7));
+};
+
+const displayWeek2Points = () => {
+  setIsPaused(true);
+  // Display the first 10 data points
+  updateChart(dataHistory.slice(8, 14));
+};
+
+const displayMonthPoints = () => {
+  setIsPaused(true);
+  // Display the first 7 data points
+  updateChart(dataHistory.slice(0, 30));
+};
+
+const resumeUpdates = () => {
+  setIsPaused(false);
+};
 
   return( 
     <div class='diagramContainer'>
+      <div>
+      <button onClick={resumeUpdates}>Live</button>
+        <button onClick={displayFirst7Points}>W1</button>
+        <button onClick={displayWeek2Points}>W2</button>
+        <button onClick={displayMonthPoints}>1M</button>
+      </div>
 
-      {/* {chartData && chartData?.series && ( */}
         <ReactApexChart
           options={options}
           series={series}
           type="bar"
           height={"100%"} 
           width={"100%"}
+          ref={chartRef}
         />
-      {/* )} */}
+      
 
 
         {/* <ReactApexChart options={state.options} series={state.series} type="bar" height={"100%"} width={"100%"}/> */}

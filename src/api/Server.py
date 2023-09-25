@@ -1,179 +1,92 @@
 from flask import Flask, jsonify
-import random
-import requests
-
-
-# baseURL = "http://localhost:3000/"
-
 
 app = Flask(__name__)
 
-#API routes
-@app.route("/electricity")
-def electricalEnergyData():
 
-    num = 90
-    num2 = random.randint(1, 100)
-    data = {
-    "energy_consumption": [
-      {
-        "time": "00:00",
-        "load_power": num
-        
-      },
-      {
-        "time": "03:00",
-        "load_power": 55.21
-      },
-      {
-        "time": "06:00",
-        "load_power": 48.71
-      },
-      {
-        "time": "09:00",
-        "load_power": 95.55
-      },
-      {
-        "time": "12:00",
-        "load_power": 80.13
-      },
-      {
-        "time": "15:00",
-        "load_power": 58.62
-      },
-      {
-        "time": "18:00",
-        "load_power": 61.34
-      },
-      {
-        "time": "21:00",
-        "load_power": 0
-      },
-      {
-        "time": "23:55",
-        "load_power": num2
-      },
-    ],
+# for solar generation and building consumption
+energy_data = [
+      {"x": "2023-08-01T00:00:00","generationValue": 0,"consumptionValue": 654},
+      {"x": "2023-08-02T00:00:00","generationValue": 149,"consumptionValue": 884},
+      {"x": "2023-08-03T00:00:00","generationValue": 116,"consumptionValue": 800},
+      {"x": "2023-08-04T00:00:00","generationValue": 192,"consumptionValue": 990},
+      {"x": "2023-08-05T00:00:00","generationValue": 181,"consumptionValue": 784.4},
+      {"x": "2023-08-06T00:00:00","generationValue": 156,"consumptionValue": 795.4},
+      {"x": "2023-08-07T00:00:00","generationValue": 138,"consumptionValue": 1062.1},
+      {"x": "2023-08-08T00:00:00","generationValue": 180,"consumptionValue": 1109.1},
+      {"x": "2023-08-09T00:00:00","generationValue": 204,"consumptionValue": 870.2},
+      {"x": "2023-08-10T00:00:00","generationValue": 199,"consumptionValue": 974.8},
+      {"x": "2023-08-11T00:00:00","generationValue": 187,"consumptionValue": 863.3},
+      {"x": "2023-08-12T00:00:00","generationValue": 139,"consumptionValue": 675.8},
+      {"x": "2023-08-13T00:00:00","generationValue": 181,"consumptionValue": 649.2},
+      {"x": "2023-08-14T00:00:00","generationValue": 122,"consumptionValue": 856.1},
+      {"x": "2023-08-15T00:00:00","generationValue": 216,"consumptionValue": 912.1},
+      {"x": "2023-08-16T00:00:00","generationValue": 151,"consumptionValue": 994.5},
+      {"x": "2023-08-17T00:00:00","generationValue": 138,"consumptionValue": 1053.5},
+      {"x": "2023-08-18T00:00:00","generationValue": 202,"consumptionValue": 873},
+      {"x": "2023-08-19T00:00:00","generationValue": 148,"consumptionValue": 662.7},
+      {"x": "2023-08-20T00:00:00","generationValue": 213,"consumptionValue": 647.3},
+      {"x": "2023-08-21T00:00:00","generationValue": 141,"consumptionValue": 938.8},
+      {"x": "2023-08-22T00:00:00","generationValue": 8,"consumptionValue": 956.7},
+      {"x": "2023-08-23T00:00:00","generationValue": 123,"consumptionValue": 866.3},
+      {"x": "2023-08-24T00:00:00","generationValue": 175,"consumptionValue": 1057.7},
+      {"x": "2023-08-25T00:00:00","generationValue": 180,"consumptionValue": 970},
+      {"x": "2023-08-26T00:00:00","generationValue": 128,"consumptionValue": 750.1},
+      {"x": "2023-08-27T00:00:00","generationValue": 230,"consumptionValue": 720.6},
+      {"x": "2023-08-28T00:00:00","generationValue": 228,"consumptionValue": 997.8},
+      {"x": "2023-08-29T00:00:00","generationValue": 194,"consumptionValue": 1135.9},
+      {"x": "2023-08-30T00:00:00","generationValue": 166,"consumptionValue": 1006.6},
+      {"x": "2023-08-31T00:00:00","generationValue": 38,"consumptionValue": 1065.8},
+]
 
-    "energy_generation":[
-        {
-            "time": "00:00",
-            "power_produced": 0,
-            "irradiance" : 0,
-            "cost": 0
-        },
-         {
-            "time": "03:00",
-            "power_produced": 0,
-            "irradiance" : 0,
-            "cost": 0
-        },
-         {
-            "time": "06:00",
-            "power_produced": 0,
-            "irradiance" : 0,
-            "cost": 0
-        },
-         {
-            "time": "09:00",
-            "power_produced": 17.7,
-            "irradiance" : 400.37,
-            "cost": 23.51
-        },
-         {
-            "time": "12:00",
-            "power_produced": 17.42,
-            "irradiance" : 397.5,
-            "cost": 23.13
-        },
-        {
-            "time": "15:00",
-            "power_produced": 36.7,
-            "irradiance" : 750.84,
-            "cost": 48.74
-        },
-        {
-            "time": "18:00",
-            "power_produced": 0.78,
-            "irradiance" : 28.54,
-            "cost": 1.04
-        },
-        {
-            "time": "21:00",
-            "power_produced": 0,
-            "irradiance" : 0,
-            "cost": 0
-        },
-        {
-            "time": "23:55",
-            "power_produced": 0,
-            "irradiance" : 0,
-            "cost": 0
-        }
-    ],
-    }
-   
-    return jsonify(data)
 
-@app.route("/water")
+# for water usage per category
+static_data = [
+    {
+        "date": "2023-08-01",
+        "data": [
+            {"x": "Toilets", "y": 988},
+            {"x": "Hot Water", "y": 0},
+            {"x": "Cold Water", "y": 147},
+            {"x": "Washing", "y": 150},
+        ],
+    },
+    {
+        "date": "2023-08-02",
+        "data": [
+            {"x": "Toilets", "y": 5},
+            {"x": "Hot Water", "y": 10},
+            {"x": "Cold Water", "y": 15},
+            {"x": "Washing", "y": 20},
+        ],
+    },
+     {
+        "date": "2023-08-03",
+        "data": [
+            {"x": "Toilets", "y": 9},
+            {"x": "Hot Water", "y": 22},
+            {"x": "Cold Water", "y": 13},
+            {"x": "Washing", "y": 3},
+        ],
+    },
+]
+
+
+@app.route("/waterUsagePerCate")
 def waterUsage():
-    data = {
-        "category_usage": [
-        {
-            "x": "Toilets",
-            "y": 988
-        },
-        {
-            "x": "Hot Water",
-            "y": 0
-        },
-        {
-            "x": "Cold Water",
-            "y": 147
-        },
-        {
-            "x": "Washing",
-            "y": 150
-        },
-    ],
-    
-        "floor_usage":[
-            {
-                "x": "Ground floor",
-                "y": 509,
-                "water_cost": 20.36
-            },
-            {
-                "x": "First floor",
-                "y": 835,
-                "water_cost": 33.4
-            },
-            {
-                "x": "Second floor",
-                "y": 248,
-                "water_cost": 9.92
-            },
-            {
-                "x": "Thrid Floor",
-                "y": 0,
-                "water_cost": 0
-            },
-        ]
-    }
-    return jsonify(data)
+   
+    return jsonify(static_data)
+
+
+
+@app.route("/solarGeneration")
+def energyGeneration():
+   
+    return jsonify(energy_data)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
 
- # #return {"yearly" : ['hello1','hello2','hello3']}
-
-    #  response = requests.get(baseURL + endpoint)
-    # # #print(response)
-
-    #  data = response.json()  # storing all data in variable
-    # # #print(data[0]['x'])
-
-    #  return(data)
 
 
 
@@ -191,29 +104,47 @@ if __name__ == "__main__":
 
 
 
-# def get_vcom_data():
-#     api_key = "gpbgpSav1s"
-#     username = "wanda_majikijela"
-#     password = "solar_meteo2022"
- 
-#     url = "https://api.meteocontrol.de/v2/session"
+
+# -------------------------------------------------------------------------------------------
+# from flask import Flask, jsonify
+# import random
+
+# app = Flask(__name__)
+
+# # Static data (e.g., some sample items)  it can be static data too once updated
+# static_data = [
+#     {"id": 1, "name": "Live Data", "value": 10},
+#     {"id": 2, "name": "Live Data", "value": 20},
+#     {"id": 3, "name": "Live Data", "value": 30},
+# ]
+# print(static_data)
+
+# # Function to generate live data (e.g., random values)
+# def generate_live_data():
+#     return random.randint(1, 100)  # Replace with your live data generation logic
+
+
+
+# # API endpoint to fetch static data
+# @app.route("/static-data")
+# def staticData():
+#     i = 4
+#     live_data = generate_live_data()
+#     dict_value = {"id": i, "name": "Live Data", "value": live_data}  # to be appended to static_data
+#     static_data.append(dict_value.copy())
+#     final = static_data
     
-#     credentials = f"{username}:{password}"
-    
-#     credentials_base64 = base64.b64encode(credentials.encode()).decode()
-    
-#     headers = {
-#         "Authorization": f"Basic {credentials_base64}",
-#         "X-API-KEY": api_key
-#         }
- 
-#     response = requests.get(url, headers=headers)  # response should be 'Response [200]'
- 
-#     print(response)
- 
-#     if response.status_code == 200:
-#         return response.json() #returns actual data
+#     return jsonify(final)
+
+
+# # API endpoint to retrieve the latest live data
+# @app.route('/latest-data', methods=['GET'])
+# def latest_data():
+#     if static_data:
+#         latest = static_data[-1]  # Get the latest added data
+#         return jsonify(latest)
 #     else:
-#         return None
+#         return jsonify({"message": "No data available"})
 
-# get_vcom_data()
+# if __name__ == "__main__":
+#     app.run(debug=True)

@@ -1,167 +1,231 @@
-import React, { useEffect, useState} from "react";
+
+import React, { useEffect, useState, useRef} from "react";
 import ReactApexChart from "react-apexcharts";
-import ApexCharts from "apexcharts";
 import "../App.css";
 import { tokens } from "../theme";
 import { useTheme, Typography } from "@mui/material";
 import axios from 'axios';
+import { BorderAll } from "@mui/icons-material";
 
 
+
+
+
+
+// For Sub heading 2 Energy Consumptionn
 
 const Graph3 = () => {
- // const [options, setObject] = useState({
-    const [state, setState] = useState({
-      series:
-      [{
-        name: 'Series 1',
-        data: [
-          [new Date('2023-09-01').getTime(), 12],
-          [new Date('2023-09-02').getTime(), 18],
-          [new Date('2023-09-03').getTime(), 22],
-          [new Date('2023-09-04').getTime(), 15],
-          [new Date('2023-09-05').getTime(), 16],
-          [new Date('2023-09-06').getTime(), 17],
-          [new Date('2023-09-07').getTime(), 18],
-          [new Date('2023-09-08').getTime(), 25],
-          [new Date('2023-09-09').getTime(), 31],
-          [new Date('2023-09-10').getTime(), 20],
-          [new Date('2023-09-11').getTime(), 10],
-        ],
-    }],
+   
+  const chartRef = useRef(null);
+  const numDisplayPoints = 8;
+  const [displayedData, setDisplayedData] = useState([]);
+  const [dataIndex, setDataIndex] = useState(0);
+  const [dataHistory, setDataHistory] = useState([]);
+  const [isPaused, setIsPaused] = useState(false);
 
-    options:{
-    chart: {
-      id: 'line-datetime',
-      type: 'line',
-      height: 350,
-      foreColor: "#939695",
-      zoom: {
-        autoScaleYaxis: true
-      }
-    },
-    xaxis: {
-      type: 'datetime',
-      min: new Date('2023-09-01').getTime(),
-      tickAmount: 2,
-    },
-    yaxis: {
-      title: {
-        text: 'Values',
+
+  const [options, setOptions] = useState({
+      chart: {
+        type: 'line',
+        height: 350,
+        foreColor: "#939695",
+       // background: "#e8ebea"
+       toolbar:{
+        show: false
+       }
       },
-    },
-  
-  },
+      
+      noData: {
+          text: 'Loading...',
+          style:{
+          color: "#abaaa7",
+          fontSize: "20"
+        }
+      },
+      
+      fill: {
+        opacity: 1,
+        colors: "#db352c"
+      },
+      tooltip: {
+        //Hover Box
+        enabled: true,
+        theme: "dark",
+        y: {
+          formatter: function (val) {
+            return  (val + " Kw/h")
+          }
+        }
+      },
+      yaxis: {
+        title: {
+          text: 'kW/h',
+          style:{
+            color: "#abaaa7",
+            fontSize: 14,
+            
+           }
+        }
+      
+      },
+      title: {
+          text: 'Building Consumption vs Standard Consumption',
+          align: "center",
+          style:{
+            color: "#abaaa7",
+            fontSize: 18,
+           }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      
+      legend: {
+        show: true
+      }
     
-  selection: 'one_year',
-})
+  })
 
+  const [series, setSeries] = useState([
+    {
+      name: "Energy Consumption",
+      data: [], // Initially empty
+    },
+    
+  ]);
 
+  const updateChart = (newData) => {
+    // Update series data
+    const updatedSeries = [
+      {
+        ...series[0],
+        data: newData.map((item) => item.consumptionValue),
+      },
+      // Other series...
+    ];
 
-// Define the updateData function
-const updateData = (timeline) => {
-  setState({
-    ...state,
-    selection: timeline,
-  });
+    // Update x-axis categories with formatted date strings
+    const updatedOptions = {
+      ...options,
+      xaxis: {
+        ...options.xaxis,
+        categories: newData.map((item) => {const date = new Date(item.x);
+          // Format the date as "dd MMM" (adjust the format as needed)
+          return `${date.getDate()} ${date.toLocaleString("default", {
+            month: "short",
+          })}`;
+        }),
+      },
+    };
 
+    // Set the updated series and options
+    setSeries(updatedSeries);
+    setOptions(updatedOptions);
+  };
 
-    switch (timeline) {
-      case 'one_month':
-        ApexCharts.exec(
-          'line-datetime',
-          'zoomX',
-          new Date('2023-09-01').getTime(),
-          new Date('2023-09-03').getTime()
-        )
-        break
-      case 'six_months':
-        ApexCharts.exec(
-          'line-datetime',
-          'zoomX',
-          new Date('2023-09-01').getTime(),
-          new Date('2023-09-05').getTime()
-        )
-        break
-      case 'one_year':
-        ApexCharts.exec(
-          'line-datetime',
-          'zoomX',
-          new Date('2023-09-01').getTime(),
-          new Date('2023-09-07').getTime()
-        )
-        break
-      case 'ytd':
-        ApexCharts.exec(
-          'line-datetime',
-          'zoomX',
-          new Date('2023-09-01').getTime(),
-          new Date('2023-09-10').getTime()
-        )
-        break
-      case 'all':
-        ApexCharts.exec(
-          'line-datetime',
-          'zoomX',
-          new Date('2023-09-01').getTime(),
-          new Date('2023-09-11').getTime()
-        )
-        break
-      default:
+  const fetchData = async () => {try {
+    const response = await fetch("/solarGeneration");
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
     }
+    const data = await response.json();
+
+    // Parse the date strings into JavaScript Date objects
+    const parsedData = data.map((item) => ({
+      x: new Date(item.x),
+      consumptionValue: item.consumptionValue,
+    }));
+
+    setDataHistory([...dataHistory, ...parsedData]);
+
+    // Check if all data is fetched
+    if (dataHistory.length === parsedData.length) {// Initial chart update with the first 8 data points
+      updateChart(dataHistory.slice(0, numDisplayPoints));
+    }
+  } catch (error) {
+    console.error(error);
   }
-  
+};
+
+useEffect(() => {
+  // Fetch data initially
+  fetchData();
+
+  // Fetch data every 10 minutes
+  const fetchInterval = setInterval(fetchData, 10 * 60 * 1000);
+
+  // Cleanup: clear the interval when the component unmounts
+  return () => clearInterval(fetchInterval);
+}, []);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    if (dataIndex < dataHistory.length && !isPaused) {
+      const nextDataPoint = dataHistory[dataIndex];
+      const newDisplayedData = [...displayedData, nextDataPoint].slice(-numDisplayPoints);
+
+      setDisplayedData(newDisplayedData);
+      setDataIndex((prevIndex) => prevIndex + 1);
+
+      // Update the chart with the new data
+      updateChart(newDisplayedData);
+    }
+  }, 5000);
+// Cleanup: clear the interval when the component unmounts
+return () => clearInterval(interval);
+}, [dataIndex, displayedData, numDisplayPoints, dataHistory, isPaused]);
 
 
 
+const displayFirst7Points = () => {
+  setIsPaused(true);
+  // Display the first 7 data points
+  updateChart(dataHistory.slice(0, 7));
+};
 
+const displayWeek2Points = () => {
+  setIsPaused(true);
+  // Display the first 10 data points
+  updateChart(dataHistory.slice(8, 14));
+};
+
+const displayMonthPoints = () => {
+  setIsPaused(true);
+  // Display the first 7 data points
+  updateChart(dataHistory.slice(0, 30));
+};
+
+const resumeUpdates = () => {
+  setIsPaused(false);
+};
 
   return( 
-          
-  <div class='diagramContainer'>
-     <div class="toolbar">
-          <button id="one_month"
-              
-              onClick={()=>updateData('one_month')} className={ (state.selection==='one_month' ? 'active' : '')}>
-            1M
-            
-          </button>
-          &nbsp;
-          <button id="six_months"
-              
-              onClick={()=>updateData('six_months')} className={ (state.selection==='six_months' ? 'active' : '')}>
-            6M
-          </button>
-          &nbsp;
-          <button id="one_year"
-              
-              
-              onClick={()=>updateData('one_year')} className={ (state.selection==='one_year' ? 'active' : '')}>
-            1Y
-          </button>
-          &nbsp;
-          <button id="ytd"
-              
-              onClick={()=>updateData('ytd')} className={ (state.selection==='ytd' ? 'active' : '')}>
-            YTD
-          </button>
-          &nbsp;
-          <button id="all"
-              
-              onClick={()=>updateData('all')} className={ (state.selection==='all' ? 'active' : '')}>
-            ALL
-          </button>
-     </div>
-   
-             <ReactApexChart
-               options={state.options}
-               series={state.series}
-               type="line"
-               height={"100%"} 
-               width={"100%"}
-             />     
-    
-  </div>
-  )
-    
-};
+    <div class='diagramContainer'>
+      <div>
+      <button onClick={resumeUpdates}>Live</button>
+        <button onClick={displayFirst7Points}>W1</button>
+        <button onClick={displayWeek2Points}>W2</button>
+        <button onClick={displayMonthPoints}>1M</button>
+      </div>
+
+        <ReactApexChart
+          options={options}
+          series={series}
+          type="line"
+          height={"100%"} 
+          width={"100%"}
+          ref={chartRef}
+        />
+      
+
+
+        {/* <ReactApexChart options={state.options} series={state.series} type="bar" height={"100%"} width={"100%"}/> */}
+
+
+ 
+
+    </div>
+   )
+
+  };
 export default Graph3;

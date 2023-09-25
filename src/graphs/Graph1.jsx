@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useState, useRef} from "react";
 import ReactApexChart from "react-apexcharts";
 import "../App.css";
 
@@ -9,23 +9,27 @@ import "../App.css";
 
 const Graph1 = () => {
 
+  const chartRef = useRef(null);
+  const numDisplayPoints = 8;
+  const [displayedData, setDisplayedData] = useState([]);
+  const [dataIndex, setDataIndex] = useState(0);
+  const [dataHistory, setDataHistory] = useState([]);
+  const [isPaused, setIsPaused] = useState(false);
 
-const [series, setSeries] = useState([])
-const [options, setObject] = useState({})
 
-const [state, setState] = useState({
-    series: [{
+
+  
+  const [series, setSeries] = useState(
+     [{
         name: 'Power',
-        type: 'column',
+        data: [],
         color: "#39de2c",
-        data: [30, 31, 32, 40, 41, 43, 56, 50, 44, 39, 32, 20]
-      }, {
-        name: 'Irradiance',
-        type: 'line',
-        color: "#f5c542",
-        data: [23, 42, 35, 27, 43, 22, 17, 31, 22, 22, 12, 16]
-      }],
-      options: {
+     }
+      
+    ])
+
+  const [options, setOptions] = useState({
+      
         chart: {
           height: 350,
           type: 'line',
@@ -39,11 +43,24 @@ const [state, setState] = useState({
           //Hover Box
           enabled: true,
           theme: "dark",
+          y: {
+            formatter: function (val) {
+              return  (val + " Kw/h")
+            }
+          }
         },
         stroke: {
           width: [0, 4],
           curve: "smooth"
         },
+         
+      noData: {
+        text: 'Loading...',
+        style:{
+        color: "#abaaa7",
+        fontSize: "20"
+      }
+    },
         title: {
           text: 'Solar Panels Energy Generation',
           align: "center",
@@ -57,7 +74,7 @@ const [state, setState] = useState({
           enabled: true,
           enabledOnSeries: [1]
         },
-        labels: ['01 Jan 2001', '02 Jan 2001', '03 Jan 2001', '04 Jan 2001', '05 Jan 2001', '06 Jan 2001', '07 Jan 2001', '08 Jan 2001', '09 Jan 2001', '10 Jan 2001', '11 Jan 2001', '12 Jan 2001'],
+       
         xaxis: {
           type: 'datetime',
           labels:{
@@ -70,7 +87,7 @@ const [state, setState] = useState({
         },
         yaxis: [{
           title: {
-            text: 'Kw (BAR Graph)',  // For power
+            text: 'kW/h',  // For power
             style:{
               color: "#abaaa7",
               fontSize: 12,
@@ -79,75 +96,144 @@ const [state, setState] = useState({
              }
           },
         
-        }, {
-          opposite: true,
-          title: {
-            text: 'W/m2 (LINE Graph)',  // For Irradiance
-            style:{
-              color: "#abaaa7",
-              fontSize: 12,
+        },
+        //  {
+        //   opposite: true,
+        //   title: {
+        //     text: 'W/m2 (LINE Graph)',  // For Irradiance
+        //     style:{
+        //       color: "#abaaa7",
+        //       fontSize: 12,
               
-             }
-          }
-        }]
-      },
-})
+        //      }
+        //   }
+        // }
+      ]
+      })
     
-// useEffect(() =>{
-
-//   const xAxis = []
-//   const yAxis = []
-
-//    axios.get('/electricity')
-//   // .then(res => res.json())
-//   // .then(
-//   //   dataa => {
-//   //     setData(dataa)
-//   //     console.log("python",dataa)
-//   //   }
-//   // )
-//    .then(response => {
-//      console.log("response",response)
-//      response.data.energy_consumption.map(item => {
-//        console.log("item",item)
-//          xAxis.push(item.time)
-//          yAxis.push(item.load_power)
-//      })
-//      setObject({
-//        chart: {
-//          type: 'bar',
-//          height: 350
-//        },
-//        xaxis: {
-//          categories: xAxis
-//        },
-//      })
-//      setSeries([
-//      {
-//        name: 'Energy',
-//        data: yAxis
-//      },
-     
-//     ])
-//      console.log("stats",xAxis,yAxis)
-//    }).catch(e => {
-//      alert(e);
-//    })
-  
-
-// }, [])
-              
-       
-      
-      
-      
+      const updateChart = (newData) => {
+        // Update series data
+        const updatedSeries = [
+          {
+            ...series[0],
+            data: newData.map((item) => item.generationValue),
+          },
+          // Other series...
+        ];
     
-
-
-  return( 
-    <div class='diagramContainer2'>
-        <ReactApexChart options={state.options} series={state.series} type="line" height={"100%"} width={"100%"}/>
-        {/* <Typography color={colors.primary[100]}>Hello World</Typography> */}
+        // Update x-axis categories with formatted date strings
+        const updatedOptions = {
+          ...options,
+          xaxis: {
+            ...options.xaxis,
+            categories: newData.map((item) => {const date = new Date(item.x);
+              // Format the date as "dd MMM" (adjust the format as needed)
+              return `${date.getDate()} ${date.toLocaleString("default", {
+                month: "short",
+              })}`;
+            }),
+          },
+        };
+    
+        // Set the updated series and options
+        setSeries(updatedSeries);
+        setOptions(updatedOptions);
+      };
+    
+      const fetchData = async () => {try {
+        const response = await fetch("/solarGeneration");
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const data = await response.json();
+    
+        // Parse the date strings into JavaScript Date objects
+        const parsedData = data.map((item) => ({
+          x: new Date(item.x),
+          generationValue: item.generationValue,
+        }));
+    
+        setDataHistory([...dataHistory, ...parsedData]);
+    
+        // Check if all data is fetched
+        if (dataHistory.length === parsedData.length) {// Initial chart update with the first 8 data points
+          updateChart(dataHistory.slice(0, numDisplayPoints));
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    
+    useEffect(() => {
+      // Fetch data initially
+      fetchData();
+    
+      // Fetch data every 10 minutes
+      const fetchInterval = setInterval(fetchData, 10 * 60 * 1000);
+    
+      // Cleanup: clear the interval when the component unmounts
+      return () => clearInterval(fetchInterval);
+    }, []);
+    
+    useEffect(() => {
+      const interval = setInterval(() => {
+        if (dataIndex < dataHistory.length && !isPaused) {
+          const nextDataPoint = dataHistory[dataIndex];
+          const newDisplayedData = [...displayedData, nextDataPoint].slice(-numDisplayPoints);
+    
+          setDisplayedData(newDisplayedData);
+          setDataIndex((prevIndex) => prevIndex + 1);
+    
+          // Update the chart with the new data
+          updateChart(newDisplayedData);
+        }
+      }, 5000);
+    // Cleanup: clear the interval when the component unmounts
+    return () => clearInterval(interval);
+    }, [dataIndex, displayedData, numDisplayPoints, dataHistory, isPaused]);
+    
+    
+    
+    const displayFirst7Points = () => {
+      setIsPaused(true);
+      // Display the first 7 data points
+      updateChart(dataHistory.slice(0, 7));
+    };
+    
+    const displayWeek2Points = () => {
+      setIsPaused(true);
+      // Display the first 10 data points
+      updateChart(dataHistory.slice(7, 14));
+    };
+    
+    const displayMonthPoints = () => {
+      setIsPaused(true);
+      // Display the first 7 data points
+      updateChart(dataHistory.slice(0, 30));
+    };
+    
+    const resumeUpdates = () => {
+      setIsPaused(false);
+    };
+    
+      return( 
+        <div class='diagramContainer2'>
+          <div>
+          <button onClick={resumeUpdates}>Live</button>
+            <button onClick={displayFirst7Points}>W1</button>
+            <button onClick={displayWeek2Points}>W2</button>
+            <button onClick={displayMonthPoints}>1M</button>
+          </div>
+    
+            <ReactApexChart
+              options={options}
+              series={series}
+              type="bar"
+              height={"100%"} 
+              width={"100%"}
+              ref={chartRef}
+            />
+          
 
 
     </div>

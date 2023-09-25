@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState, useRef} from "react";
 import ReactApexChart from "react-apexcharts";
 import "../App.css";
 import { tokens } from "../theme";
@@ -14,7 +14,14 @@ import axios from 'axios';
 
 const Graph6 = () => {
 
-  const [options, setObject] = useState({
+ 
+
+  const [data, setData] = useState([]);
+  const [xAxisCategories, setXAxisCategories] = useState([]);
+  const [xAxisTitle, setXAxisTitle] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+   
+  const options ={
       chart: {
         type: 'bar',
         foreColor: "#939695",
@@ -31,7 +38,11 @@ const Graph6 = () => {
         // title: {
         //   text: ""
         // },
-        categories: [],
+        //categories: [],
+        categories: xAxisCategories,   //displayedData.map((item) => item.x),
+        title:{
+          text: xAxisTitle,
+        }
       },
       fill: {
         opacity: 1
@@ -74,61 +85,98 @@ const Graph6 = () => {
         show: true
       }
     
-  })
+  }
 
-  const [series, setSeries] = useState([
-    
-    {
-      name: 'Profit',
-      data: []
-    }
+  useEffect(() => {
+    const fetchData = () => {
+      axios.get("/waterUsagePerCate")
+        .then(response => {
+          const staticData = response.data;
+          if (currentIndex < staticData.length) {
+            const currentData = staticData[currentIndex];
 
-  ])
+            setData(currentData.data);
+            setXAxisCategories(currentData.data.map(item => item.x));
+            setXAxisTitle(currentData.date);
+            // Set a timeout to increment the index and fetch the next data
+            setTimeout(() => {
+              setCurrentIndex(currentIndex + 1);
+            }, 5000); // Adjust the time interval as needed
+            //In this code, a setTimeout is used after fetching each static value to increment the index and fetch the next data after a specified time interval (in this case, 5000 milliseconds or 5 seconds). This ensures that each value is displayed and not overridden by the next one.
+          }
+        })
+        .catch(error => {
+          console.error("Error fetching data:", error);
+        });
+    };
 
-  // const [dataa, setData] = useState({})
+    fetchData();
+  }, [currentIndex]);
+
+  const series = [{ data: data.map(item => item.y) }];
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     // Calculate the next index or loop back to the beginning
+  //     const nextIndex = (dataIndex + 1) % staticData.length;
+
+  //     // Update the chart data and options
+  //     setDataIndex(nextIndex);
+  //     setData(staticData[nextIndex]);
+
+  //     // You can also update other chart options here if needed
+
+  //   }, 5000); // Adjust the time interval (in milliseconds) as needed
+
+  //   return () => clearInterval(interval);
+  // }, [dataIndex]);
+
+   
   
-  useEffect(() =>{
+  // useEffect(() =>{
 
-    const xAxis = []
-    const yAxis = []
+  //   const xAxis = []
+  //   const yAxis = []
 
-     axios.get('/water')
-    // .then(res => res.json())
-    // .then(
-    //   dataa => {
-    //     setData(dataa)
-    //     console.log("python",dataa)
-    //   }
-    // )
-     .then(response => {
-       console.log("response",response)
-       response.data.category_usage.map(item => {
-         console.log("item",item)
-           xAxis.push(item.x)
-           yAxis.push(item.y)
-       })
-       setObject({
-         chart: {
-           type: 'bar',
-           height: 350
-         },
-         xaxis: {
-           categories: xAxis
-         },
-       })
-       setSeries([
-       {
-        name: 'Water Usage',
-        data: yAxis
-      },
-      ])
-       console.log("stats",xAxis,yAxis)
-     }).catch(e => {
-       alert(e);
-     })
+  //   //  axios.get('/water')
+  //   //  .then(res => res.json())
+  //   //  .then(
+  //   //    dataa => {
+  //   //      setData(dataa)
+  //   //      console.log("python",dataa)
+  //   //    }
+  //   //  )
+
+  //   //  .then(response => {
+  //   //    console.log("response",response)
+  //   //    response.data.dataUsage.map(item => {
+  //   //      console.log("item",item)
+  //   //        xAxis.push(item.c)
+  //   //        yAxis.push(item.cValue)
+  //   //    })
+  //   //   })
+  //   //    setObject({
+  //   //      chart: {
+  //   //        type: 'bar',
+  //   //        height: 350
+  //   //      },
+  //   //      xaxis: {
+  //   //        categories: xAxis
+  //   //      },
+  //   //    })
+  //   //    setSeries([
+  //   //    {
+  //   //     name: 'Water Usage',
+  //   //     data: yAxis
+  //   //   },
+  //   //   ])
+  //   //    console.log("stats",xAxis,yAxis)
+  //   //  }).catch(e => {
+  //   //    alert(e);
+  //   //  })
     
   
-  }, [])
+  // }, [])
    
       
       
@@ -146,6 +194,7 @@ const Graph6 = () => {
           type="bar"
           height={"100%"} 
           width={"100%"}
+         
         />
       {/* )} */}
 
