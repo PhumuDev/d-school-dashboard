@@ -73,6 +73,115 @@ static_data = [
             {"x": "Washing", "y": 3},
         ],
     },
+     {
+        "date": "2023-08-04",
+        "data": [
+            {"x": "Toilets", "y": 9},
+            {"x": "Hot Water", "y": 22},
+            {"x": "Cold Water", "y": 13},
+            {"x": "Washing", "y": 3},
+        ],
+    },
+     {
+        "date": "2023-08-05",
+        "data": [
+            {"x": "Toilets", "y": 9},
+            {"x": "Hot Water", "y": 22},
+            {"x": "Cold Water", "y": 13},
+            {"x": "Washing", "y": 3},
+        ],
+    },
+     {
+        "date": "2023-08-06",
+        "data": [
+            {"x": "Toilets", "y": 9},
+            {"x": "Hot Water", "y": 22},
+            {"x": "Cold Water", "y": 13},
+            {"x": "Washing", "y": 3},
+        ],
+    },
+     {
+        "date": "2023-08-07",
+        "data": [
+            {"x": "Toilets", "y": 9},
+            {"x": "Hot Water", "y": 22},
+            {"x": "Cold Water", "y": 13},
+            {"x": "Washing", "y": 3},
+        ],
+    },
+
+     {
+        "date": "2023-08-08",
+        "data": [
+            {"x": "Toilets", "y": 9},
+            {"x": "Hot Water", "y": 22},
+            {"x": "Cold Water", "y": 13},
+            {"x": "Washing", "y": 3},
+        ],
+    },
+     {
+        "date": "2023-08-09",
+        "data": [
+            {"x": "Toilets", "y": 9},
+            {"x": "Hot Water", "y": 22},
+            {"x": "Cold Water", "y": 13},
+            {"x": "Washing", "y": 3},
+        ],
+    },
+     {
+        "date": "2023-08-10",
+        "data": [
+            {"x": "Toilets", "y": 9},
+            {"x": "Hot Water", "y": 22},
+            {"x": "Cold Water", "y": 13},
+            {"x": "Washing", "y": 3},
+        ],
+    },
+     {
+        "date": "2023-08-11",
+        "data": [
+            {"x": "Toilets", "y": 9},
+            {"x": "Hot Water", "y": 22},
+            {"x": "Cold Water", "y": 13},
+            {"x": "Washing", "y": 3},
+        ],
+    },
+     {
+        "date": "2023-08-12",
+        "data": [
+            {"x": "Toilets", "y": 9},
+            {"x": "Hot Water", "y": 22},
+            {"x": "Cold Water", "y": 13},
+            {"x": "Washing", "y": 3},
+        ],
+    },
+     {
+        "date": "2023-08-13",
+        "data": [
+            {"x": "Toilets", "y": 9},
+            {"x": "Hot Water", "y": 22},
+            {"x": "Cold Water", "y": 13},
+            {"x": "Washing", "y": 3},
+        ],
+    },
+     {
+        "date": "2023-08-14",
+        "data": [
+            {"x": "Toilets", "y": 9},
+            {"x": "Hot Water", "y": 22},
+            {"x": "Cold Water", "y": 13},
+            {"x": "Washing", "y": 3},
+        ],
+    },
+     {
+        "date": "2023-08-15",
+        "data": [
+            {"x": "Toilets", "y": 9},
+            {"x": "Hot Water", "y": 22},
+            {"x": "Cold Water", "y": 13},
+            {"x": "Washing", "y": 3},
+        ],
+    },
 ]
 
 
