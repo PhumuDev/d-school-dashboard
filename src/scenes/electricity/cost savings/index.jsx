@@ -25,8 +25,8 @@ const CostSavings = () => {
           
             <div class = "MainStatsContainer">
             <InfoBox
-              title = "R2951 Saved This Month!"
-              subtitle = "Electricity generated from our solar panels saved R2951 in utilities!"
+              title = "R4938 Saved This Month!"
+              subtitle = "Electricity generated from our solar panels saved R4938 in utilities!"
               icon = {Money}
               className="statsContainer2"
             />

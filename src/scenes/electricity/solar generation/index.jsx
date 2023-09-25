@@ -26,14 +26,14 @@ const SolarGeneration = () => {
           <div class = "MainStatsContainer" >
 
             <InfoBox
-              title = "40kWh Generated At Peak Today!"
+              title = "155kWh/day Produced On Average!"
               subtitle = "40kWh is enough to run many electrical appliances in a 5 bedroom house for a day!"
               icon = {Solar}
               className="statsContainer"
             />      
             <InfoBox
-              title = "2740kWh Generated This Month!"
-              subtitle = "That's enouh energy to supply 3 average households for a month!"
+              title = "4833kWh Generated This Month!"
+              subtitle = "That's enouh energy to supply 6 average households for a month!"
               icon = {House}
               className="statsContainer"
             />

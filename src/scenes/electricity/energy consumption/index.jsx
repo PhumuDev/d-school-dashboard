@@ -23,8 +23,8 @@ const EnergyConsumption = () => {
           
           <div class = "MainStatsContainer">
             <InfoBox
-              title = "1660kWh Consumed Today!"
-              subtitle = "That's x% less than the average building of this size would consume!"
+              title = "35431kWh Consumed In August!"
+              subtitle = "!"
               icon = {Bolt}
               className="statsContainer2"
             />

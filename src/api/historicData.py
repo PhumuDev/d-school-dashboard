@@ -1,5 +1,5 @@
 import csv
-
+'''
 count=0
 hour=0
 solarIndex=0
@@ -31,4 +31,109 @@ with open("solarDaily.csv",'r') as file:
             with open('electricity.txt','a') as f:
                 f.write('\n'.join(line1))
         count+=1
+'''
+
+with open("hot1.csv",'r') as file:
+    csvreader = csv.reader(file)
+    count=0
+    hot1=[]
+    for row in csvreader:
+        if count!=0:
+            if row[1]==None:
+                hot1.append('0')
+            else:
+                hot1.append(row[1])
+        count=1
+with open("hot2.csv",'r') as file:
+    csvreader = csv.reader(file)
+    count=0
+    hot2=[]
+    for row in csvreader:
+        if count!=0:
+            if row[1]==None:
+                hot2.append('0')
+            else:
+                hot2.append(row[1])
+        count=1
+with open("cold1.csv",'r') as file:
+    csvreader = csv.reader(file)
+    count=0
+    cold1=[]
+    for row in csvreader:
+        if count!=0:
+            if row[1]==None:
+                cold1.append('0')
+            else:
+                cold1.append(row[1])
+        count=1
+with open("cold2.csv",'r') as file:
+    csvreader = csv.reader(file)
+    count=0
+    cold2=[]
+    for row in csvreader:
         
+        if count!=0:
+            print(str(float(row[2])))
+            cold2.append(row[2])
+        count=1
+print(cold2)
+with open("toilet1.csv",'r') as file:
+    csvreader = csv.reader(file)
+    count=0
+    toilet1=[]
+    for row in csvreader:
+        if count!=0:
+            if row[1]==None:
+                toilet1.append('0')
+            else:
+                toilet1.append(row[1])
+        count=1
+with open("toilet2.csv",'r') as file:
+    csvreader = csv.reader(file)
+    count=0
+    toilet2=[]
+    for row in csvreader:
+        if count!=0:
+            if row[1]==None:
+                toilet2.append('0')
+            else:
+                toilet2.append(row[1])
+        count=1
+with open("toilet3.csv",'r') as file:
+    csvreader = csv.reader(file)
+    count=0
+    toilet3=[]
+    for row in csvreader:
+        if count!=0:
+            if row[1]==None:
+                toilet3.append('0')
+            else:
+                toilet3.append(row[1])
+        count=1
+with open("ablution.csv",'r') as file:
+    csvreader = csv.reader(file)
+    count=0
+    index=0
+    list7=[]
+    for row in csvreader:
+        date=row[0].split(' ')
+        if index!=0:
+            line=['','{','"date": "'+date[0]+'T'+date[1]+'",','"data": [','{"x": "Toilets", "y": '+str(float(toilet3[count])+float(toilet1[count])+float(toilet2[count]))+'},','{"x": "Hot Water", "y": '+str(float(hot1[count])+float(hot2[count]))+'},','{"x": "Cold Water", "y": '+str(float(cold1[count])+float(cold2[count]))+'},','{"x": "Washing", "y": '+row[1]+'},','],','},']
+            count+=1
+            with open('waterpercategory.txt','a') as f:
+                f.write('\n'.join(line))
+        index+=1
+'''
+with open("electricityCost.csv",'r') as file:
+    csvreader = csv.reader(file)
+    index=0
+    for row in csvreader:
+        date=row[0].split(' ')
+        if index!=0:
+            d=str(100+index)
+            line=['','{','"date": "2023-08-'+str(index)+'T'+date[1]+'",','"value": '+row[1],'},']
+            
+            with open('electricitycost.txt','a') as f:
+                f.write('\n'.join(line))
+        index+=1
+        '''

@@ -28,13 +28,13 @@ const TotalWaterUsage = () => {
 
             <InfoBox
               title = "We Store Rainwater!"
-              subtitle = "Thats is enough to runRainwater is collected and used for toilet flushing!"
+              subtitle = "Rainwater is collected and used for toilet flushing!"
               icon = {Water}
               className="statsContainer"
             />      
             <InfoBox
-              title = "28kl Of Water Used This Month!"
-              subtitle = "Most water consumption comes from the building's 2nd floor!"
+              title = "101kl Of Water Used This Month!"
+              subtitle = "Most water consumption comes from the building's toilets!"
               icon = {WaterF}
               className="statsContainer"
             />
