@@ -122,11 +122,11 @@ function App() {
             {isSlideshowMode && (() => {
                   switch (count) {
                       case 1:
-                          return <FunFact subtext="Arsenal are winning the champions league"/>;
+                          return <FunFact subtext="The building has been designed to provide good levels of daylight, reducing the need for artificial lighting."/>;
                       case 4:
-                          return <FunFact subtext="Arsenal are winning the league" />;
+                          return <FunFact subtext="Stairs are provided centrally in the building to promote health and well-being of users as an alternative to using lifts." />;
                       case 7:
-                        return <FunFact subtext="Different fun fact about building" />;
+                        return <FunFact subtext="The restrooms in the building are equipped with an efficient self-flushing mechanism, designed to conserve water." />;
                       default:
                           return null;
                   }

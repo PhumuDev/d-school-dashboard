@@ -13,25 +13,28 @@ const FunFact = ({subtext}) => {
             style={{
             backgroundColor: colors.primary[400], 
             border:"3px solid"+ colors.primary[500], 
-            display: "flex"}}>
-            <img src={questionMark} height="25px" width="auto"  display="flex" />
+            display: "flex"}}
+        >   
+            
+            <img src={questionMark} height="45px" width="auto"  display="flex" className="funIcon"/>
             <Box>
             <Typography 
                 variant ="h5"
                 color={colors.grey[100]}
                 fontWeight ="bold" 
                 sx={{mb: "5px"}}
-                textAlign="center"
+                // textAlign="center"
+                className = "funText"
 
             >
                 Did You Know?
             </Typography>
             <Typography 
                 variant ="h6"
-                color={colors.grey[100]}
-                fontWeight ="bold" 
+                color={colors.grey[200]}
                 sx={{mb: "5px"}}
-                textAlign="center"
+                // textAlign="center"
+                className = "funText"
 
             >
                 {subtext}
