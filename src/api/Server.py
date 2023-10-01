@@ -458,7 +458,7 @@ def update_live_cost():
 
         index = index+1
         # Sleep for 5 seconds
-        time.sleep(5)
+        time.sleep(8)
 
 @app.route("/UsageCostLive")
 def UsageCostLive():

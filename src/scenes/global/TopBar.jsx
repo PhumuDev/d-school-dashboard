@@ -107,7 +107,7 @@ const TopBar = ({onToggleSlideshow,isSlideshowMode, setVideoLink, setSlideshowTi
 
         </Tooltip>
 
-        <Tooltip 
+        {/* <Tooltip 
           title = "Notifications" 
           arrow
           enterDelay={900}
@@ -122,7 +122,8 @@ const TopBar = ({onToggleSlideshow,isSlideshowMode, setVideoLink, setSlideshowTi
           </IconButton>
         </Tooltip>
         {openN && <NotificationList/>}
-        
+         */}
+         
         <Tooltip 
           title = "Settings" 
           arrow
