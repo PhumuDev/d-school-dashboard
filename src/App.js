@@ -67,12 +67,12 @@ function App() {
   
     if (isSlideshowMode) {
       interval = setInterval(() => {
-        if (count>4){
+        if (count>8){
           setCount(0);
         } else {
           setCount(count+1)
         }
-      }, 3500); // set count every 3.5 seconds
+      }, 4000); // set count every 1 seconds
     }
   
     return () => clearInterval(interval);
@@ -123,8 +123,10 @@ function App() {
                   switch (count) {
                       case 1:
                           return <FunFact subtext="Arsenal are winning the champions league"/>;
-                      case 3:
+                      case 4:
                           return <FunFact subtext="Arsenal are winning the league" />;
+                      case 7:
+                        return <FunFact subtext="Different fun fact about building" />;
                       default:
                           return null;
                   }
