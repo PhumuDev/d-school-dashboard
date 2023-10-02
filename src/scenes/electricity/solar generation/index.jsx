@@ -26,6 +26,12 @@ const SolarGeneration = ({isAdmin}) => {
           <div class = "MainStatsContainer" >
 
             <InfoBox
+              title = "What Does kW Mean?"
+              subtitle = "KW stands for kilowatt, which is a unit of power equivalent to 1000 joules of energy."
+              icon = {Sun}
+              className="statsContainer"
+            />
+            <InfoBox
               title = "155kWh/day Produced On Average!"
               subtitle = "40kWh is enough to run many electrical appliances in a 5 bedroom house for a day!"
               icon = {Solar}
@@ -33,18 +39,11 @@ const SolarGeneration = ({isAdmin}) => {
             />      
             <InfoBox
               title = "4833kWh Generated This Month!"
-              subtitle = "That's enouh energy to supply 6 average households for a month!"
+              subtitle = "That's enough energy to supply 6 average households for a month!"
               icon = {House}
               className="statsContainer"
             />
-            
-            <InfoBox
-              title = "What Is Irradiance?"
-              subtitle = "Irradiance is the amount of light energy hitting the solar panels per meter square."
-              icon = {Sun}
-              className="statsContainer"
-            />
-            
+
           </div>
            
         </div>

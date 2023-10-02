@@ -4,8 +4,8 @@ import { useState } from "react";
 import Graph2 from "../../../graphs/Graph2";
 import Graph3 from "../../../graphs/Graph3";
 import Bolt from '../../../images/thunderbolt.png';
-import Chart from '../../../images/pie-chart.png';
 import InfoBox from "../../../components/InfoBox";
+import Meter from '../../../images/speedometer.png'
 
 const EnergyConsumption = ({isAdmin}) => {
   const theme = useTheme();
@@ -24,14 +24,14 @@ const EnergyConsumption = ({isAdmin}) => {
           <div class = "MainStatsContainer">
             <InfoBox
               title = "35431kWh Consumed In August!"
-              subtitle = "Most consumption comes from the chiller panel!"
+              subtitle = "Most of our energy consumption comes from the chiller panel!"
               icon = {Bolt}
               className="statsContainer2"
             />
             <InfoBox
-              title = "Around 15% Of Energy Consumption Was Produced By The Building!"
-              subtitle = "This varies according to weather."
-              icon = {Chart}
+              title = "Consumption is Optimal"
+              subtitle = "Energy Consumption is currently lower than the standard rate."
+              icon = {Meter}
               className="statsContainer2"
             />
           </div>       
