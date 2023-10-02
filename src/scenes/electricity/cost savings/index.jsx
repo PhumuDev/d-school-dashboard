@@ -32,7 +32,7 @@ const CostSavings = ({isAdmin}) => {
             />
             <InfoBox
               title = "Our Building Design Saves Electricity!"
-              subtitle = "Our building is designed to reduce electricity consumption. For example, the stairs are placed more conveniently than the lifts to help promote their usage."
+              subtitle = "Our building is designed to reduce electricity consumption. For example, the use of external screens reduces the need for air conditioning."
               icon = {Bulb}
               className="statsContainer2"
             />

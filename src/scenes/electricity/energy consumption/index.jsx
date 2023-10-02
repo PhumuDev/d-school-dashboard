@@ -24,13 +24,13 @@ const EnergyConsumption = ({isAdmin}) => {
           <div class = "MainStatsContainer">
             <InfoBox
               title = "35431kWh Consumed In August!"
-              subtitle = "!"
+              subtitle = "Most consumption comes from the chiller panel!"
               icon = {Bolt}
               className="statsContainer2"
             />
             <InfoBox
-              title = "Around 10% Of Energy Consumption Was Produced By The Building!"
-              subtitle = ""
+              title = "Around 15% Of Energy Consumption Was Produced By The Building!"
+              subtitle = "This varies according to weather."
               icon = {Chart}
               className="statsContainer2"
             />
