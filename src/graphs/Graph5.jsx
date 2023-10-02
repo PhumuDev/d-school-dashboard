@@ -176,7 +176,7 @@ const Graph5 = ({isAdmin}) => {
   const displayWeek2Points = () => {
     setIsPaused(true);
     // Display the first 10 data points
-    updateChart(dataHistory.slice(8, 14));
+    updateChart(dataHistory.slice(7, 14));
   };
 
   const displayWeek3Points = () => {
@@ -188,7 +188,7 @@ const Graph5 = ({isAdmin}) => {
   const displayMonthPoints = () => {
     setIsPaused(true);
     // Display the first 30 data points
-    updateChart(dataHistory.slice(0, 30));
+    updateChart(dataHistory.slice(0, 31));
   };
 
   const handleLiveButtonClick = () => {

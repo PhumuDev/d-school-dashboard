@@ -2,12 +2,6 @@
 import React, { useEffect, useState, useRef} from "react";
 import ReactApexChart from "react-apexcharts";
 import "../App.css";
-import { tokens } from "../theme";
-import { useTheme, Typography } from "@mui/material";
-import axios from 'axios';
-import { BorderAll } from "@mui/icons-material";
-
-
 
 
 
@@ -192,7 +186,7 @@ const Graph2 = ({isAdmin}) => {
   const displayWeek2Points = () => {
     setIsPaused(true);
     // Display the first 10 data points
-    updateChart(dataHistory.slice(8, 14));
+    updateChart(dataHistory.slice(7, 14));
   };
 
   const displayWeek3Points = () => {
@@ -204,7 +198,7 @@ const Graph2 = ({isAdmin}) => {
   const displayMonthPoints = () => {
     setIsPaused(true);
     // Display the first 30 data points
-    updateChart(dataHistory.slice(0, 30));
+    updateChart(dataHistory.slice(0, 31));
   };
 
   const handleLiveButtonClick = () => {

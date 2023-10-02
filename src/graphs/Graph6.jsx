@@ -31,6 +31,9 @@ const Graph6 = () => {
         categories: xAxisCategories,   
         title:{
           text: xAxisTitle,
+          style:{
+            fontSize: "20px"
+          }
         }
       },
       fill: {

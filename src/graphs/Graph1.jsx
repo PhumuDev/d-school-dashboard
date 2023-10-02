@@ -44,11 +44,7 @@ const Graph1 = ({isAdmin}) => {
             }
           }
         },
-        stroke: {
-          width: [0, 4],
-          curve: "smooth"
-        },
-         
+       
       noData: {
         text: 'Loading...',
         style:{
@@ -70,16 +66,6 @@ const Graph1 = ({isAdmin}) => {
           enabledOnSeries: [1]
         },
        
-        xaxis: {
-          type: 'datetime',
-          labels:{
-            style:{
-              color:"#abaaa7",
-            }
-          }
-          
-          
-        },
         yaxis: [{
           title: {
             text: 'kW/h',  // For power
@@ -187,7 +173,7 @@ const Graph1 = ({isAdmin}) => {
   const displayWeek2Points = () => {
     setIsPaused(true);
     // Display the first 10 data points
-    updateChart(dataHistory.slice(8, 14));
+    updateChart(dataHistory.slice(7, 14));
   };
 
   const displayWeek3Points = () => {
@@ -199,7 +185,7 @@ const Graph1 = ({isAdmin}) => {
   const displayMonthPoints = () => {
     setIsPaused(true);
     // Display the first 30 data points
-    updateChart(dataHistory.slice(0, 30));
+    updateChart(dataHistory.slice(0, 31));
   };
 
   const handleLiveButtonClick = () => {

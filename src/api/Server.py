@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # for solar generation and building consumption
 energy_data = [
-      {"x": "2023-08-01T00:00:00","generationValue": 0,"consumptionValue": 654},
+      {"x": "2023-08-01T00:00:00","generationValue": 1,"consumptionValue": 654},
       {"x": "2023-08-02T00:00:00","generationValue": 149,"consumptionValue": 884},
       {"x": "2023-08-03T00:00:00","generationValue": 116,"consumptionValue": 800},
       {"x": "2023-08-04T00:00:00","generationValue": 192,"consumptionValue": 990},
@@ -346,7 +346,7 @@ all_cost = [
 ]
 
 energy_data_live = [
-      {"x": "2023-08-01T00:00:00","generationValue": 0,"consumptionValue": 654},
+      {"x": "2023-08-01T00:00:00","generationValue": 1,"consumptionValue": 654},
       {"x": "2023-08-02T00:00:00","generationValue": 149,"consumptionValue": 884},
       {"x": "2023-08-03T00:00:00","generationValue": 116,"consumptionValue": 800},
       {"x": "2023-08-04T00:00:00","generationValue": 192,"consumptionValue": 990},
@@ -424,7 +424,7 @@ def update_live_data():
     global energy_data_live
     index = 8
 
-    while (index<30):
+    while (index<31):
 
         # Update the data in energy_data_live
         energy_data_live.pop(0)
@@ -450,7 +450,7 @@ def update_live_cost():
     global all_cost_live
     index = 8
 
-    while (index<30):
+    while (index<31):
 
         # Update the data in energy_data_live
         all_cost_live.pop(0)

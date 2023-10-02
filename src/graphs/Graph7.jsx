@@ -294,6 +294,35 @@ const Graph7 = () => {
   const [currentDataIndex, setCurrentDataIndex] = useState(0);
   const [currentChartData, setCurrentChartData] = useState([]);
 
+  const [options, setOptions] = useState({
+    
+    chart: {
+      width: 380,
+      type: 'treemap',
+      foreColor: "#939695",
+    },
+    
+    title: {
+      text: 'Water Usage Per Floor',
+      style:{
+        color: "#abaaa7",
+        fontSize: 18,
+        
+       }
+  },
+  tooltip: {
+      //Hover Box
+      enabled: true,
+      theme: "dark",
+      y: {
+        formatter: function (val) {
+          return  (val + " litres")
+        }
+      }
+    },
+ 
+})
+ 
   const [series, setSeries] = useState([
     {
       name: "Floor usage",
@@ -302,13 +331,24 @@ const Graph7 = () => {
   ]);
 
   useEffect(() => {
+    // Initialize the chart with the first data point immediately
+    const initialDataForDate = staticData[currentDataIndex].data;
+    setCurrentChartData(initialDataForDate);
+    setSeries([
+      {
+        data: initialDataForDate.map((item) => ({
+          x: item.x,
+          y: item.y,
+        })),
+      },
+    ]);
+
     const timer = setInterval(() => {
-      if (currentDataIndex < staticData.length) {
-        const dataForDate = staticData[currentDataIndex].data;
-        setCurrentChartData(dataForDate);
-        setCurrentDataIndex((prevIndex) => prevIndex + 1);
-        // Update chart series data with both "x" and "y"
-        setSeries([
+        if (currentDataIndex < staticData.length - 1) {
+          const dataForDate = staticData[currentDataIndex + 1].data;
+          setCurrentChartData(dataForDate);
+          setCurrentDataIndex((prevIndex) => prevIndex + 1);
+          setSeries([
             {
               data: dataForDate.map((item) => ({
                 x: item.x,
@@ -317,47 +357,15 @@ const Graph7 = () => {
             },
           ]);
         } else {
-          // Clear the timer when all data has been displayed
           clearInterval(timer);
         }
-      }, 8000); // Adjust the timer duration as needed (2 seconds in this example)
-  
-      return () => clearInterval(timer);
-    }, [currentDataIndex]);
+      }, 8000);
+       return () => clearInterval(timer);
+  }, [currentDataIndex]);
 
 
 
 
-
-const [options, setOptions] = useState({
-    
-      chart: {
-        width: 380,
-        type: 'treemap',
-        foreColor: "#939695",
-      },
-      
-      title: {
-        text: 'Water Usage Per Floor',
-        style:{
-          color: "#abaaa7",
-          fontSize: 18,
-          
-         }
-    },
-    tooltip: {
-        //Hover Box
-        enabled: true,
-        theme: "dark",
-        y: {
-          formatter: function (val) {
-            return  (val + " litres")
-          }
-        }
-      },
-   
-    })
-   
  
                   
        
